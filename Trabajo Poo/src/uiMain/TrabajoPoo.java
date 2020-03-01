@@ -15,8 +15,8 @@ public class TrabajoPoo {
         SiguienteMenu btnMenuFunciones= new SiguienteMenu(menuRegistrar, "Usar funciones");
         SiguienteMenu btnMenuPrincipal= new SiguienteMenu(menuPrincipal, "Regresar");
         
-        menuPrincipal.aÃ±adirOpcion(btnMenuRegistrar);
-        menuPrincipal.aÃ±adirOpcion(btnMenuFunciones);
+        menuPrincipal.añadirOpcion(btnMenuRegistrar);
+        menuPrincipal.añadirOpcion(btnMenuFunciones);
         
         
         String[] preguntasOperario= new String[5];
@@ -40,9 +40,9 @@ public class TrabajoPoo {
         Formulario btnFormularioClientes= new Formulario(menuRegistrar, "Registrar un cliente", preguntasCliente);
         btnFormularioClientes.setMensajeIntroductorio("Escriba si o no para las siguientes preguntas", 5);
         
-        menuRegistrar.aÃ±adirOpcion(btnFormularioOperarios);
-        menuRegistrar.aÃ±adirOpcion(btnFormularioClientes);
-        menuRegistrar.aÃ±adirOpcion(btnMenuPrincipal);
+        menuRegistrar.añadirOpcion(btnFormularioOperarios);
+        menuRegistrar.añadirOpcion(btnFormularioClientes);
+        menuRegistrar.añadirOpcion(btnMenuPrincipal);
         
         menuPrincipal.lanzarMenu();
     }

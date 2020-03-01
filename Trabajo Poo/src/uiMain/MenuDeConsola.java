@@ -17,7 +17,7 @@ public class MenuDeConsola {
       this.mensajeMenu= mensajeMenu;
     }
      //metodos
-    public void a√±adirOpcion(OpcionDeMenu op){
+    public void aÒadirOpcion(OpcionDeMenu op){
       listaOpciones.add(op);
     }
     public void lanzarMenu(){
@@ -65,7 +65,7 @@ public class MenuDeConsola {
     
     public void Escuchar(){}
     //recibe el archivo donde se llevara el registro de contrase√±as
-    public void EscribirContrase√±a(){};
+    public void EscribirContraseÒa(){};
     //recibe el archivo donde se llevara el registro de cedulas
     public void EscribirCedula(){}
     
