@@ -10,7 +10,7 @@ public class ServiciosPublicos {
 	double consumo;
 	Date fecha;
 	DateTimeFormatter miFormatoFechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	ServiciosPublicos(String nombre, int costoFijo, double consumo, String fecha){
+	public ServiciosPublicos(String nombre, int costoFijo, double consumo, String fecha){
 		this.nombre = nombre;
 		this.costoFijo = costoFijo;
 		this.consumo = consumo;
