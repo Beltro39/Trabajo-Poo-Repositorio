@@ -1,0 +1,1 @@
+[{"luz":true,"cedula":"11450","acueducto":true,"gas":true,"direccion":"Diagonal 31","estrato":"4","telefono":"3007","nombre":"Carlos","edad":50,"agua":true}]
