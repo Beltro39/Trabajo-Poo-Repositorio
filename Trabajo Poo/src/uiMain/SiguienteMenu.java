@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class SiguienteMenu extends OpcionDeMenu {
      MenuDeConsola proximoMenu;
-     String nombreOpcion;
+     
     
     SiguienteMenu(MenuDeConsola proximoMenu, String nombreOpcion){
       this.proximoMenu= proximoMenu;
@@ -31,9 +31,7 @@ public class SiguienteMenu extends OpcionDeMenu {
     
     
     
-    public String toString(){
-      return this.nombreOpcion;
-    }
+    
     
     
 }

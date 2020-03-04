@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Scanner;
+import gestorAplicacion.*;
 
 //import org.json.JSONException;
 import org.json.simple.JSONArray;
@@ -28,12 +29,12 @@ public class EscritorJson {
 		obj.put("direccion",direccion);
 	}
 	
-	static public void crearCliente(String estrato, String cedula, String nombre, int edad, String telefono, String direccion, boolean luz, boolean agua, boolean acueducto, boolean gas) {
+	static public void crearCliente(int estrato, String cedula, String nombre, int edad, String telefono, String direccion, ServiciosPublicos luz, ServiciosPublicos acueducto, ServiciosPublicos alcantarillado, ServiciosPublicos gas) {
 		obj = new JSONObject();
 		obj.put("estrato", estrato);
                 obj.put("luz", luz);
-                obj.put("agua", agua);
-                obj.put("acueducto", acueducto);
+                obj.put("agua", acueducto);
+                obj.put("acueducto", alcantarillado) ;
                 obj.put("gas", gas);
 		agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
 		listaClientes.add(obj);

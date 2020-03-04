@@ -2,6 +2,9 @@ package uiMain;
 
 
 public abstract class OpcionDeMenu {
+    String nombreOpcion;
     abstract public void ejecutar();
-    abstract public String toString();
+    public String toString(){
+    return this.nombreOpcion;
+    };
 }

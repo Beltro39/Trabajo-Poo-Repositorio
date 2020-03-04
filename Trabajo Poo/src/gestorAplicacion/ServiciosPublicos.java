@@ -3,22 +3,42 @@ package gestorAplicacion;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Vector;
+import java.util.Iterator;
 
-public class ServiciosPublicos {
-	String nombre;
-	int costoFijo;
-	double consumo;
+public  class ServiciosPublicos {
+       private Cliente cliente;
 	Date fecha;
-	DateTimeFormatter miFormatoFechas = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	ServiciosPublicos(String nombre, int costoFijo, double consumo, String fecha){
-		this.nombre = nombre;
-		this.costoFijo = costoFijo;
-		this.consumo = consumo;
-		try {
-		this.fecha = new SimpleDateFormat("dd/MM/yyyy").parse(fecha);
-		}catch(Exception e) {
-			System.out.println("fecha no válida");
-		}
+        public Vector<Double> pilaConsumo;
+        public Vector<Double> pilaPagar;
+        
+	DateTimeFormatter miFormatoFec,has = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+	public ServiciosPublicos( Vector pilaConsumo, Vector pilaPagar, String fecha){
+            this.pilaConsumo= pilaConsumo;
+            this.pilaPagar= pilaPagar;
+                   
+	
 		
 	}
+        
+        public void SetCliente(Cliente cliente){
+        this.cliente= cliente;
+        }
+        public String toString(){
+          Iterator itrC= pilaConsumo.iterator();
+          Iterator itrP= pilaPagar.iterator();
+          String mensaje= "";
+          while(itrC.hasNext()){
+            mensaje= mensaje+itrC.next();
+            if(itrP.hasNext()){
+                mensaje= mensaje+" "+itrP.next()+" ";
+            }
+          }   
+        return mensaje;
+        }
 }
+
+
+
+
+

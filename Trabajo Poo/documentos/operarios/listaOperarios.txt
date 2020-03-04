@@ -1,1 +1,1 @@
-[{"cedula":"1001","direccion":"Calle 13","telefono":"3007","nombre":"Sebastian","edad":19,"gananciasGeneradas":0.0}]
+[]

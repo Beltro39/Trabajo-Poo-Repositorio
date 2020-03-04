@@ -6,9 +6,10 @@ import java.util.logging.Logger;
 import java.util.Scanner;
 import gestorAplicacion.Cliente;
 import org.json.JSONException;
+import gestorAplicacion.ServiciosPublicos;
+import java.util.Vector;
 
 public class FormularioCliente extends Formulario {
-    private int intervencion= 5;
     Scanner input= new Scanner(System.in);
     boolean[] listaBoolean= new boolean[4];
     
@@ -24,8 +25,8 @@ public class FormularioCliente extends Formulario {
       preguntas[4]= "Digite el estrato al que pertenece";
       preguntas[5]= "Digite su dirección";
       preguntas[6]= "¿Desea suscribirse al servicio público de luz?";
-      preguntas[7]= "¿Desea suscribirse al servicio público de agua?";
-      preguntas[8]= "¿Desea suscribirse al servicio público de acueducto?";
+      preguntas[7]= "¿Desea suscribirse al servicio público de acueduto?";
+      preguntas[8]= "¿Desea suscribirse al servicio público de alcantarillado?";
       preguntas[9]= "¿Desea suscribirse al servicio público de gas?";
     }
     
@@ -69,7 +70,7 @@ public class FormularioCliente extends Formulario {
         }
         
         try {
-        new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4],  respuestas[5], listaBoolean[0], listaBoolean[1], listaBoolean[2], listaBoolean[3]);
+        Cliente cliente= new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos( new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos( new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos( new Vector<Double>(), new Vector<Double>(), "Enero"));
         } catch (JSONException ex) {
              Logger.getLogger(FormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
          }

@@ -25,7 +25,7 @@ public class MenuDeConsola {
        try{
          int opcionElegida= input.nextInt(); 
          listaOpciones.get(opcionElegida).ejecutar();
-       }catch(Exception e){
+       }catch(ArithmeticException e){
            try {
              RobotPresiona.limpiarpantalla();
          } catch (AWTException ex) {
@@ -64,11 +64,6 @@ public class MenuDeConsola {
       this.mensajeMenu+= "\n"+ mensaje;
     }
     
-    public void Escuchar(){}
-    //recibe el archivo donde se llevara el registro de contraseñas
-    public void EscribirContraseña(){};
-    //recibe el archivo donde se llevara el registro de cedulas
-    public void EscribirCedula(){}
     
     
 }
