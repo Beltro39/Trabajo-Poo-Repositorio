@@ -4,11 +4,11 @@
  * and open the template in the editor.
  */
 package BaseDatos;
-import org.json.*;
+
 /**
  *
  * @author Sebas
  */
 public class CuentasCliente {
-    new 
+    
 }

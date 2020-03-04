@@ -17,7 +17,7 @@ public class MenuDeConsola {
       this.mensajeMenu= mensajeMenu;
     }
      //metodos
-    public void aÒadirOpcion(OpcionDeMenu op){
+    public void a√±adirOpcion(OpcionDeMenu op){
       listaOpciones.add(op);
     }
     public void lanzarMenu(){
@@ -32,6 +32,7 @@ public class MenuDeConsola {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }
           System.out.println("Elija una opcion valida, presione Enter para reintentar");
+          System.out.println(e);
           String enterKey= input.nextLine();
           String enterKey2= input.nextLine();
           if(enterKey2.isEmpty()){
@@ -65,7 +66,7 @@ public class MenuDeConsola {
     
     public void Escuchar(){}
     //recibe el archivo donde se llevara el registro de contrase√±as
-    public void EscribirContraseÒa(){};
+    public void EscribirContrase√±a(){};
     //recibe el archivo donde se llevara el registro de cedulas
     public void EscribirCedula(){}
     

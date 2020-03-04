@@ -15,34 +15,18 @@ public class TrabajoPoo {
         SiguienteMenu btnMenuFunciones= new SiguienteMenu(menuRegistrar, "Usar funciones");
         SiguienteMenu btnMenuPrincipal= new SiguienteMenu(menuPrincipal, "Regresar");
         
-        menuPrincipal.a�adirOpcion(btnMenuRegistrar);
-        menuPrincipal.a�adirOpcion(btnMenuFunciones);
+        menuPrincipal.añadirOpcion(btnMenuRegistrar);
+        menuPrincipal.añadirOpcion(btnMenuFunciones);
         
         
-        String[] preguntasOperario= new String[5];
-        preguntasOperario[0]= "Digite su cédula"; 
-        preguntasOperario[1]= "Digite su nombre";
-        preguntasOperario[2]= "Digite su edad";
-        preguntasOperario[3]= "Digite su número de celular";
-        preguntasOperario[4]= "Digite su dirección";
-        Formulario btnFormularioOperarios= new Formulario(menuRegistrar, "Registrar un operario", preguntasOperario);
         
-        String[] preguntasCliente= new String[9];
-        for(int i= 0; i<5; i++){
-          preguntasCliente[i]= preguntasOperario[i];
-        }
+        FormularioOperario btnFormularioOperarios= new FormularioOperario(menuRegistrar, "Registrar un operario");
+        FormularioCliente btnFormularioClientes= new FormularioCliente(menuRegistrar, "Registrar un cliente");
         
-        preguntasCliente[5]= "¿Desea suscribirse al servicio público de luz?";
-        preguntasCliente[6]= "¿Desea suscribirse al servicio público de agua?";
-        preguntasCliente[7]= "¿Desea suscribirse al servicio público de acueducto?";
-        preguntasCliente[8]= "¿Desea suscribirse al servicio público de gas?";
         
-        Formulario btnFormularioClientes= new Formulario(menuRegistrar, "Registrar un cliente", preguntasCliente);
-        btnFormularioClientes.setMensajeIntroductorio("Escriba si o no para las siguientes preguntas", 5);
-        
-        menuRegistrar.a�adirOpcion(btnFormularioOperarios);
-        menuRegistrar.a�adirOpcion(btnFormularioClientes);
-        menuRegistrar.a�adirOpcion(btnMenuPrincipal);
+        menuRegistrar.añadirOpcion(btnFormularioOperarios);
+        menuRegistrar.añadirOpcion(btnFormularioClientes);
+        menuRegistrar.añadirOpcion(btnMenuPrincipal);
         
         menuPrincipal.lanzarMenu();
     }

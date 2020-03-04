@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Scanner;
 
-import org.json.JSONException;
+//import org.json.JSONException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,11 +28,13 @@ public class EscritorJson {
 		obj.put("direccion",direccion);
 	}
 	
-	static public void crearCliente(int estrato, int saldo, int añosServicio, String cedula, String nombre, int edad, String telefono, String direccion) {
+	static public void crearCliente(String estrato, String cedula, String nombre, int edad, String telefono, String direccion, boolean luz, boolean agua, boolean acueducto, boolean gas) {
 		obj = new JSONObject();
 		obj.put("estrato", estrato);
-		obj.put("saldo", saldo);
-		obj.put("añosServicio", añosServicio);
+                obj.put("luz", luz);
+                obj.put("agua", agua);
+                obj.put("acueducto", acueducto);
+                obj.put("gas", gas);
 		agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
 		listaClientes.add(obj);
 	}
@@ -45,11 +47,9 @@ public class EscritorJson {
 		obj.put("fecha", fecha);
 		listaServiciosPublicos.add(obj);
 	}
-	static public void crearOperario(JSONObject seguro, String tipoJornada, double gananciasGeneradas, String cedula,String nombre, int edad, String telefono, String direccion) {
+	static public void crearOperario( double gananciasGeneradas, String cedula,String nombre, int edad, String telefono, String direccion) {
 		obj = new JSONObject();
 		agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
-		obj.put("seguroAccidentes", seguro);
-		obj.put("tipoJornada", tipoJornada);
 		obj.put("gananciasGeneradas", gananciasGeneradas);
 		listaOperarios.add(obj);
 	}
