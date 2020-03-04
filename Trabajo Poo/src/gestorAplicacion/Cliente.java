@@ -5,6 +5,7 @@ import org.json.JSONException;
 
 
 public class Cliente extends Persona {
+
     public static ArrayList<Cliente> listaClientes= new ArrayList<Cliente>();
     private int estrato;
    
@@ -25,11 +26,10 @@ public class Cliente extends Persona {
         listaClientes.add(this);
         
                 
+
     }
     public int getEstrato() {
     	return this.estrato;
     }
-    
-    
-   
+
 }

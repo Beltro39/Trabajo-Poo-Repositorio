@@ -36,6 +36,7 @@ public class EscritorJson {
                 obj.put("agua", acueducto);
                 obj.put("acueducto", alcantarillado) ;
                 obj.put("gas", gas);
+
 		agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
 		listaClientes.add(obj);
 	}
@@ -48,33 +49,26 @@ public class EscritorJson {
 		obj.put("fecha", fecha);
 		listaServiciosPublicos.add(obj);
 	}
-	static public void crearOperario( double gananciasGeneradas, String cedula,String nombre, int edad, String telefono, String direccion) {
+	static public void crearOperario(double gananciasGeneradas, String cedula,String nombre, int edad, String telefono, String direccion) {
 		obj = new JSONObject();
 		agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
 		obj.put("gananciasGeneradas", gananciasGeneradas);
 		listaOperarios.add(obj);
 	}
 
-	// todavia no se como vamos a hacer lo de seguro de accidentes
-		static public JSONObject crearSeguroAccidentes(String[] seguroAccidente) {
-			obj = new JSONObject();
-			for (String acc : seguroAccidente) {
-				obj.put("seguro", acc);
-			}
-			return obj;
-		}
 	static public void guardarDatos(String dato) {
 		switch(dato) {
 		case "clientes":
 			try{
 				File dir = new File("documentos/clientes");
 				dir.mkdirs();
-				File temporal = new File(dir, "listaClientes.txt");
+				File temporal = new File(dir, "clientes.json");
 				temporal.createNewFile();
 				FileWriter archivo = new FileWriter(temporal);
 				archivo.write(listaClientes.toJSONString());
 				archivo.flush();
 				archivo.close();
+				listaClientes.clear();
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -83,12 +77,13 @@ public class EscritorJson {
 			try {
 				File dir = new File("documentos/operarios");
 				dir.mkdir();
-				File temporal = new File(dir, "listaOperarios.txt");
+				File temporal = new File(dir, "operarios.json");
 				temporal.createNewFile();
 				FileWriter archivo = new FileWriter(temporal);
 				archivo.write(listaOperarios.toJSONString());
 				archivo.flush();
 				archivo.close();
+				listaOperarios.clear();
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
@@ -112,12 +107,13 @@ public class EscritorJson {
 			try {
 				File dir = new File("documentos/serviciosPublicos");
 				dir.mkdir();
-				File temporal = new File(dir, "listaServiciosPublicos.txt");
+				File temporal = new File(dir, "serviciosPublicos.json");
 				temporal.createNewFile();
 				FileWriter archivo = new FileWriter(temporal);
 				archivo.write(listaServiciosPublicos.toJSONString());
 				archivo.flush();
 				archivo.close();
+				listaServiciosPublicos.clear();
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
