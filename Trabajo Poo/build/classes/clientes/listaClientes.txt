@@ -1,1 +1,0 @@
-[{"luz":533.0 82082.0 ,"cedula":"1001","acueducto":16.0 10400.0 ,"gas":24.0,"direccion":"Diagonal 31","estrato":4,"telefono":"3007","nombre":"Sebastian","edad":19,"agua":4.0 15400.0 }]
