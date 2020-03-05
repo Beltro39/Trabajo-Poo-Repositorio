@@ -17,9 +17,7 @@ public class EscritorJson {
 	static JSONObject obj;
 	static JSONArray listaOperarios = new JSONArray();
 	static JSONArray listaClientes = new JSONArray();
-	//static JSONArray catalogo = new JSONArray(); SI VAMOS A HACER LO QUE USTE DICE DE VARIOS CATALOGOS NECESITARIAMOS ESTA LISTA
-	static JSONArray listaServiciosPublicos = new JSONArray();
-	
+	static JSONArray listaProductos = new JSONArray();
 	//"CONSTRUCTORES"
 	static public void agregarPersona(JSONObject obj, String cedula, String nombre, int edad, String telefono, String direccion) {
 		obj.put("cedula",cedula);
@@ -33,27 +31,20 @@ public class EscritorJson {
 		obj = new JSONObject();
                 agregarPersona(obj,cedula,nombre,edad,telefono,direccion);
 		obj.put("estrato", estrato);
-                obj.put("luz", luz);
-                obj.put("agua", acueducto);
-                obj.put("acueducto", alcantarillado) ;
-                obj.put("gas", gas);
+        obj.put("luz", luz);
+        obj.put("agua", acueducto);
+        obj.put("acueducto", alcantarillado) ;
+        obj.put("gas", gas);
 		
 		listaClientes.add(obj);
 	}
 	
-	public static void crearServiciosPublicos(String nombre, int precioFijo, double consumo, Date fecha) {
-		obj = new JSONObject();
-		obj.put("nombre", nombre);
-		obj.put("precioFijo", precioFijo);
-		obj.put("consumo", consumo);
-		obj.put("fecha", fecha);
-		listaServiciosPublicos.add(obj);
-	}
         public static void crearProducto(String nombre, int costo, String garantia){
            obj = new JSONObject();
            obj.put("nombre", nombre);
            obj.put("costo", costo);
            obj.put("garantia", garantia);
+           listaProductos.add(obj);
            
         }
 	static public void crearOperario( double gananciasGeneradas, String cedula,String nombre, int edad, String telefono, String direccion) {
@@ -63,17 +54,8 @@ public class EscritorJson {
 		listaOperarios.add(obj);
 	}
 
-	// todavia no se como vamos a hacer lo de seguro de accidentes
-		static public JSONObject crearSeguroAccidentes(String[] seguroAccidente) {
-			obj = new JSONObject();
-			for (String acc : seguroAccidente) {
-				obj.put("seguro", acc);
-			}
-			return obj;
-		}
-	static public void guardarDatos(String dato) {
-		switch(dato) {
-		case "clientes":
+	static public void guardarDatos() {
+		//guarda los clientes
 			try{
 				File dir = new File("documentos/clientes");
 				dir.mkdirs();
@@ -86,8 +68,7 @@ public class EscritorJson {
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
-			break;
-		case "operarios":
+			//guarda los operarios
 			try {
 				File dir = new File("documentos/operarios");
 				dir.mkdir();
@@ -100,41 +81,21 @@ public class EscritorJson {
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
-			break;
-		/*case "catalogo":
+			//guarda los productos
+
 			try {
-				File dir = new File("documentos/catalogo");
+				File dir = new File("documentos/productos");
 				dir.mkdir();
-				File temporal = new File(dir, "catalogo.txt");
+				File temporal = new File(dir, "productos.txt");
 				temporal.createNewFile();
 				FileWriter archivo = new FileWriter(temporal);
-				archivo.write(catalogo.toJSONString());
+				archivo.write(listaProductos.toJSONString());
 				archivo.flush();
 				archivo.close();
-			}catch(IOException e) {
-				System.out.println(e.getMessage());
-			}
-			break;
-			*/
-		case "servicios publicos":
-			try {
-				File dir = new File("documentos/serviciosPublicos");
-				dir.mkdir();
-				File temporal = new File(dir, "listaServiciosPublicos.txt");
-				temporal.createNewFile();
-				FileWriter archivo = new FileWriter(temporal);
-				archivo.write(listaServiciosPublicos.toJSONString());
-				archivo.flush();
-				archivo.close();
-			}catch(IOException e) {
-				System.out.println(e.getMessage());
-			}
-			break;
+		}catch(IOException e) {
+			System.out.println(e.getMessage());
 		}
 		
 	}
-	
-	
-	
-	
+				
 }
