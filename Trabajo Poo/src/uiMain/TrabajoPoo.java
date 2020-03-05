@@ -16,23 +16,23 @@ public class TrabajoPoo {
         GuardarDatos btnGuardarDatos= new GuardarDatos(menuPrincipal);
         SiguienteMenu btnMenuPrincipal= new SiguienteMenu(menuPrincipal, "Regresar");
         
-        menuPrincipal.aÃ±adirOpcion(btnMenuRegistrar);
-        menuPrincipal.aÃ±adirOpcion(btnMenuFunciones);
-        menuPrincipal.aÃ±adirOpcion(btnGuardarDatos);
+        menuPrincipal.añadirOpcion(btnMenuRegistrar);
+        menuPrincipal.añadirOpcion(btnMenuFunciones);
+        menuPrincipal.añadirOpcion(btnGuardarDatos);
         
         
         FormularioCliente btnFormularioClientes= new FormularioCliente(menuRegistrar, "Registrar un cliente");
         FormularioOperario btnFormularioOperarios= new FormularioOperario(menuRegistrar, "Registrar un operario");
         
         RecolectarDatos recolectarDatos= new RecolectarDatos(menuFunciones);
-        menuFunciones.aÃ±adirOpcion(recolectarDatos);
-        menuFunciones.aÃ±adirOpcion(btnMenuPrincipal);
+        menuFunciones.añadirOpcion(recolectarDatos);
+        menuFunciones.añadirOpcion(btnMenuPrincipal);
         
         
         
-        menuRegistrar.aÃ±adirOpcion(btnFormularioClientes);
-        menuRegistrar.aÃ±adirOpcion(btnFormularioOperarios);
-        menuRegistrar.aÃ±adirOpcion(btnMenuPrincipal);
+        menuRegistrar.añadirOpcion(btnFormularioClientes);
+        menuRegistrar.añadirOpcion(btnFormularioOperarios);
+        menuRegistrar.añadirOpcion(btnMenuPrincipal);
         
         
         menuPrincipal.lanzarMenu();

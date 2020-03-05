@@ -17,8 +17,10 @@ public class EscritorJson {
 	static JSONObject obj;
 	static JSONArray listaOperarios = new JSONArray();
 	static JSONArray listaClientes = new JSONArray();
-	//static JSONArray catalogo = new JSONArray(); SI VAMOS A HACER LO QUE USTE DICE DE VARIOS CATALOGOS NECESITARIAMOS ESTA LISTA
+	static JSONArray catalogoCantidad = new JSONArray();
+	static JSONArray catalogoPrecio = new JSONArray();
 	static JSONArray listaServiciosPublicos = new JSONArray();
+	
 	
 	//"CONSTRUCTORES"
 	static public void agregarPersona(JSONObject obj, String cedula, String nombre, int edad, String telefono, String direccion) {
@@ -55,10 +57,11 @@ public class EscritorJson {
 		obj.put("gananciasGeneradas", gananciasGeneradas);
 		listaOperarios.add(obj);
 	}
+	static public void crearProductoCatalogo() {
+		catalogoCantidad.
+	}
 
-	static public void guardarDatos(String dato) {
-		switch(dato) {
-		case "clientes":
+	static public void guardarDatos() {
 			try{
 				File dir = new File("documentos/clientes");
 				dir.mkdirs();
@@ -71,10 +74,7 @@ public class EscritorJson {
 				listaClientes.clear();
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
-			}
-			break;
-		case "operarios":
-			try {
+			}try {
 				File dir = new File("documentos/operarios");
 				dir.mkdir();
 				File temporal = new File(dir, "operarios.json");
@@ -87,7 +87,6 @@ public class EscritorJson {
 			}catch(IOException e) {
 				System.out.println(e.getMessage());
 			}
-			break;
 		/*case "catalogo":
 			try {
 				File dir = new File("documentos/catalogo");
@@ -103,7 +102,6 @@ public class EscritorJson {
 			}
 			break;
 			*/
-		case "servicios publicos":
 			try {
 				File dir = new File("documentos/serviciosPublicos");
 				dir.mkdir();

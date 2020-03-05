@@ -8,7 +8,7 @@ abstract public class Catalogo {
 	public static HashMap<String, Double> productosCatalogo = new HashMap<String, Double>();
 	public static HashMap<String, Integer> cantidadProductos = new HashMap<String,Integer>();
 	
-	public void aÃ±adirProducto(String nombreProducto, double precioProducto) {
+	public void añadirProducto(String nombreProducto, double precioProducto) {
 		productosCatalogo.put(nombreProducto, precioProducto);
 		System.out.println("Por favor insertar la cantidad de productos, por defecto es 1 ");
 		scanner = new Scanner(System.in);

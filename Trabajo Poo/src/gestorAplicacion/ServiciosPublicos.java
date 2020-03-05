@@ -15,10 +15,7 @@ public  class ServiciosPublicos {
 	DateTimeFormatter miFormatoFec,has = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 	public ServiciosPublicos( Vector pilaConsumo, Vector pilaPagar, String fecha){
             this.pilaConsumo= pilaConsumo;
-            this.pilaPagar= pilaPagar;
-                   
-	
-		
+            this.pilaPagar= pilaPagar;	
 	}
         
         public void SetCliente(Cliente cliente){
@@ -35,6 +32,23 @@ public  class ServiciosPublicos {
             }
           }   
         return mensaje;
+        }
+        ServiciosPublicos(Vector pilaConsumo, Vector pilaPagar, String fecha, Cliente cliente){
+        	this.cliente = cliente;
+        	this.pilaConsumo= pilaConsumo;
+            this.pilaPagar= pilaPagar;
+        }
+        public Vector<Double> getPilaPagar(){
+        	return this.pilaPagar;
+        }
+        public Vector<Double> getPilaConsumo(){
+        	return this.pilaConsumo;
+        }
+        public Date getFecha() {
+        	return this.fecha;
+        }
+        public Cliente getCliente() {
+        	return this.cliente;
         }
 }
 

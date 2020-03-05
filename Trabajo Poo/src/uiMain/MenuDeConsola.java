@@ -17,7 +17,7 @@ public class MenuDeConsola {
       this.mensajeMenu= mensajeMenu;
     }
      //metodos
-    public void aÃ±adirOpcion(OpcionDeMenu op){
+    public void añadirOpcion(OpcionDeMenu op){
       listaOpciones.add(op);
     }
     public void lanzarMenu(){
