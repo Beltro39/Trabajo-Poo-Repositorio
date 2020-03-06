@@ -17,7 +17,7 @@ import gestorAplicacion.ServiciosPublicos;
 abstract public class LectorJson {
 	public static ArrayList<Operario> operariosGuardados = new ArrayList<Operario>();
 	public static ArrayList<Cliente> clientesGuardados = new ArrayList<Cliente>();
-	
+	public static ArrayList<Producto> listaProductos = new ArrayList<Producto>();
 	public static void leerBaseDatos()throws JSONException{
 		JSONParser jsonParser = new JSONParser();
 		FileReader lector;
@@ -44,7 +44,7 @@ abstract public class LectorJson {
 		obj = jsonParser.parse(lector);
 		EscritorJson.listaClientes = (JSONArray) obj;
 		EscritorJson.listaClientes.forEach(cliente -> parseClienteObject((JSONObject) cliente));
-
+                lector.close();
 		//lee productos
 		dir = new File("documentos/productos");
 		dir.mkdirs();
@@ -53,6 +53,7 @@ abstract public class LectorJson {
 		obj = jsonParser.parse(lector);
 		EscritorJson.listaProductos = (JSONArray) obj;
 		EscritorJson.listaProductos.forEach(servicio -> parseProducto((JSONObject) servicio));
+                lector.close();
 	}catch(IOException e) {
 		System.out.println(e.getStackTrace());
 	} catch (org.json.simple.parser.ParseException e) {
@@ -68,7 +69,8 @@ abstract public class LectorJson {
 		String telefono = (String) operario.get("telefono");
 		String direccion = (String) operario.get("direccion");
 		double gananciasGeneradas = (double) operario.get("gananciasGeneradas");
-		operariosGuardados.add(new Operario(gananciasGeneradas,cedula,nombre,edad,telefono,direccion));
+                ArrayList<Double> puntuacion= (ArrayList<Double>) operario.get("puntuacion");
+		operariosGuardados.add(new Operario(gananciasGeneradas,cedula,nombre,edad,telefono,direccion, puntuacion));
 		}catch(JSONException e) {
 			System.out.println(e.getMessage());
 		}
@@ -86,8 +88,9 @@ abstract public class LectorJson {
 		ServiciosPublicos acueducto = (ServiciosPublicos) cliente.get("acueducto");
 		ServiciosPublicos alcantarillado = (ServiciosPublicos) cliente.get("alcantarillado");
 		ServiciosPublicos gas  = (ServiciosPublicos) cliente.get("gas");
+                ArrayList<Producto> listaProductos= (ArrayList<Producto>) cliente.get("productos");
 		
-		clientesGuardados.add(new Cliente(cedula,nombre,edad,telefono,estrato,direccion,luz, acueducto,alcantarillado,gas));
+		clientesGuardados.add(new Cliente(cedula,nombre,edad,telefono,estrato,direccion,luz, acueducto,alcantarillado,gas, listaProductos));
 		}catch(JSONException e) {
 			System.out.println(e.getStackTrace());
 		}

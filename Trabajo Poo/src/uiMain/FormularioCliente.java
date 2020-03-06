@@ -5,9 +5,11 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 import gestorAplicacion.Cliente;
+import gestorAplicacion.Producto;
 import org.json.JSONException;
 import gestorAplicacion.ServiciosPublicos;
 import java.util.Vector;
+import java.util.ArrayList;
 
 public class FormularioCliente extends Formulario {
     Scanner input= new Scanner(System.in);
@@ -74,7 +76,7 @@ public class FormularioCliente extends Formulario {
         
         
         try {
-        Cliente cliente= new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos(new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos(new Vector<Double>(), new Vector<Double>(), "Enero"), new ServiciosPublicos(new Vector<Double>(), new Vector<Double>(), "Enero"));
+        Cliente cliente= new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(),"Enero"), new ArrayList<Producto>());
         } catch (JSONException ex) {
              Logger.getLogger(FormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
          }

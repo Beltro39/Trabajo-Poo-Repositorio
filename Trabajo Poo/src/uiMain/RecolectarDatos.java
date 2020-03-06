@@ -1,5 +1,6 @@
 package uiMain;
 import gestorAplicacion.Cliente;
+import gestorAplicacion.Operario;
 import gestorAplicacion.Producto;
 import java.awt.AWTException;
 import java.util.Iterator;
@@ -11,6 +12,7 @@ public class RecolectarDatos extends OpcionDeMenu{
     MenuDeConsola menuFunciones;
     Scanner input= new Scanner(System.in);
     public int i= -1;
+    int puntuacion= 0;
      String[] meses= new String[12];
     RecolectarDatos(MenuDeConsola menuFunciones){
       this.menuFunciones= menuFunciones;
@@ -27,7 +29,9 @@ public class RecolectarDatos extends OpcionDeMenu{
          } catch (AWTException ex) {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }  
+     if(Cliente.listaClientes.size()>0){
      Iterator itr= Cliente.listaClientes.iterator();
+     int j= 0;
      while(itr.hasNext()){
        Cliente cliente= (Cliente)itr.next();
        double estrato= cliente.getEstrato();
@@ -61,16 +65,39 @@ public class RecolectarDatos extends OpcionDeMenu{
           double costo= 400;
            cliente.servicioGas.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*estrato);
        }
-       
+         
+
+       //PARTE PRODUCTO
+       if(Producto.listaProducto.size()>0  && Operario.listaOperario.size()>0){
        for(int i= 0; i<30; i++){
          if(Math.random()<0.1){
-           double indice=  Math.floor(Math.random()*(Producto.listaProducto.size()+1)+0);
+           int tamaño= Producto.listaProducto.size()-1;
+           int indice=  (int)Math.floor(Math.random()*(tamaño-0+1)+0);
+           //System.out.println("indice producto " + indice+" tamaño producto "+Producto.listaProducto.size() );
            cliente.listaProducto.add(Producto.listaProducto.get((int)indice));
-           System.out.println(cliente.getNombre()+ "ha comprado "+ Producto.listaProducto.get((int)indice));
+           tamaño= Operario.listaOperario.size()-1;
+           int indices= (int)Math.floor(Math.random()*(tamaño-0+1)+0);
+           //System.out.println("indice Operario "+ indices+" tamaño operario "+Operario.listaOperario.size());
+           Operario operario= Operario.listaOperario.get(indices);
+           double puntuacion= Math.floor(Math.random()*(5-0+1)+0);
+           operario.listaPuntuacion.add(puntuacion);
+           System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice)+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
+             
+           
+           
          }
        }
-       
-       
+       }else{
+           if(j==0 && Producto.listaProducto.size()==0 ){
+             System.out.println("No hay prodcutos que ofrecer");
+           }
+           if(j==0 && Operario.listaOperario.size()==0 ){
+             System.out.println("No hay operarios disponibles");
+           }
+       }
+      }
+     }else{
+       System.out.println("No hay clientes para recolectar datos");
      }
      
      
@@ -79,6 +106,7 @@ public class RecolectarDatos extends OpcionDeMenu{
      
      
      this.i++;
+     System.out.println("");
      System.out.println("Presiona Enter para continuar");
       //String enterKey= input.nextLine();
           String enterKey2= input.nextLine();
@@ -90,6 +118,5 @@ public class RecolectarDatos extends OpcionDeMenu{
          }  
      menuFunciones.lanzarMenu();
    } 
-       
-}
+   }
 }

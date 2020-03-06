@@ -1,1 +1,1 @@
-[{"luz":506.0 77924.0 ,"cedula":"1001366260","acueducto":13.0 10400.0 ,"direccion":"Calle 13","gas":21.0 8000.0 ,"estrato":4,"telefono":"3007","nombre":"Sebastian","edad":19,"agua":19.0 15400.0 }]
+[{"luz":,"cedula":"1001366260","acueducto":,"direccion":"Calle 20","gas":,"estrato":4,"telefono":"3007904147","nombre":"Sebastian","edad":19,"productos":[],"agua":}]

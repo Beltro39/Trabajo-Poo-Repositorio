@@ -41,7 +41,6 @@ public class GananciasMes extends OpcionDeMenu{
       double gananciasAlcantarillado= 0;
       double gananciasGas= 0;
       for(int i= 0; i<Cliente.listaClientes.size(); i++){
-      gananciasLuz+= Cliente.listaClientes.get(i).servicioLuz.pilaPagar.lastElement();
       gananciasAcueducto+= Cliente.listaClientes.get(i).servicioAcueducto.pilaPagar.lastElement();
       gananciasAlcantarillado= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaPagar.lastElement();
       gananciasGas= Cliente.listaClientes.get(i).servicioGas.pilaPagar.lastElement();

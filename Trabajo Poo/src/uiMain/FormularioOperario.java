@@ -5,6 +5,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
 import gestorAplicacion.Operario;
+import java.util.ArrayList;
 import org.json.JSONException;
 public class FormularioOperario extends Formulario{
     Scanner input= new Scanner(System.in);
@@ -40,7 +41,7 @@ public class FormularioOperario extends Formulario{
     
     
         try {
-            new Operario(0, respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4]);
+            new Operario(0, respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4], new ArrayList<Double>());
         } catch (JSONException ex) {
             Logger.getLogger(FormularioOperario.class.getName()).log(Level.SEVERE, null, ex);
         }

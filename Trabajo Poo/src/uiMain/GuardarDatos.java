@@ -10,7 +10,9 @@ public class GuardarDatos extends OpcionDeMenu{
     this.menuPrincipal= menuPrincipal;
     }
     public void ejecutar(){
-      BaseDatos.EscritorJson.guardarDatos();
+      BaseDatos.EscritorJson.guardarDatos("clientes");
+      BaseDatos.EscritorJson.guardarDatos("operarios");
+      BaseDatos.EscritorJson.guardarDatos("productos");
       menuPrincipal.lanzarMenu();
     }
     public String toString(){
@@ -18,7 +20,8 @@ public class GuardarDatos extends OpcionDeMenu{
              RobotPresiona.limpiarpantalla();
          } catch (AWTException ex) {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
-         }
+         } 
     return "Guardar datos";
+    
     }
 }

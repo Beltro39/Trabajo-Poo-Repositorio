@@ -12,18 +12,18 @@ public class Cliente extends Persona {
    public ServiciosPublicos servicioAcueducto;
    public ServiciosPublicos servicioAlcantarillado;
    public ServiciosPublicos servicioGas;
+  
    
    
-    public Cliente(String cedula, String nombre, int edad, String telefono, int estrato,String direccion, ServiciosPublicos luz, ServiciosPublicos acueducto, ServiciosPublicos alcantarillado, ServiciosPublicos gas)throws JSONException{
+    public Cliente(String cedula, String nombre, int edad, String telefono, int estrato,String direccion, ServiciosPublicos luz, ServiciosPublicos acueducto, ServiciosPublicos alcantarillado, ServiciosPublicos gas, ArrayList<Producto> listaProducto)throws JSONException{
     	super(cedula,nombre,edad,telefono,direccion);
         this.estrato = estrato;
         this.servicioLuz= luz;
         this.servicioAcueducto=  acueducto;
         this.servicioAlcantarillado= alcantarillado;
         this.servicioGas= gas;
-    	
-        listaProducto= new ArrayList<Producto>();
-    	BaseDatos.EscritorJson.crearCliente(estrato,cedula,nombre,edad,telefono,direccion, this.servicioLuz, this.servicioAcueducto, this.servicioAlcantarillado,this.servicioGas); 
+    	this.listaProducto= listaProducto;
+    	BaseDatos.EscritorJson.crearCliente(estrato,cedula,nombre,edad,telefono,direccion, this.servicioLuz, this.servicioAcueducto, this.servicioAlcantarillado,this.servicioGas, listaProducto); 
         listaClientes.add(this);
         
                 

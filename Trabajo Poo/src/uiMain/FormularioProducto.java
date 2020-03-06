@@ -40,7 +40,7 @@ public class FormularioProducto extends Formulario {
     
     
         //try {
-         // new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
+         new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
         //} catch (JSONException ex) {
           //  Logger.getLogger(FormularioOperario.class.getName()).log(Level.SEVERE, null, ex);
         //}
