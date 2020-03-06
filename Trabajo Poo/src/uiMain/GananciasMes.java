@@ -34,6 +34,7 @@ public class GananciasMes extends OpcionDeMenu{
          } catch (AWTException ex) {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }
+      if(Cliente.listaClientes.size()>0  && recolectarDatos.i>=0){  
       mes= meses[recolectarDatos.i];  
       System.out.println("****************************\n   Ganancias mes " + mes+"\n****************************");
       double gananciasLuz= 0;
@@ -41,10 +42,26 @@ public class GananciasMes extends OpcionDeMenu{
       double gananciasAlcantarillado= 0;
       double gananciasGas= 0;
       for(int i= 0; i<Cliente.listaClientes.size(); i++){
+      gananciasLuz+= Cliente.listaClientes.get(i).servicioLuz.pilaPagar.lastElement();
       gananciasAcueducto+= Cliente.listaClientes.get(i).servicioAcueducto.pilaPagar.lastElement();
       gananciasAlcantarillado= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaPagar.lastElement();
       gananciasGas= Cliente.listaClientes.get(i).servicioGas.pilaPagar.lastElement();
       }
+      
+      double consumoLuz= 0;
+      double consumoAcueducto= 0;
+      double consumoAlcantarillado= 0;
+      double consumoGas= 0;
+      for(int i= 0; i<Cliente.listaClientes.size(); i++){
+        consumoLuz+= Cliente.listaClientes.get(i).servicioLuz.pilaConsumo.lastElement();
+        consumoAcueducto+= Cliente.listaClientes.get(i).servicioAcueducto.pilaConsumo.lastElement();
+        consumoAlcantarillado= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaConsumo.lastElement();
+        consumoGas= Cliente.listaClientes.get(i).servicioGas.pilaConsumo.lastElement();
+      }
+      consumoLuz= consumoLuz/Cliente.listaClientes.size();
+      consumoAcueducto= consumoAcueducto/Cliente.listaClientes.size();
+      consumoAlcantarillado= consumoAlcantarillado/Cliente.listaClientes.size();
+      consumoGas= consumoGas/Cliente.listaClientes.size();
       
       System.out.println("Ganancias por el cobro del servio de luz: "+ gananciasLuz);
       System.out.println("Ganancias por el cobro del servio de Acueducto: "+ gananciasAcueducto);
@@ -52,11 +69,25 @@ public class GananciasMes extends OpcionDeMenu{
       System.out.println("Ganancias por el cobro del servio de Gas: "+ gananciasGas);
       double suma= gananciasLuz+gananciasAcueducto+gananciasAlcantarillado+gananciasGas;
       System.out.println("Ganancias por el cobro total de servicios : "+ suma);
+      System.out.println("");
+      System.out.println("Consumo promedio de luz en kwh: "+ consumoLuz);
+      System.out.println("Consumo promedio de agua del acueducto en m3: "+ consumoAcueducto);
+      System.out.println("Consumo promedio de agua del alcantarillado en m3: "+ consumoAlcantarillado);
+      System.out.println("Consumo promedio de gas en m3: "+ consumoGas);
+      System.out.println("");
       System.out.println("Cantidad de clientes de la empresa: "+ Cliente.listaClientes.size());
       System.out.println("");
       System.out.println("Presiona Enter para continuar");
       //String enterKey= input.nextLine();
-          String enterKey2= input.nextLine();
+          
+    }else{
+      if(Cliente.listaClientes.size()==0){
+      System.out.println("Ingresa un cliente para activar esta funcion");
+      }else{
+      System.out.println("Recolecte datos");
+      }
+      }
+      String enterKey2= input.nextLine();
           if(enterKey2.isEmpty()){
             try {
              RobotPresiona.limpiarpantalla();
@@ -64,8 +95,7 @@ public class GananciasMes extends OpcionDeMenu{
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }  
             
-      
-      menuFunciones.lanzarMenu();
-    }
+          }
+    menuFunciones.lanzarMenu();  
 }
 }

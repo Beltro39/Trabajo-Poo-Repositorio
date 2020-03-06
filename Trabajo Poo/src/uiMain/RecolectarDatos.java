@@ -48,7 +48,7 @@ public class RecolectarDatos extends OpcionDeMenu{
          cliente.servicioAcueducto.pilaConsumo.add(consumo);
          double cargoFijo= 800;
          double costo= 650;
-         cliente.servicioAcueducto.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*estrato);
+         cliente.servicioAcueducto.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
        if(cliente.servicioAlcantarillado!= null){
   
@@ -56,14 +56,14 @@ public class RecolectarDatos extends OpcionDeMenu{
            cliente.servicioAlcantarillado.pilaConsumo.add(consumo);
             double cargoFijo= 500; 
           double costo= 600;
-           cliente.servicioAlcantarillado.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*estrato);
+           cliente.servicioAlcantarillado.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
        if(cliente.servicioGas!= null){
            double consumo= Math.floor(Math.random()*(25-8+1)+8);  
            cliente.servicioGas.pilaConsumo.add(consumo);
             double cargoFijo= 400; 
           double costo= 400;
-           cliente.servicioGas.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*estrato);
+           cliente.servicioGas.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
          
 

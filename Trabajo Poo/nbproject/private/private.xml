@@ -12,14 +12,19 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/clientes/listaClientes.txt</file>
             <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/FormularioProducto.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/RecolectarDatos.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/ServiciosPublicos.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/BaseDatos/LectorJson.java</file>
             <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/BaseDatos/EscritorJson.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/productos/listaProductos.txt</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/TrabajoPoo.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/GananciasSemestre.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/operarios/listaOperarios.txt</file>
             <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/Cliente.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/GuardarDatos.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/RecolectarDatos.java</file>
             <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/Producto.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/FormularioCliente.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/FormularioOperario.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/GananciasMes.java</file>
         </group>
     </open-files>
 </project-private>
