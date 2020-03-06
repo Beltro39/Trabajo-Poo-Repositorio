@@ -1,4 +1,5 @@
 package uiMain;
+//Clase padre de todos los formularios
 import gestorAplicacion.* ;
 public abstract class  Formulario extends OpcionDeMenu{
     MenuDeConsola anteriorMenu;

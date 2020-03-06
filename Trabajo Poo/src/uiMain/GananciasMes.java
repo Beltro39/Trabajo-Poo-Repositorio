@@ -1,3 +1,5 @@
+//Clase que permite la funcion ganancia en el ultimo mes
+// Hace un resumen del consumo y las ganancias en ese mes
 package uiMain;
 import gestorAplicacion.Cliente;
 import java.awt.AWTException;

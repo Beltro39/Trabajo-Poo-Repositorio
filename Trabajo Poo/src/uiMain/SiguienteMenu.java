@@ -1,5 +1,5 @@
 package uiMain;
-
+// Esta clase es la que permite cambiar de menu de consola
 import uiMain.RobotPresiona;
 import uiMain.OpcionDeMenu;
 import uiMain.MenuDeConsola;

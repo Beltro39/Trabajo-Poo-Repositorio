@@ -1,10 +1,11 @@
+//Clase que imprime en pantalla todas las opciones de menu con metodo lanzarMenu
 package uiMain;
 import java.awt.AWTException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-// Esta es la clase menu del programa
+
 public class MenuDeConsola {
     //atributos
     Scanner input= new Scanner(System.in);
@@ -16,10 +17,11 @@ public class MenuDeConsola {
     MenuDeConsola(String mensajeMenu){
       this.mensajeMenu= mensajeMenu;
     }
-     //metodos
+     //Este metodo es el que permite añadir opciones de menu al menu de consola
     public void añadirOpcion(OpcionDeMenu op){
       listaOpciones.add(op);
     }
+    //Metodo que esta en constante ejecucion, imprime en pantalla al menuDeConsola correspondiente
     public void lanzarMenu(){
        System.out.println(this);
        try{
@@ -60,9 +62,7 @@ public class MenuDeConsola {
       return menu ;
     }
     
-    public void setMensajeMenu(String mensaje){
-      this.mensajeMenu+= "\n"+ mensaje;
-    }
+    
     
     
     

@@ -1,3 +1,4 @@
+// Clase que tiene el main, aqui se crean todas las clases contenidas en uiMain
 package uiMain;
 import BaseDatos.*;
 import gestorAplicacion.*;
@@ -5,16 +6,10 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.json.JSONException;
-
+ 
 public class TrabajoPoo {
   public static void main(String[] args) {
-      //try {
-          //Scanner input= new Scanner(System.in);
-          //Menus De inicio de sesion
-          //LectorJson.leerBaseDatos();
-      //} catch (JSONException ex) {
-        //  Logger.getLogger(TrabajoPoo.class.getName()).log(Level.SEVERE, null, ex);
-      //}
+       
       
         MenuDeConsola menuPrincipal= new MenuDeConsola("**********************************\n   Empresa de servicios públicos\n**********************************");
         MenuDeConsola menuRegistrar= new MenuDeConsola("*******************************\n   Menu de registro de datos\n*******************************");

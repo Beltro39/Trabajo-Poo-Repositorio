@@ -1,3 +1,4 @@
+//Toda esta clase es para borrar la pantalla y hacer mas organizado el proyecto
 package uiMain;
 
 import java.awt.*;

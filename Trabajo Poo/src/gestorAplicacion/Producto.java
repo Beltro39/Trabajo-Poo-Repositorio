@@ -1,5 +1,5 @@
 package gestorAplicacion;
-
+//Clase que define lo que es un producto
 import java.util.ArrayList;
 
 public class Producto {

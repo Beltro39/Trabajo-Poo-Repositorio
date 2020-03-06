@@ -1,3 +1,5 @@
+//Esta clase simula el paso de un mes en el programa, recogiendo datos de los servicios publicos
+// o la compra de productos
 package uiMain;
 import gestorAplicacion.Cliente;
 import gestorAplicacion.Operario;

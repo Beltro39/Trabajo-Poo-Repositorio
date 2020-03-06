@@ -1,5 +1,5 @@
 package uiMain;
-
+//Clase para registrar producto
 import gestorAplicacion.Producto;
 import java.awt.AWTException;
 import java.util.logging.Level;

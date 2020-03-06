@@ -1,3 +1,5 @@
+// Clase que permite la funcion empleado del mes, , que saca el promedio de 
+//las puntuaciones de todos los operarios, e imprime por pantalla aquel con promedio más alto
 package uiMain;
 import gestorAplicacion.Cliente;
 import gestorAplicacion.Operario;

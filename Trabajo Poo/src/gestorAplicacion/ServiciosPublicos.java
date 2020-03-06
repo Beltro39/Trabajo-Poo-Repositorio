@@ -1,5 +1,5 @@
 package gestorAplicacion;
-
+//Clase que permite las instancias de sevicios publicos de luz, acueducto, alcantarillado y gas
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;

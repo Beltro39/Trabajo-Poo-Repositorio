@@ -1,3 +1,5 @@
+//Clase que permite la funcion ganancia en los ultimos 6 mesese
+// Hace un resumen del consumo y las ganancias en esos mese
 package uiMain;
 import gestorAplicacion.Cliente;
 import java.awt.AWTException;
@@ -48,7 +50,7 @@ public class GananciasSemestre extends OpcionDeMenu{
           //System.out.println(Cliente.listaClientes.get(j).servicioLuz.pilaPagar.get(k));
           gananciasLuz+= Cliente.listaClientes.get(j).servicioLuz.pilaPagar.get(k);
           gananciasAcueducto+= Cliente.listaClientes.get(j).servicioAcueducto.pilaPagar.get(k);
-          gananciasAlcantarillado= Cliente.listaClientes.get(j).servicioAlcantarillado.pilaPagar.get(k);
+          gananciasAlcantarillado+= Cliente.listaClientes.get(j).servicioAlcantarillado.pilaPagar.get(k);
           gananciasGas+= Cliente.listaClientes.get(j).servicioGas.pilaPagar.get(k);
           }
         }

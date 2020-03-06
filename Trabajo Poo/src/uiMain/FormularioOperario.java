@@ -1,3 +1,4 @@
+//Clase para registrar operario
 package uiMain;
 import java.awt.AWTException;
 import java.util.Iterator;
