@@ -1,1 +1,1 @@
-[{"costo":1500000,"nombre":"Nevera ","garantia":"3"},{"costo":1200000,"nombre":"Lavadora","garantia":"3"}]
+[{"costo":15000,"nombre":"Nevera","garantia":"3"},{"costo":458000,"nombre":"Horno","garantia":"5"}]
