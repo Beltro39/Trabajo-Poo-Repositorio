@@ -13,7 +13,7 @@ import java.util.Scanner;
 public class RecolectarDatos extends OpcionDeMenu{
     MenuDeConsola menuFunciones;
     Scanner input= new Scanner(System.in);
-    public int i= -1;
+    public static int i= 0;
     int puntuacion= 0;
      String[] meses= new String[12];
     RecolectarDatos(MenuDeConsola menuFunciones){
@@ -76,14 +76,14 @@ public class RecolectarDatos extends OpcionDeMenu{
            int tamaño= Producto.listaProducto.size()-1;
            int indice=  (int)Math.floor(Math.random()*(tamaño-0+1)+0);
            //System.out.println("indice producto " + indice+" tamaño producto "+Producto.listaProducto.size() );
-           cliente.listaProducto.add(Producto.listaProducto.get((int)indice));
+           cliente.listaProducto.add(Producto.listaProducto.get((int)indice).getNombre());
            tamaño= Operario.listaOperario.size()-1;
            int indices= (int)Math.floor(Math.random()*(tamaño-0+1)+0);
            //System.out.println("indice Operario "+ indices+" tamaño operario "+Operario.listaOperario.size());
            Operario operario= Operario.listaOperario.get(indices);
            double puntuacion= Math.floor(Math.random()*(5-0+1)+0);
            operario.listaPuntuacion.add(puntuacion);
-           System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice)+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
+           System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice).getNombre()+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
              
            
            

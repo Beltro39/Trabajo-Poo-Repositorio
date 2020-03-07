@@ -15,7 +15,7 @@ public abstract class Persona {
     	
     }
     public String getCedula() {
-    	return this.nombre;
+    	return this.cedula;
     }
     public String getNombre() {
     	return this.nombre;

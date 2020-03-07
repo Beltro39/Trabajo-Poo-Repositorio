@@ -76,11 +76,9 @@ public class FormularioCliente extends Formulario {
         }
         
         
-        try {
-        Cliente cliente= new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(), "Enero"), new ServiciosPublicos(new Vector<>(), new Vector<>(),"Enero"), new ArrayList<Producto>());
-        } catch (JSONException ex) {
-             Logger.getLogger(FormularioCliente.class.getName()).log(Level.SEVERE, null, ex);
-         }
+        
+        Cliente cliente= new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>() ), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new Vector<String>());
+        
         anteriorMenu.lanzarMenu();
     }
     

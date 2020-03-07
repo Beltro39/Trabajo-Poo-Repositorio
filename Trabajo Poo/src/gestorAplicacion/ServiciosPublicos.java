@@ -8,12 +8,12 @@ import java.util.Iterator;
 
 public  class ServiciosPublicos {
        private Cliente cliente;
-	Date fecha;
+	
         public Vector<Double> pilaConsumo;
         public Vector<Double> pilaPagar;
         
-	DateTimeFormatter miFormatoFec,has = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-	public ServiciosPublicos( Vector pilaConsumo, Vector pilaPagar, String fecha){
+
+	public ServiciosPublicos( Vector pilaConsumo, Vector pilaPagar){
             this.pilaConsumo= pilaConsumo;
             this.pilaPagar= pilaPagar;
         }

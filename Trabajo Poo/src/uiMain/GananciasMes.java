@@ -6,6 +6,7 @@ import java.awt.AWTException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
+import uiMain.RecolectarDatos;
 public class GananciasMes extends OpcionDeMenu{
     MenuDeConsola menuFunciones;
     Scanner input= new Scanner(System.in);
@@ -46,8 +47,8 @@ public class GananciasMes extends OpcionDeMenu{
       for(int i= 0; i<Cliente.listaClientes.size(); i++){
       gananciasLuz+= Cliente.listaClientes.get(i).servicioLuz.pilaPagar.lastElement();
       gananciasAcueducto+= Cliente.listaClientes.get(i).servicioAcueducto.pilaPagar.lastElement();
-      gananciasAlcantarillado+= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaPagar.lastElement();
-      gananciasGas+= Cliente.listaClientes.get(i).servicioGas.pilaPagar.lastElement();
+      gananciasAlcantarillado= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaPagar.lastElement();
+      gananciasGas= Cliente.listaClientes.get(i).servicioGas.pilaPagar.lastElement();
       }
       
       double consumoLuz= 0;
@@ -57,8 +58,8 @@ public class GananciasMes extends OpcionDeMenu{
       for(int i= 0; i<Cliente.listaClientes.size(); i++){
         consumoLuz+= Cliente.listaClientes.get(i).servicioLuz.pilaConsumo.lastElement();
         consumoAcueducto+= Cliente.listaClientes.get(i).servicioAcueducto.pilaConsumo.lastElement();
-        consumoAlcantarillado+= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaConsumo.lastElement();
-        consumoGas+= Cliente.listaClientes.get(i).servicioGas.pilaConsumo.lastElement();
+        consumoAlcantarillado= Cliente.listaClientes.get(i).servicioAlcantarillado.pilaConsumo.lastElement();
+        consumoGas= Cliente.listaClientes.get(i).servicioGas.pilaConsumo.lastElement();
       }
       consumoLuz= consumoLuz/Cliente.listaClientes.size();
       consumoAcueducto= consumoAcueducto/Cliente.listaClientes.size();

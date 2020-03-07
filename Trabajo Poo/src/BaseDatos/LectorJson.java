@@ -1,105 +1,109 @@
 package BaseDatos;
-import java.io.File;
+
+import gestorAplicacion.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONException;
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import gestorAplicacion.Cliente;
-import gestorAplicacion.Operario;
-import gestorAplicacion.Producto;
-import gestorAplicacion.ServiciosPublicos;
-
+import uiMain.RecolectarDatos;
 abstract public class LectorJson {
-	public static ArrayList<Operario> operariosGuardados = new ArrayList<Operario>();
-	public static ArrayList<Cliente> clientesGuardados = new ArrayList<Cliente>();
-	public static ArrayList<Producto> listaProductos = new ArrayList<Producto>();
-	public static void leerBaseDatos()throws JSONException{
-		JSONParser jsonParser = new JSONParser();
-		FileReader lector;
-		File tmp;
-		File dir;
-		Object obj;
-		
-		//lee operarios
-		try {
-		dir = new File("documentos/operarios");
-		dir.mkdirs();
-		tmp = new File(dir, "operarios.txt");
-		lector = new FileReader(tmp);
-		obj = jsonParser.parse(lector);
-		EscritorJson.listaOperarios = (JSONArray) obj;
-		EscritorJson.listaOperarios.forEach(operario -> parseOperarioObject((JSONObject) operario));
-		lector.close();
-		
-		// lee clientes
-		dir = new File("documentos/clientes");
-		dir.mkdirs();
-		tmp = new File(dir, "clientes.txt");
-		lector = new FileReader(tmp);
-		obj = jsonParser.parse(lector);
-		EscritorJson.listaClientes = (JSONArray) obj;
-		EscritorJson.listaClientes.forEach(cliente -> parseClienteObject((JSONObject) cliente));
-                lector.close();
-		//lee productos
-		dir = new File("documentos/productos");
-		dir.mkdirs();
-		tmp = new File(dir, "productos.txt");
-		lector = new FileReader(tmp);
-		obj = jsonParser.parse(lector);
-		EscritorJson.listaProductos = (JSONArray) obj;
-		EscritorJson.listaProductos.forEach(servicio -> parseProducto((JSONObject) servicio));
-                lector.close();
-	}catch(IOException e) {
-		System.out.println(e.getStackTrace());
-	} catch (org.json.simple.parser.ParseException e) {
-		e.printStackTrace();
-	}
-	}
-	//metodos para pasar de json a objetos
-	private static void parseOperarioObject(JSONObject operario){
-		try {
-		String cedula = (String) operario.get("cedula");
-		String nombre = (String) operario.get("nombre");
-		int edad = (int) operario.get("edad");
-		String telefono = (String) operario.get("telefono");
-		String direccion = (String) operario.get("direccion");
-		double gananciasGeneradas = (double) operario.get("gananciasGeneradas");
-                ArrayList<Double> puntuacion= (ArrayList<Double>) operario.get("puntuacion");
-		operariosGuardados.add(new Operario(gananciasGeneradas,cedula,nombre,edad,telefono,direccion, puntuacion));
-		}catch(JSONException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
-	private static void parseClienteObject(JSONObject cliente){
-		try {
-		String cedula = (String) cliente.get("cedula");
-		String nombre = (String) cliente.get("nombre");
-		int edad = (int) cliente.get("edad");
-		String telefono = (String) cliente.get("telefono");
-		String direccion = (String) cliente.get("direccion");
-		int estrato = (int) cliente.get("estrato");
-		ServiciosPublicos luz = (ServiciosPublicos) cliente.get("luz");
-		ServiciosPublicos acueducto = (ServiciosPublicos) cliente.get("acueducto");
-		ServiciosPublicos alcantarillado = (ServiciosPublicos) cliente.get("alcantarillado");
-		ServiciosPublicos gas  = (ServiciosPublicos) cliente.get("gas");
-                ArrayList<Producto> listaProductos= (ArrayList<Producto>) cliente.get("productos");
-		
-		clientesGuardados.add(new Cliente(cedula,nombre,edad,telefono,estrato,direccion,luz, acueducto,alcantarillado,gas, listaProductos));
-		}catch(JSONException e) {
-			System.out.println(e.getStackTrace());
-		}
-	}
-	private static void parseProducto(JSONObject producto) {
-		int costo = (int) producto.get("costo");
-		String garantia = (String) producto.get("garantia"); 
-		String nombre = (String) producto.get("nombre"); 
-		Producto.listaProducto.add(new Producto(garantia,costo,nombre));
-	}
-
+    public static void leerProductos(){
+      try{
+            BufferedReader br= new BufferedReader(new FileReader("documentos/listaProductos.txt"));
+            String linea= br.readLine();
+            while(linea!= null){
+              String[] partes= linea.split(" ");
+              new Producto(partes[0], Integer.parseInt(partes[1]),partes[2]);
+              linea= br.readLine();
+            }
+            br.close();
+           }catch(IOException e){
+             System.out.println("Error leer productos");
+           }
+       }
+    public static void leerClientes(){
+      try{
+            BufferedReader br= new BufferedReader(new FileReader("documentos/listaClientes.txt"));
+            String linea= br.readLine();
+            while(linea!= null){
+              String[] partes= linea.split("  ");
+              ServiciosPublicos luz= new ServiciosPublicos(leerListas(partes[6]), leerListas(partes[7]));
+              ServiciosPublicos acueducto= new ServiciosPublicos(leerListas(partes[8]), leerListas(partes[9]));
+              ServiciosPublicos alcantarillado= new ServiciosPublicos(leerListas(partes[10]), leerListas(partes[11]));
+              ServiciosPublicos gas= new ServiciosPublicos(leerListas(partes[12]), leerListas(partes[13]));
+              Vector<String> v= leerListas2(partes[14]);
+              new Cliente(partes[0], partes[1], Integer.parseInt(partes[2]),partes[3], Integer.parseInt(partes[4]), partes[5], luz ,acueducto, alcantarillado, gas, v );
+                linea= br.readLine();
+            }
+            br.close();
+           }catch(IOException e){
+             System.out.println("Error leer clientes");
+           }
+       }
+    public static void leerOperarios(){
+      try{
+            BufferedReader br= new BufferedReader(new FileReader("documentos/listaOperarios.txt"));
+            String linea= br.readLine();
+            while(linea!= null){
+              String[] partes= linea.split("  ");
+              Vector<Double> v= leerListas(partes[5]);
+              new Operario(partes[0], partes[1], Integer.parseInt(partes[2]),partes[3], partes[4], v );
+                linea= br.readLine();
+            }
+            br.close();
+           }catch(IOException e){
+             System.out.println("Error leer Operarios");
+           }
+       }
+    public static void leerMes(){
+      try{
+            BufferedReader br= new BufferedReader(new FileReader("documentos/Mes.txt"));
+            String linea= br.readLine();
+            RecolectarDatos.i= Integer.parseInt(linea);
+            br.close();
+           }catch(IOException e){
+             System.out.println("Error leer Operarios");
+           }
+       }
+    public static Vector<Double> leerListas(String lista){
+      String partes[]= lista.split(" ");
+      Vector<Double> v= new Vector<>(); 
+      for(int i= 0; i<partes.length; i++){
+              
+             v.add(Double.parseDouble(partes[i].replace("[", "").replace("]", "").replace(",", "")));
+      }
+      return v;
+      
+    }
+    public static Vector<String> leerListas2(String lista){
+      String partes[]= lista.split(" ");
+      Vector<String> v= new Vector<>(); 
+      for(int i= 0; i<partes.length; i++){
+              
+             v.add(partes[i].replace("[", "").replace("]", "").replace(",", ""));
+      }
+      return v;
 }
+}
+      /*
+      String partesI[]= partes[0].split("");
+      for(int i= 1; i<partesI.length; i++){
+        partes[0]= partesI[i];
+      }
+      int l= partes.length-1;
+      String partesF[]= partes[l].split("");
+      for(int i= 0; i<partesI.length-2; i++){
+        partes[l]= partesF[i];
+      }
+      Vector<String> v= new Vector<String>();
+      for(int i= 0; i<partesI.length; i++){
+        v.add(partes[i]);
+      }
+      return v;
+    }
+              */

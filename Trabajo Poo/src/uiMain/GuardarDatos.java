@@ -10,9 +10,9 @@ public class GuardarDatos extends OpcionDeMenu{
     this.menuPrincipal= menuPrincipal;
     }
     public void ejecutar(){
-      BaseDatos.EscritorJson.guardarDatos("clientes");
-      BaseDatos.EscritorJson.guardarDatos("operarios");
-      BaseDatos.EscritorJson.guardarDatos("productos");
+      BaseDatos.EscritorJson.escribirClientes();
+      BaseDatos.EscritorJson.escribirOperarios();
+      BaseDatos.EscritorJson.escribirProductos();
       menuPrincipal.lanzarMenu();
     }
     public String toString(){
