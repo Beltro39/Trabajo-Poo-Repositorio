@@ -46,12 +46,12 @@ public class GananciasSemestre extends OpcionDeMenu{
         double gananciasGas= 0;
         int p= i-5;
         for(int j= 0; j<Cliente.listaClientes.size(); j++){
-          for(int k= p; k<Cliente.listaClientes.get(j).servicioLuz.pilaPagar.size(); k++){  
+          for(int k= p; k<Cliente.listaClientes.get(j).getServicioLuz().getPilaPagar().size(); k++){  
           //System.out.println(Cliente.listaClientes.get(j).servicioLuz.pilaPagar.get(k));
-          gananciasLuz+= Cliente.listaClientes.get(j).servicioLuz.pilaPagar.get(k);
-          gananciasAcueducto+= Cliente.listaClientes.get(j).servicioAcueducto.pilaPagar.get(k);
-          gananciasAlcantarillado+= Cliente.listaClientes.get(j).servicioAlcantarillado.pilaPagar.get(k);
-          gananciasGas+= Cliente.listaClientes.get(j).servicioGas.pilaPagar.get(k);
+          gananciasLuz+= Cliente.listaClientes.get(j).getServicioLuz().getPilaPagar().get(k);
+          gananciasAcueducto+= Cliente.listaClientes.get(j).getServicioAcueducto().getPilaPagar().get(k);
+          gananciasAlcantarillado+= Cliente.listaClientes.get(j).getServicioAlcantarillado().getPilaPagar().get(k);
+          gananciasGas+= Cliente.listaClientes.get(j).getServicioGas().getPilaPagar().get(k);
           }
         }
         double consumoLuz= 0;
@@ -60,12 +60,12 @@ public class GananciasSemestre extends OpcionDeMenu{
         double consumoGas= 0;
       
         for(int j= 0; j<Cliente.listaClientes.size(); j++){
-          for(int k= p; k<Cliente.listaClientes.get(j).servicioLuz.pilaConsumo.size(); k++){  
+          for(int k= p; k<Cliente.listaClientes.get(j).getServicioLuz().getPilaConsumo().size(); k++){  
               
-          consumoLuz+= Cliente.listaClientes.get(j).servicioLuz.pilaConsumo.get(k);
-          consumoAcueducto+= Cliente.listaClientes.get(j).servicioAcueducto.pilaConsumo.get(k);
-          consumoAlcantarillado+= Cliente.listaClientes.get(j).servicioAlcantarillado.pilaConsumo.get(k);
-          consumoGas+= Cliente.listaClientes.get(j).servicioGas.pilaConsumo.get(k);
+          consumoLuz+= Cliente.listaClientes.get(j).getServicioLuz().getPilaConsumo().get(k);
+          consumoAcueducto+= Cliente.listaClientes.get(j).getServicioAcueducto().getPilaConsumo().get(k);
+          consumoAlcantarillado+= Cliente.listaClientes.get(j).getServicioAlcantarillado().getPilaConsumo().get(k);
+          consumoGas+= Cliente.listaClientes.get(j).getServicioGas().getPilaConsumo().get(k);
           }
         }
         consumoLuz= consumoLuz/(Cliente.listaClientes.size()*6);

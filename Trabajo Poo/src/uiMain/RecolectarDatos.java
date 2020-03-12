@@ -37,35 +37,35 @@ public class RecolectarDatos extends OpcionDeMenu{
      while(itr.hasNext()){
        Cliente cliente= (Cliente)itr.next();
        double estrato= cliente.getEstrato();
-       if(cliente.servicioLuz!= null){
+       if(cliente.getServicioLuz()!= null){
          //Se lanza un numero entre 600 y 100 
          double consumo= Math.floor(Math.random()*(600-100+1)+100);  
-         cliente.servicioLuz.pilaConsumo.add(consumo);
+         cliente.getServicioLuz().getPilaConsumo().add(consumo);
          double costo= 150;
-         cliente.servicioLuz.pilaPagar.add(consumo*costo+estrato*consumo);
+         cliente.getServicioLuz().getPilaPagar().add(consumo*costo+estrato*consumo);
        }
-       if(cliente.servicioAcueducto!= null){
+       if(cliente.getServicioAcueducto()!= null){
          //Se lanza un numero entre 600 y 100  
          double consumo= Math.floor(Math.random()*(23-4+1)+4);  
-         cliente.servicioAcueducto.pilaConsumo.add(consumo);
+         cliente.getServicioAcueducto().getPilaConsumo().add(consumo);
          double cargoFijo= 800;
          double costo= 650;
-         cliente.servicioAcueducto.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
+         cliente.getServicioAcueducto().getPilaPagar().add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
-       if(cliente.servicioAlcantarillado!= null){
+       if(cliente.getServicioAlcantarillado()!= null){
   
            double consumo= Math.floor(Math.random()*(23-4+1)+4);  
-           cliente.servicioAlcantarillado.pilaConsumo.add(consumo);
+           cliente.getServicioAlcantarillado().getPilaConsumo().add(consumo);
             double cargoFijo= 500; 
           double costo= 600;
-           cliente.servicioAlcantarillado.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
+           cliente.getServicioAlcantarillado().getPilaPagar().add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
-       if(cliente.servicioGas!= null){
+       if(cliente.getServicioGas()!= null){
            double consumo= Math.floor(Math.random()*(25-8+1)+8);  
-           cliente.servicioGas.pilaConsumo.add(consumo);
+           cliente.getServicioGas().getPilaConsumo().add(consumo);
             double cargoFijo= 400; 
           double costo= 400;
-           cliente.servicioGas.pilaPagar.add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
+           cliente.getServicioGas().getPilaPagar().add(cargoFijo*Math.pow(2, estrato)+costo*consumo);
        }
          
 
@@ -73,16 +73,16 @@ public class RecolectarDatos extends OpcionDeMenu{
        if(Producto.listaProducto.size()>0  && Operario.listaOperario.size()>0){
        for(int i= 0; i<30; i++){
          if(Math.random()<0.1){
-           int tamaÃ±o= Producto.listaProducto.size()-1;
-           int indice=  (int)Math.floor(Math.random()*(tamaÃ±o-0+1)+0);
-           //System.out.println("indice producto " + indice+" tamaÃ±o producto "+Producto.listaProducto.size() );
-           cliente.listaProducto.add(Producto.listaProducto.get((int)indice).getNombre());
-           tamaÃ±o= Operario.listaOperario.size()-1;
-           int indices= (int)Math.floor(Math.random()*(tamaÃ±o-0+1)+0);
-           //System.out.println("indice Operario "+ indices+" tamaÃ±o operario "+Operario.listaOperario.size());
+           int tamaño= Producto.listaProducto.size()-1;
+           int indice=  (int)Math.floor(Math.random()*(tamaño-0+1)+0);
+           //System.out.println("indice producto " + indice+" tamaño producto "+Producto.listaProducto.size() );
+           cliente.getListaProducto().add(Producto.listaProducto.get((int)indice).getNombre());
+           tamaño= Operario.listaOperario.size()-1;
+           int indices= (int)Math.floor(Math.random()*(tamaño-0+1)+0);
+           //System.out.println("indice Operario "+ indices+" tamaño operario "+Operario.listaOperario.size());
            Operario operario= Operario.listaOperario.get(indices);
            double puntuacion= Math.floor(Math.random()*(5-0+1)+0);
-           operario.listaPuntuacion.add(puntuacion);
+           operario.getListaPuntuacion().add(puntuacion);
            System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice).getNombre()+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
              
            

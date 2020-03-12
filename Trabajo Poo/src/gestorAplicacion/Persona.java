@@ -1,4 +1,7 @@
 package gestorAplicacion;
+import java.util.Vector;
+
+import org.json.simple.JSONObject;
 public abstract class Persona {
     private String cedula;
     private String nombre;
@@ -29,4 +32,5 @@ public abstract class Persona {
     public String getDireccion() {
     	return this.direccion;
     }
+    public abstract JSONObject promedioEdades();
 }

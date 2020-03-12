@@ -29,10 +29,10 @@ public class EmpleadoDelMes extends OpcionDeMenu {
       if(Operario.listaOperario.size()>0  && Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0){
       for(int i= 0; i<Operario.listaOperario.size(); i++){
         double promedio= 0; 
-        for(int j= 0; j<Operario.listaOperario.get(i).listaPuntuacion.size(); j++){
-          promedio+= Operario.listaOperario.get(i).listaPuntuacion.get(j);
+        for(int j= 0; j<Operario.listaOperario.get(i).getListaPuntuacion().size(); j++){
+          promedio+= Operario.listaOperario.get(i).getListaPuntuacion().get(j);
         }
-        promedio= promedio/Operario.listaOperario.get(i).listaPuntuacion.size();
+        promedio= promedio/Operario.listaOperario.get(i).getListaPuntuacion().size();
         listaPromedio.add(promedio);
       }
       int maximoIndice= 0;

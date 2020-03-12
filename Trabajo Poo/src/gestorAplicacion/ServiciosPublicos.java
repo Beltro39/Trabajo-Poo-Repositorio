@@ -8,11 +8,9 @@ import java.util.Iterator;
 
 public  class ServiciosPublicos {
        private Cliente cliente;
-	
-        public Vector<Double> pilaConsumo;
-        public Vector<Double> pilaPagar;
+       private Vector<Double> pilaConsumo;
+       private Vector<Double> pilaPagar;
         
-
 	public ServiciosPublicos( Vector pilaConsumo, Vector pilaPagar){
             this.pilaConsumo= pilaConsumo;
             this.pilaPagar= pilaPagar;
@@ -21,6 +19,18 @@ public  class ServiciosPublicos {
         
         public void SetCliente(Cliente cliente){
         this.cliente= cliente;
+        }
+        public void setPilaConsumo(Vector<Double> pilaConsumo) {
+        	this.pilaConsumo= pilaConsumo;
+        }
+        public void setPilaPagar(Vector<Double> pilaPagar) {
+        	this.pilaPagar =pilaPagar;
+        }
+        public Vector<Double> getPilaConsumo(){
+        	return this.pilaConsumo;
+        }
+        public Vector<Double> getPilaPagar(){
+        	return this.pilaPagar;
         }
         public String toString(){
           Iterator itrC= pilaConsumo.iterator();
