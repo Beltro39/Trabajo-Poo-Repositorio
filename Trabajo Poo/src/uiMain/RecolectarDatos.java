@@ -73,13 +73,13 @@ public class RecolectarDatos extends OpcionDeMenu{
        if(Producto.listaProducto.size()>0  && Operario.listaOperario.size()>0){
        for(int i= 0; i<30; i++){
          if(Math.random()<0.1){
-           int tamaño= Producto.listaProducto.size()-1;
-           int indice=  (int)Math.floor(Math.random()*(tamaño-0+1)+0);
-           //System.out.println("indice producto " + indice+" tamaño producto "+Producto.listaProducto.size() );
+           int tamaÃ±o= Producto.listaProducto.size()-1;
+           int indice=  (int)Math.floor(Math.random()*(tamaÃ±o-0+1)+0);
+           //System.out.println("indice producto " + indice+" tamaï¿½o producto "+Producto.listaProducto.size() );
            cliente.getListaProducto().add(Producto.listaProducto.get((int)indice).getNombre());
-           tamaño= Operario.listaOperario.size()-1;
-           int indices= (int)Math.floor(Math.random()*(tamaño-0+1)+0);
-           //System.out.println("indice Operario "+ indices+" tamaño operario "+Operario.listaOperario.size());
+           tamaÃ±o= Operario.listaOperario.size()-1;
+           int indices= (int)Math.floor(Math.random()*(tamaÃ±o-0+1)+0);
+           //System.out.println("indice Operario "+ indices+" tamaï¿½o operario "+Operario.listaOperario.size());
            Operario operario= Operario.listaOperario.get(indices);
            double puntuacion= Math.floor(Math.random()*(5-0+1)+0);
            operario.getListaPuntuacion().add(puntuacion);

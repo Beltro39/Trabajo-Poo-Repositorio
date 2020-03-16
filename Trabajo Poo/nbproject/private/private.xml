@@ -12,18 +12,10 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/clientes/listaClientes.txt</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/BaseDatos/EscritorJson.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/FormularioProducto.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/CargarDatos.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/Producto.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/Persona.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/gestorAplicacion/Cliente.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/BaseDatos/LectorJson.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/listaClientes.txt</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/uiMain/FormularioCliente.java</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/listaProductos.txt</file>
-            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/documentos/listaOperarios.txt</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/GUI/FieldPanel.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/GUI/MenuSuperior.java</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/GUI/Viper.css</file>
+            <file>file:/C:/Users/Sebas/Documents/NetBeansProjects/Trabajo%20Poo/src/GUI/InterfazGrafica.java</file>
         </group>
     </open-files>
 </project-private>
