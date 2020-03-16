@@ -1,4 +1,9 @@
 package GUI;
+import gestorAplicacion.Cliente;
+import gestorAplicacion.Operario;
+import gestorAplicacion.Producto;
+import gestorAplicacion.ServiciosPublicos;
+import java.util.Vector;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -12,6 +17,8 @@ public class FieldPanel extends Pane{
    private String nombreValor;
    private String[] criterios;
    private String[] valores;
+   private String[] respuestas;
+   private TextField[] campos;
    GridPane gpane;
    
    FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, String[] valores){
@@ -19,6 +26,7 @@ public class FieldPanel extends Pane{
      this.criterios= criterios;
      this.nombreValor= nombreValor;
      this.valores= valores;
+     this.campos= new TextField[criterios.length];
      
      Label label;
      
@@ -38,14 +46,29 @@ public class FieldPanel extends Pane{
        textField.setFocusTraversable(false);
        textField.setMaxSize(115, 15);
        gpane.add(textField, 1, i+1);
+       campos[i]= textField;
      }
      
-     //Button boton;
-     //gpane.add(new Button("Aceptar"), 0, i+1);
-     //gpane.add(boton= new Button("           Borrar          "), 1, i+1);
     
-     
    }
    
-   
+   public void crearObjeto(){
+     this.respuestas= new String[criterios.length];
+     
+     for(int i= 0; i<criterios.length; i++){
+       respuestas[i]= campos[i].getText();
+     }
+     
+     if(criterios.length== 6){
+       new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>() ), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new Vector<String>());
+     }
+     
+     if(criterios.length== 5){
+       new Operario(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4], new Vector<Double>());
+     }
+     
+     if(criterios.length== 3){
+      new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
+     }
+   }
 }

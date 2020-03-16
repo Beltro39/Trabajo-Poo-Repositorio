@@ -10,10 +10,16 @@ public class MenuSuperior extends MenuBar{
         Menu archivo= new Menu("Archivo");
         //Todos los items del menu Archivo
           MenuItem usuario= new MenuItem("Usuario");
+          MenuItem guardar= new MenuItem("Guardar");
           MenuItem salir= new MenuItem("Salir");
-          archivo.getItems().addAll(usuario, salir);
+          archivo.getItems().addAll(usuario,guardar, salir);
         //Lambda expressions de los menuItems Archivo
           usuario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneUsuario()));
+          guardar.setOnAction(e ->{  
+           BaseDatos.EscritorJson.escribirClientes();
+           BaseDatos.EscritorJson.escribirOperarios();
+           BaseDatos.EscritorJson.escribirProductos();
+          });
           
           
          Menu procesos= new Menu("Procesos y consultas");

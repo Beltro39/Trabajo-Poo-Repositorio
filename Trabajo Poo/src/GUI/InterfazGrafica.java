@@ -41,69 +41,38 @@ public class InterfazGrafica extends Application{
         bpane20.setPadding(new Insets(0,0,15,0));
         this.sceneUsuario= new Scene(bpane20, 350,400);
        
-        
-    //Menu Registrar Cliente
-        //Nodos
-        
-        //Layout
-        BorderPane bpaneRegistrarClientes= new BorderPane();
-        bpaneRegistrarClientes.setPadding(new Insets(0,0,20,0));
-        bpaneRegistrarClientes.setTop(new MenuSuperior());
-        VBox vBoxRegistrarClientes= new VBox();
-        Label text1= new Label("                Registrar clientes");
-        text1.setStyle("-fx-font-size: 16pt");
-        text1.setId("letra-blanca");
-        text1.setAlignment(Pos.CENTER_RIGHT);
-        this.sceneRegistrarClientes= new Scene(bpaneRegistrarClientes, 350, 525);
+            
+        //Formulario Clientes
+        FieldPanel fpaneRegistrarClientes= new FieldPanel("         DATOS", new String[]{"Cédula", "Nombre", "Edad", "Teléfono", "Estrato","Direccion"}, "         VALOR", new String[]{"        9 Dígitos", "Nombre completo", "          Años", "      10 Dígitos", "           1 - 5"," Cll, Av, Cra, Diag "});
+        Formulario formularioClientes= new Formulario("              REGISTRAR clientes", fpaneRegistrarClientes, 95 );
+        this.sceneRegistrarClientes= new Scene(formularioClientes, 350, 525);
         sceneRegistrarClientes.getStylesheets().add("GUI/Viper.css");
         
-        FieldPanel fpaneRegistrarClientes= new FieldPanel("         DATOS", new String[]{"Cédula", "Nombre", "Edad", "Teléfono", "Estrato","Direccion"}, "         VALOR", new String[]{"        9 Dígitos", "Nombre completo", "          Años", "      10 Dígitos", "           1 - 5"," Cll, Av, Cra, Diag "}); 
-      
-        vBoxRegistrarClientes.getChildren().add(new Label("            "));
-        vBoxRegistrarClientes.getChildren().add(text1);
-        vBoxRegistrarClientes.getChildren().add(new Label("            "));
-        vBoxRegistrarClientes.getChildren().add(fpaneRegistrarClientes.gpane);
-        bpaneRegistrarClientes.setCenter(vBoxRegistrarClientes);
-        
-        HBox hbox= new HBox();
-        Button boton; Button boton2;
-        hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
-        hbox.setAlignment(Pos.BOTTOM_CENTER);
-        hbox.setSpacing(95);
-        bpaneRegistrarClientes.setBottom(hbox);
-       // bpaneRegistrarClientes.setAlignment(vBoxRegistrarClientes, Pos.CENTER_RIGHT);
-     //Menu Registar Operario   
-        BorderPane bpaneRegistrarOperarios= new BorderPane();
-        bpaneRegistrarOperarios.setPadding(new Insets(0,0,20,0));
-        bpaneRegistrarOperarios.setTop(new MenuSuperior());
-        VBox vBoxRegistrarOperarios= new VBox();
-        text1= new Label("                Registrar operarios");
-        text1.setStyle("-fx-font-size: 16pt");
-        text1.setId("letra-blanca");
-        text1.setAlignment(Pos.CENTER_RIGHT);
-        this.sceneRegistrarOperarios= new Scene(bpaneRegistrarOperarios, 350, 468);
-        sceneRegistrarOperarios.getStylesheets().add("GUI/Viper.css");
-       
+        //Formulario Operarios
         FieldPanel fpaneRegistrarOperarios= new FieldPanel("         DATOS", new String[]{"Cédula", "Nombre", "Edad", "Teléfono","Direccion"}, "         VALOR", new String[]{"        9 Dígitos", "Nombre completo", "          Años", "      10 Dígitos"," Cll, Av, Cra, Diag "}); 
-      
-        vBoxRegistrarOperarios.getChildren().add(new Label("            "));
-        vBoxRegistrarOperarios.getChildren().add(text1);
-        vBoxRegistrarOperarios.getChildren().add(new Label("            "));
-        vBoxRegistrarOperarios.getChildren().add(fpaneRegistrarOperarios.gpane);
-        bpaneRegistrarOperarios.setCenter(vBoxRegistrarOperarios);
+        Formulario formularioOperarios= new Formulario("            REGISTRAR operarios", fpaneRegistrarOperarios, 95 );
+        this.sceneRegistrarOperarios= new Scene(formularioOperarios, 350, 468);
+        sceneRegistrarOperarios.getStylesheets().add("GUI/Viper.css");
         
-        hbox= new HBox();
-        hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
-        hbox.setAlignment(Pos.BOTTOM_CENTER);
-        hbox.setSpacing(95);
-        bpaneRegistrarOperarios.setBottom(hbox);
+        //Formulario Productos
+        FieldPanel fpaneRegistrarProductos= new FieldPanel("           DATOS", new String[]{"Nombre del producto", "Precio del producto", "Años garantia"}, "           VALOR", new String[]{"", "          COP", " "}); 
+        Formulario formularioProductos= new Formulario("             REGISTRAR productos", fpaneRegistrarProductos, 150 );
+        this.sceneRegistrarProductos= new Scene(formularioProductos, 350, 370);
+        sceneRegistrarProductos.getStylesheets().add("GUI/Viper.css");
+        
+        /*
+        
+        
+        
+     
+     
      
     //Menu Registrar Productos
         BorderPane bpaneRegistrarProductos= new BorderPane();
         bpaneRegistrarProductos.setPadding(new Insets(0,0,20,0));
         bpaneRegistrarProductos.setTop(new MenuSuperior());
         VBox vBoxRegistrarProductos= new VBox();
-        text1= new Label("                Registrar productos");
+        text1= new Label("             REGISTRAR productos");
         text1.setStyle("-fx-font-size: 16pt");
         text1.setId("letra-blanca");
         text1.setAlignment(Pos.CENTER_RIGHT);
@@ -125,7 +94,7 @@ public class InterfazGrafica extends Application{
         bpaneRegistrarProductos.setBottom(hbox);
         
        
-        
+        */
         //Layout menu principal
         BorderPane layoutPrincipal= new BorderPane();
         layoutPrincipal.setTop(new MenuSuperior());
@@ -136,6 +105,7 @@ public class InterfazGrafica extends Application{
         stage.show();
         
         //InterfazGrafica.class.getResource("Viper.css");
+              
     }
     
     public static void main(String[] args){
