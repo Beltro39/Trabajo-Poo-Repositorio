@@ -10,7 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-//Bienvenida y hojas de vida de los creadores
+//Bienvenida y hojas de vida de los creadores del programa
 
 public class InterfazPresentacion extends Application{
 
