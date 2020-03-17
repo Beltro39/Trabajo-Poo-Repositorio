@@ -12,6 +12,14 @@
     -fx-text-fill: #e8e8e8;
 }
 
+#negrilla{
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-text-fill: #e8e8e8;
+    -fx-background-color: #383838;
+    //-fx-text-fill: #e8e8e8;
+}
+
 .boton-azul{
     -fx-text-fill: #ffffff;
     -fx-background-color: #7cafc2; 

@@ -1,6 +1,11 @@
 package GUI;
 
+import BaseDatos.LectorJson;
+import gestorAplicacion.Cliente;
+import gestorAplicacion.Factura;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,22 +15,45 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import uiMain.GananciasMes;
+import uiMain.RecolectarDatos;
 
 public class InterfazGrafica extends Application{
     private static Scene sceneUsuario;
     private static Scene sceneRegistrarClientes;
     private static Scene sceneRegistrarOperarios;
     private static Scene sceneRegistrarProductos;
+    private static Scene scene;
+    private static Scene sceneRecolectarDatos;
     private static Stage stage;
+    public static TextField mes;
+    
+   public static TableView<Factura> tablaFactura;
+    
 
     @Override
     public void start(Stage stage){
+       LectorJson.leerClientes();
+        LectorJson.leerOperarios();
+        LectorJson.leerProductos();
+        LectorJson.leerMes();
+        
         this.stage= stage;
+        stage.setOnCloseRequest(e->{
+          e.consume();
+          closeProgram();
+        });
+        
+        
      //Escena de Usuario 
         //Nodos  
         Button bSalir= new Button("Salir");
@@ -40,6 +68,7 @@ public class InterfazGrafica extends Application{
         BorderPane.setAlignment(bSalir, Pos.TOP_CENTER);
         bpane20.setPadding(new Insets(0,0,15,0));
         this.sceneUsuario= new Scene(bpane20, 350,400);
+        sceneUsuario.getStylesheets().add("GUI/Viper.css");
        
             
         //Formulario Clientes
@@ -60,46 +89,51 @@ public class InterfazGrafica extends Application{
         this.sceneRegistrarProductos= new Scene(formularioProductos, 350, 370);
         sceneRegistrarProductos.getStylesheets().add("GUI/Viper.css");
         
-        /*
+        //Recolectar Datos
+        //FieldPanel fpaneRecolectarDatos= new FieldPanel("      ")
         
-        
-        
+        BorderPane layoutRecolectarDatos= new BorderPane();
+        layoutRecolectarDatos.setTop(new MenuSuperior());
      
-     
-     
-    //Menu Registrar Productos
-        BorderPane bpaneRegistrarProductos= new BorderPane();
-        bpaneRegistrarProductos.setPadding(new Insets(0,0,20,0));
-        bpaneRegistrarProductos.setTop(new MenuSuperior());
-        VBox vBoxRegistrarProductos= new VBox();
-        text1= new Label("             REGISTRAR productos");
-        text1.setStyle("-fx-font-size: 16pt");
-        text1.setId("letra-blanca");
-        text1.setAlignment(Pos.CENTER_RIGHT);
-        this.sceneRegistrarProductos= new Scene(bpaneRegistrarProductos, 350, 370);
-        sceneRegistrarProductos.getStylesheets().add("GUI/Viper.css");
-       
-        FieldPanel fpaneRegistrarProductos= new FieldPanel("           DATOS", new String[]{"Nombre del producto", "Precio del producto", "Años garantia"}, "           VALOR", new String[]{"", "          COP", " "}); 
-      
-        vBoxRegistrarProductos.getChildren().add(new Label("            "));
-        vBoxRegistrarProductos.getChildren().add(text1);
-        vBoxRegistrarProductos.getChildren().add(new Label("            "));
-        vBoxRegistrarProductos.getChildren().add(fpaneRegistrarProductos.gpane);
-        bpaneRegistrarProductos.setCenter(vBoxRegistrarProductos);
+        //Tabla cliente
+        TableColumn<Factura, String> clienteColumn= new TableColumn<>("Cliente");
+        clienteColumn.setMinWidth(150);
+        clienteColumn.setCellValueFactory(new PropertyValueFactory<>("cliente"));
         
-        hbox= new HBox();
-        hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
-        hbox.setAlignment(Pos.BOTTOM_CENTER);
-        hbox.setSpacing(150);
-        bpaneRegistrarProductos.setBottom(hbox);
+        //Tabla producto
+        TableColumn<Factura, String> productoColumn= new TableColumn<>("Producto");
+        productoColumn.setMinWidth(150);
+        productoColumn.setCellValueFactory(new PropertyValueFactory<>("producto"));
+        //Tabla puntuacion
+        TableColumn<Factura, String> puntuacionColumn= new TableColumn<>("Puntuación");
+        puntuacionColumn.setMinWidth(150);
+        puntuacionColumn.setCellValueFactory(new PropertyValueFactory<>("puntuacion"));
         
-       
-        */
+        TableColumn<Factura, String> operarioColumn= new TableColumn<>("Operario");
+        operarioColumn.setMinWidth(150);
+        operarioColumn.setCellValueFactory(new PropertyValueFactory<>("operario"));
+        
+        tablaFactura = new TableView<>();    
+        tablaFactura.getColumns().addAll(clienteColumn, productoColumn, puntuacionColumn, operarioColumn);
+        
+        VBox vbox= new VBox();
+        mes= new TextField("Enero");
+        mes.setEditable(false);
+        mes.setId("negrilla");
+        mes.setMaxSize(335, 50);
+        mes.setAlignment(Pos.TOP_RIGHT);
+        vbox.getChildren().addAll(mes,tablaFactura);
+        vbox.setSpacing(10);
+        layoutRecolectarDatos.setCenter(vbox);
+        this.sceneRecolectarDatos= new Scene(layoutRecolectarDatos, 600, 370);
+        sceneRecolectarDatos.getStylesheets().add("GUI/Viper.css");
+        
         //Layout menu principal
         BorderPane layoutPrincipal= new BorderPane();
         layoutPrincipal.setTop(new MenuSuperior());
         stage.setTitle("Empresa de servicios públicos");
-        Scene scene= new Scene(layoutPrincipal, 350, 400);
+        this.scene= new Scene(layoutPrincipal, 350, 400);
+        scene.getStylesheets().add("GUI/Viper.css");
         stage.setScene(scene);
         bSalir.setOnAction(e -> stage.setScene(scene));
         stage.show();
@@ -131,4 +165,24 @@ public class InterfazGrafica extends Application{
     public static Scene getSceneRegistrarProducto(){
       return sceneRegistrarProductos;
     }
+    
+    public static Scene getSceneRecolectarDatos(){
+      return sceneRecolectarDatos;
+    }
+    
+    public void closeProgram(){
+      boolean answer= ConfirmBox.ejecutar("Aviso", "¿Desea guardar datos?");
+      if(answer== true){
+        BaseDatos.EscritorJson.escribirClientes();
+        BaseDatos.EscritorJson.escribirOperarios();
+        BaseDatos.EscritorJson.escribirProductos();  
+        BaseDatos.EscritorJson.escribirMes();
+      }
+      stage.close();
+    }
+    
+    public static void setLabelMes(String text){
+       mes.setText(text);
+    }
+    
 }

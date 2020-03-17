@@ -52,6 +52,8 @@ public class FieldPanel extends Pane{
     
    }
    
+  
+   
    public void crearObjeto(){
      this.respuestas= new String[criterios.length];
      
@@ -69,6 +71,12 @@ public class FieldPanel extends Pane{
      
      if(criterios.length== 3){
       new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
+     }
+   }
+   public void borrarTodo(){
+     for(int i= 0; i<criterios.length; i++){
+        campos[i].setText(null);
+        campos[i].requestFocus();
      }
    }
 }
