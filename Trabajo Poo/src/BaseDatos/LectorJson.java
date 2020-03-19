@@ -64,7 +64,7 @@ abstract public class LectorJson {
       try{
             BufferedReader br= new BufferedReader(new FileReader("documentos/Mes.txt"));
             String linea= br.readLine();
-            RecolectarDatos.setI(Integer.parseInt(linea));
+            RecolectarDatos.i= Integer.parseInt(linea);
             br.close();
            }catch(IOException e){
              System.out.println("Error leer Operarios");

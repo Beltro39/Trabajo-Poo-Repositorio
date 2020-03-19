@@ -8,17 +8,27 @@ import java.util.logging.Logger;
 import java.util.Scanner;
 import uiMain.RecolectarDatos;
 public class GananciasMes extends OpcionDeMenu{
-    
     MenuDeConsola menuFunciones;
     Scanner input= new Scanner(System.in);
-   private static String mes= ""; 
+    String mes= ""; 
     RecolectarDatos recolectarDatos;
-    static  String[]meses= new String[12];
+    String[] meses= new String[12];
     GananciasMes(MenuDeConsola menuFunciones, RecolectarDatos recolectarDatos){
       this.menuFunciones= menuFunciones;
       this.recolectarDatos= recolectarDatos;
       nombreOpcion= "Ganancias mes";
-      
+      meses[0]= "Enero";
+      meses[1]= "Febrero";
+      meses[2]= "Marzo";
+      meses[3]= "Abril";
+      meses[4]= "Mayo";
+      meses[5]= "Junio";
+      meses[6]= "Julio";
+      meses[7]= "Agosto";
+      meses[8]= "Septiembre";
+      meses[9]= "Octubre";
+      meses[10]= "Noviembre";
+      meses[11]= "Diciembre";
     }
     
     public void ejecutar(){
@@ -27,8 +37,8 @@ public class GananciasMes extends OpcionDeMenu{
          } catch (AWTException ex) {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }
-      if(Cliente.listaClientes.size()>0  && RecolectarDatos.getI()>=0){  
-      mes= meses[RecolectarDatos.getI()];  
+      if(Cliente.listaClientes.size()>0  && recolectarDatos.i>=0){  
+      mes= meses[recolectarDatos.i];  
       System.out.println("****************************\n   Ganancias mes " + mes+"\n****************************");
       double gananciasLuz= 0;
       double gananciasAcueducto= 0;
@@ -52,8 +62,8 @@ public class GananciasMes extends OpcionDeMenu{
       for(int i= 0; i<Cliente.listaClientes.size(); i++){
         consumoLuz+= Cliente.listaClientes.get(i).getServicioLuz().getPilaConsumo().lastElement();
         consumoAcueducto+= Cliente.listaClientes.get(i).getServicioAcueducto().getPilaConsumo().lastElement();
-        consumoAlcantarillado+= Cliente.listaClientes.get(i).getServicioAlcantarillado().getPilaConsumo().lastElement();
-        consumoGas+= Cliente.listaClientes.get(i).getServicioGas().getPilaConsumo().lastElement();
+        consumoAlcantarillado= Cliente.listaClientes.get(i).getServicioAlcantarillado().getPilaConsumo().lastElement();
+        consumoGas= Cliente.listaClientes.get(i).getServicioGas().getPilaConsumo().lastElement();
       }
       consumoLuz= consumoLuz/Cliente.listaClientes.size();
       consumoAcueducto= consumoAcueducto/Cliente.listaClientes.size();
@@ -95,21 +105,4 @@ public class GananciasMes extends OpcionDeMenu{
           }
     menuFunciones.lanzarMenu();  
 }
-    public static String getMes(){
-      meses[0]= "ENERO";
-      meses[1]= "FEBRERO";
-      meses[2]= "MARZO";
-      meses[3]= "ABRIL";
-      meses[4]= "MAYO";
-      meses[5]= "JUNIO";
-      meses[6]= "JULIO";
-      meses[7]= "AGOSTO";
-      meses[8]= "SEPTIEMBRE";
-      meses[9]= "OCTUBRE";
-      meses[10]= "NOVIEMBRE";
-      meses[11]= "DICIEMBRE";  
-      mes= meses[RecolectarDatos.getI()];
-      System.out.println(mes);
-      return mes;
-    }
 }

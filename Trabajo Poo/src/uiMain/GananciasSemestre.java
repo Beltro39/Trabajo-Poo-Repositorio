@@ -37,7 +37,7 @@ public class GananciasSemestre extends OpcionDeMenu{
          } catch (AWTException ex) {
              Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
          }
-      int i= RecolectarDatos.getI();
+      int i= recolectarDatos.i;
       if(i>4){
         System.out.println("********************************************************\n   Ganancias meses " + meses[i-5]+" "+meses[i-4]+" "+meses[i-3]+" "+meses[i-2]+" "+meses[i-1]+" "+meses[i]+" "+"\n********************************************************");
         double gananciasLuz= 0;

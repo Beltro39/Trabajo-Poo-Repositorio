@@ -2,7 +2,6 @@
 // o la compra de productos
 package uiMain;
 import gestorAplicacion.Cliente;
-import gestorAplicacion.Factura;
 import gestorAplicacion.Operario;
 import gestorAplicacion.Producto;
 import java.awt.AWTException;
@@ -10,21 +9,28 @@ import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
-import java.util.Vector;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 
 public class RecolectarDatos extends OpcionDeMenu{
     MenuDeConsola menuFunciones;
     Scanner input= new Scanner(System.in);
-    private static int i= 0;
+    public static int i= 0;
     int puntuacion= 0;
-    private static ObservableList<Factura> facturas;
-   public void ejecutar(){}
-   
+     String[] meses= new String[12];
+    RecolectarDatos(MenuDeConsola menuFunciones){
+      this.menuFunciones= menuFunciones;
+      nombreOpcion= "Recolectar datos";
+      
+    }
     
-    public static ObservableList<Factura> ejecutar2(){
-     ObservableList<Factura> facturas= FXCollections.observableArrayList();
+    
+    
+   public void ejecutar(){
+       
+     try {
+             RobotPresiona.limpiarpantalla();
+         } catch (AWTException ex) {
+             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
+         }  
      if(Cliente.listaClientes.size()>0){
      Iterator itr= Cliente.listaClientes.iterator();
      int j= 0;
@@ -66,7 +72,7 @@ public class RecolectarDatos extends OpcionDeMenu{
        //PARTE PRODUCTO
        if(Producto.listaProducto.size()>0  && Operario.listaOperario.size()>0){
        for(int i= 0; i<30; i++){
-         if(Math.random()<0.05){
+         if(Math.random()<0.1){
            int tamaño= Producto.listaProducto.size()-1;
            int indice=  (int)Math.floor(Math.random()*(tamaño-0+1)+0);
            //System.out.println("indice producto " + indice+" tama�o producto "+Producto.listaProducto.size() );
@@ -77,21 +83,42 @@ public class RecolectarDatos extends OpcionDeMenu{
            Operario operario= Operario.listaOperario.get(indices);
            double puntuacion= Math.floor(Math.random()*(5-0+1)+0);
            operario.getListaPuntuacion().add(puntuacion);
-           //System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice).getNombre()+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
-           facturas.add(new Factura(cliente.getNombre(), Producto.listaProducto.get((int)indice).getNombre(), String.valueOf(puntuacion), operario.getNombre()));
+           System.out.println(cliente.getNombre()+ " ha comprado "+ Producto.listaProducto.get((int)indice).getNombre()+" y ha puntuado con "+puntuacion+" a "+operario.getNombre() );
+             
+           
+           
          }
        }
-       } 
-  }
+       }else{
+           if(j==0 && Producto.listaProducto.size()==0 ){
+             System.out.println("No hay prodcutos que ofrecer");
+           }
+           if(j==0 && Operario.listaOperario.size()==0 ){
+             System.out.println("No hay operarios disponibles");
+           }
        }
-      i++;
-    return facturas;}
-    
-    public static int getI(){
-      return i;
-    } 
-    public static void setI(int z){
-      i= z;
-    } 
-}
+      }
+     }else{
+       System.out.println("No hay clientes para recolectar datos");
+     }
      
+     
+     
+     
+     
+     
+     this.i++;
+     System.out.println("");
+     System.out.println("Presiona Enter para continuar");
+      //String enterKey= input.nextLine();
+          String enterKey2= input.nextLine();
+          if(enterKey2.isEmpty()){
+            try {
+             RobotPresiona.limpiarpantalla();
+         } catch (AWTException ex) {
+             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
+         }  
+     menuFunciones.lanzarMenu();
+   } 
+   }
+}
