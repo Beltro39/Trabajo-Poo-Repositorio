@@ -26,8 +26,9 @@ public class Formulario extends BorderPane{
       HBox hbox= new HBox();
       Button boton; Button boton2;
       hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
-      boton.setOnAction(e -> fpane.crearObjeto());
-      //
+      boton.setOnAction(e -> {fpane.crearObjeto();
+                              AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente");});
+      boton2.setOnAction(e-> fpane.borrarTodo());
       hbox.setAlignment(Pos.BOTTOM_CENTER);
       hbox.setSpacing(distancia);
       this.setBottom(hbox);
