@@ -9,6 +9,7 @@ import org.json.JSONException;
  
 public class TrabajoPoo {
   public static void main(String[] args) {
+      /*
         LectorJson.leerClientes();
         LectorJson.leerOperarios();
         LectorJson.leerProductos();
@@ -53,5 +54,6 @@ public class TrabajoPoo {
        
         menuPrincipal.lanzarMenu();
     }
-    
+    */
+  }
 }

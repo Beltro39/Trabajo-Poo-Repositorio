@@ -25,7 +25,7 @@ public class EscritorJson {
       try{
             BufferedWriter bw= new BufferedWriter(new FileWriter("documentos/Mes.txt"));
             
-              bw.write(RecolectarDatos.i);
+              bw.write(RecolectarDatos.getI());
               bw.newLine();
          
             bw.flush();

@@ -1,8 +1,17 @@
 package GUI;
+import gestorAplicacion.Cliente;
+import gestorAplicacion.Factura;
+import gestorAplicacion.Operario;
+import gestorAplicacion.Producto;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import uiMain.GananciasMes;
+import uiMain.RecolectarDatos;
 
 public class MenuSuperior extends MenuBar{
    public MenuSuperior(){
@@ -37,6 +46,20 @@ public class MenuSuperior extends MenuBar{
           registrarCliente.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarCliente()));
           registrarOperario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario()));
           registrarProducto.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto()));
+          //---------------------------------------------------------------
+          if(Cliente.listaClientes.size()== 0){
+            recolectarDatos.setDisable(true);
+      }
+          recolectarDatos.setOnAction(e->{
+          if(Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0 && Operario.listaOperario.size()>0){
+              ObservableList<Factura> facturas = RecolectarDatos.ejecutar2();
+              InterfazGrafica.tablaFactura.setItems(facturas);
+              InterfazGrafica.mes.setText(GananciasMes.getMes());
+              
+            //InterfazGrafica.tablaFactura.setItems(RecolectarDatos.ejecutar2());
+          }
+                                          InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
+          });
         Menu ayuda= new Menu("Ayuda");
         
           this.getMenus().addAll(archivo, procesos, ayuda);
