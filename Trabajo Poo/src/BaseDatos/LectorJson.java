@@ -74,8 +74,8 @@ abstract public class LectorJson {
       String partes[]= lista.split(" ");
       Vector<Double> v= new Vector<>(); 
       for(int i= 0; i<partes.length; i++){
-              
-             v.add(Double.parseDouble(partes[i].replace("[", "").replace("]", "").replace(",", "")));
+          
+          v.add(Double.parseDouble(partes[i].replace("[", "").replace("]", "").replace(",", "")));
       }
       return v;
       

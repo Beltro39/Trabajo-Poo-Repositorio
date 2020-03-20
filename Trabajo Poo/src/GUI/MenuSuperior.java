@@ -11,10 +11,12 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import uiMain.GananciasMes;
+import uiMain.GananciasSemestre;
 import uiMain.RecolectarDatos;
 
 public class MenuSuperior extends MenuBar{
    public MenuSuperior(){
+       
      //Menu Principal   
         Menu archivo= new Menu("Archivo");
         //Todos los items del menu Archivo
@@ -28,6 +30,7 @@ public class MenuSuperior extends MenuBar{
            BaseDatos.EscritorJson.escribirClientes();
            BaseDatos.EscritorJson.escribirOperarios();
            BaseDatos.EscritorJson.escribirProductos();
+           BaseDatos.EscritorJson.escribirMes();
           });
           
           
@@ -47,22 +50,70 @@ public class MenuSuperior extends MenuBar{
           registrarOperario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario()));
           registrarProducto.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto()));
           //---------------------------------------------------------------
-          if(Cliente.listaClientes.size()== 0){
-            recolectarDatos.setDisable(true);
-      }
+         
           recolectarDatos.setOnAction(e->{
           if(Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0 && Operario.listaOperario.size()>0){
               ObservableList<Factura> facturas = RecolectarDatos.ejecutar2();
               InterfazGrafica.tablaFactura.setItems(facturas);
               InterfazGrafica.mes.setText(GananciasMes.getMes());
-              
-            //InterfazGrafica.tablaFactura.setItems(RecolectarDatos.ejecutar2());
+              InterfazGrafica.mes2.setText(GananciasMes.getMes2());
+              GananciasMes.ejecutar2();
+              GananciasSemestre.ejecutar2();
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
+          }else{
+             String texto= "";
+             if(Cliente.listaClientes.size()==0){
+               texto= "Registre un cliente para activar esta función";
+             }
+             if(Producto.listaProducto.size()==0){
+               texto= "Registre un producto";
+             }
+             if(Operario.listaOperario.size()==0){
+               texto= "Registre un operario";
+             }
+             
+             if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 ){
+               texto= "Registre un cliente y un producto";
+             }
+             
+             if(Cliente.listaClientes.size()==0 && Operario.listaOperario.size()==0 ){
+               texto= "Registre un cliente y un operario";
+             }
+             if(Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0 ){
+               texto= "Registre un operario y un producto";
+             }
+             
+             if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0){
+               texto= "Registre un cliente, un operario y un producto ";
+             }
+             
+             AlertBox.ejecutar("Error", texto, 300, 75);
           }
-                                          InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
+                                          
           });
+          gananciasMes.setOnAction(e -> { 
+              if(RecolectarDatos.getI()!= -1){
+              FieldPanel.actualizar();
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneGananciasMes());
+              }else{
+                AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
+              }
+                                         
+          });
+          gananciasSemestre.setOnAction(e->{
+             if(RecolectarDatos.getI()> 4){
+             FieldPanel.actualizar2();
+             InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneGananciasSemestre());  
+             }else{
+               AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
+             }
+          });
+          
+          
         Menu ayuda= new Menu("Ayuda");
         
           this.getMenus().addAll(archivo, procesos, ayuda);
     
     }
+               
 }
