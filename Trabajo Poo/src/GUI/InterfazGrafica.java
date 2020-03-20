@@ -156,7 +156,7 @@ public class InterfazGrafica extends Application{
         mes2.setMaxSize(420, 50);
         mes2.setAlignment(Pos.TOP_RIGHT);
         Formulario formularioGananciasMes= new Formulario(mes2, fpaneGananciasMes, 150);
-        this.sceneGananciasMes= new Scene(formularioGananciasMes, 600, 600);
+        this.sceneGananciasMes= new Scene(formularioGananciasMes, 600, 625);
         sceneGananciasMes.getStylesheets().add("GUI/Viper.css");
                
         //Ganancias Semestre
@@ -171,7 +171,7 @@ public class InterfazGrafica extends Application{
         mes3.setMaxSize(520, 50);
         mes3.setAlignment(Pos.TOP_RIGHT);
         Formulario formularioGananciasSemestre= new Formulario(mes3, fpaneGananciasSemestre, 150 );
-        this.sceneGananciasSemestre= new Scene(formularioGananciasSemestre, 650, 650);
+        this.sceneGananciasSemestre= new Scene(formularioGananciasSemestre, 650, 675);
         sceneGananciasSemestre.getStylesheets().add("GUI/Viper.css");
             
         //Empleado del mes

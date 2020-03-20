@@ -117,7 +117,7 @@ public class MenuSuperior extends MenuBar{
              }
           });
           empleadoDelMes.setOnAction(e->{
-            if(Operario.listaOperario.size()>1){  
+            if(Operario.listaOperario.size()!=0){  
             InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneEmpleadoDelMes());
             }else{
               AlertBox.ejecutar("Error", "Registre un operario", 200, 75);
