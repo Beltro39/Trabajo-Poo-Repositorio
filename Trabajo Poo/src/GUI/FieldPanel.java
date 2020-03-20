@@ -31,7 +31,7 @@ public class FieldPanel extends Pane{
  
    GridPane gpane;
    
-   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, String[] valores, int vgap, int hgap, boolean habilitado){
+   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, String[] valores, int vgap, int hgap, boolean registroConsulta){
      this.nombreCriterio= nombreCriterio;
      this.criterios= criterios;
      this.nombreValor= nombreValor;
@@ -48,7 +48,10 @@ public class FieldPanel extends Pane{
      gpane.setAlignment(Pos.CENTER);
          
      int i= 0;
-     if(habilitado){
+     
+     //registroConsulta= true -> Formulario registro 
+     //registroConsulta= false -> Formulario consulta 
+     if(registroConsulta){
      for( i= 0; i<criterios.length; i++){
        gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
        TextField textField= new TextField();
@@ -60,10 +63,19 @@ public class FieldPanel extends Pane{
        campos[i]= textField;
      }
      }else{
-     for( i= 0; i<criterios.length; i++){
+         gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
+         TextField textField= new TextField();
+         textField.setPromptText(valores[i]);
+         textField.setFocusTraversable(false);
+         textField.setMaxSize(115, 15);
+       
+         gpane.add(textField, 1, i+1);
+         campos[i]= textField;
+         
+     for( i= 1; i<criterios.length; i++){
        gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
-       TextField textField= new TextField();
-       textField.setText(valores[i]);
+       textField= new TextField();
+      // textField.setText(valores[i]);
        textField.setFocusTraversable(false);
        textField.setMaxSize(115, 15);
        textField.setEditable(false);
@@ -76,13 +88,20 @@ public class FieldPanel extends Pane{
      
     
    }
-   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, double[] valores, int vgap, int hgap){
+   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, double[] valores, int vgap, int hgap, boolean mesSemestre){
      this.nombreCriterio= nombreCriterio;
      this.criterios= criterios;
      this.nombreValor= nombreValor;
-     valoresGananciasMes= valores;
-     camposGananciasMes= new TextField[criterios.length];
+     //mesSemestre= true -> Constructor Ganancias del mes
+     //mesSemestre= false -> Constructor Ganancias del semestre
      
+     if(mesSemestre){
+       valoresGananciasMes= valores;
+       camposGananciasMes= new TextField[criterios.length];
+     }else{
+       valoresGananciasSemestre= valores;
+       camposGananciasSemestre= new TextField[criterios.length];
+     }
      Label label;
      
      this.gpane= new GridPane();
@@ -91,7 +110,7 @@ public class FieldPanel extends Pane{
      gpane.add(label= new Label(nombreCriterio), 0, 0); label.setId("letra-blanca"); 
      gpane.add(label= new Label(nombreValor), 1, 0);  label.setId("letra-blanca"); 
      gpane.setAlignment(Pos.CENTER);
-         
+     if(mesSemestre){  
      for(int i= 0; i<criterios.length; i++){
        gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
        TextField textField= new TextField();
@@ -103,14 +122,28 @@ public class FieldPanel extends Pane{
        camposGananciasMes[i]= textField;
      }
      tamaño= criterios.length;
+     }else{
+         for(int i= 0; i<criterios.length; i++){
+       gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
+       TextField textField= new TextField();
+       textField.setText(String.valueOf(valoresGananciasSemestre[i]));
+       textField.setFocusTraversable(false);
+       textField.setMaxSize(115, 15);
+       textField.setEditable(false);
+       gpane.add(textField, 1, i+1);
+       camposGananciasSemestre[i]= textField;
+       }
+         tamaño2= criterios.length;
      
+     }
+     
+     /*
      }
    FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, double[] valores, int vgap, int hgap, boolean cosa){
      this.nombreCriterio= nombreCriterio;
      this.criterios= criterios;
      this.nombreValor= nombreValor;
-     valoresGananciasSemestre= valores;
-     camposGananciasSemestre= new TextField[criterios.length];
+     
      
      Label label;
      
@@ -121,27 +154,17 @@ public class FieldPanel extends Pane{
      gpane.add(label= new Label(nombreValor), 1, 0);  label.setId("letra-blanca"); 
      gpane.setAlignment(Pos.CENTER);
          
-     for(int i= 0; i<criterios.length; i++){
-       gpane.add(label= new Label(criterios[i]), 0, i+1);label.setId("letra-blanca");
-       TextField textField= new TextField();
-       textField.setText(String.valueOf(valoresGananciasSemestre[i]));
-       textField.setFocusTraversable(false);
-       textField.setMaxSize(115, 15);
-       textField.setEditable(false);
-       gpane.add(textField, 1, i+1);
-       camposGananciasSemestre[i]= textField;
-     }
-     tamaño2= criterios.length;
+     
+     
     
      }
      
-   
+   */
   
-   
+   }
      public void crearObjeto(){
      this.respuestas= new String[criterios.length];
 
-     
      for(int i= 0; i<criterios.length; i++){
        respuestas[i]= campos[i].getText();
      }
@@ -158,6 +181,91 @@ public class FieldPanel extends Pane{
       new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
      }
    }
+     public void consultarObjeto(){
+     String idConsultar= campos[0].getText();
+     int indice;
+     if(criterios.length== 6){
+       Cliente clienteEncontrado= null;  
+       for(int i= 0; i<Cliente.listaClientes.size(); i++){
+         if(idConsultar.equals(Cliente.listaClientes.get(i).getCedula())){
+           clienteEncontrado= Cliente.listaClientes.get(i);
+         }
+       }
+       campos[1].setText(clienteEncontrado.getNombre());
+       campos[2].setText(String.valueOf(clienteEncontrado.getEdad()));
+       campos[3].setText(clienteEncontrado.getTelefono());
+       campos[4].setText(String.valueOf(clienteEncontrado.getEstrato()));
+       campos[5].setText(clienteEncontrado.getDireccion());
+     }
+     
+     if(criterios.length== 5){
+       Operario operarioEncontrado= null;  
+       for(int i= 0; i<Operario.listaOperario.size(); i++){
+         if(idConsultar.equals(Operario.listaOperario.get(i).getCedula())){
+           operarioEncontrado= Operario.listaOperario.get(i);
+         }
+       }
+       campos[1].setText(operarioEncontrado.getNombre());
+       campos[2].setText(String.valueOf(operarioEncontrado.getEdad()));
+       campos[3].setText(operarioEncontrado.getTelefono());
+       campos[4].setText(operarioEncontrado.getDireccion());
+     }
+     
+     
+     if(criterios.length== 3){
+      Producto productoEncontrado= null;
+      for(int i= 0; i<Producto.listaProducto.size(); i++){
+         if(idConsultar.equals(Producto.listaProducto.get(i).getNombre())){
+           productoEncontrado= Producto.listaProducto.get(i);
+         }
+      } 
+      campos[2].setText(productoEncontrado.getGarantia());
+      campos[1].setText(String.valueOf(productoEncontrado.getCosto()));
+     }
+   }
+   public void editarObjeto(){
+     String idEditar= campos[0].getText();
+     if(criterios.length== 6){
+       Cliente clienteEncontrado= null;  
+       for(int i= 0; i<Cliente.listaClientes.size(); i++){
+         if(idEditar.equals(Cliente.listaClientes.get(i).getCedula())){
+           clienteEncontrado= Cliente.listaClientes.get(i);
+         }
+       }
+       clienteEncontrado.setNombre(campos[1].getText());
+       clienteEncontrado.setEdad(campos[2].getText());
+       clienteEncontrado.setTelefono(campos[3].getText());
+       clienteEncontrado.setEstrato(Integer.parseInt(campos[4].getText()));
+       clienteEncontrado.setDireccion(campos[5].getText());
+     }
+     
+     if(criterios.length== 5){
+       Operario operarioEncontrado= null;  
+       for(int i= 0; i<Operario.listaOperario.size(); i++){
+         if(idEditar.equals(Operario.listaOperario.get(i).getCedula())){
+           operarioEncontrado= Operario.listaOperario.get(i);
+         }
+       }
+       operarioEncontrado.setNombre(campos[1].getText());
+       operarioEncontrado.setEdad(campos[2].getText());
+       operarioEncontrado.setTelefono(campos[3].getText());
+       operarioEncontrado.setDireccion(campos[4].getText());
+       
+     }
+     
+     
+     if(criterios.length== 3){
+      Producto productoEncontrado= null;
+      for(int i= 0; i<Producto.listaProducto.size(); i++){
+         if(idEditar.equals(Producto.listaProducto.get(i).getNombre())){
+           productoEncontrado= Producto.listaProducto.get(i);
+         }
+      } 
+      productoEncontrado.setCosto(Integer.parseInt(campos[1].getText()));
+      productoEncontrado.setGarantia(campos[2].getText());
+     }
+   }  
+     
    public void borrarTodo(){
      for(int i= 0; i<criterios.length; i++){
         campos[i].setText(null);

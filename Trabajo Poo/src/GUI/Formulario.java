@@ -13,7 +13,8 @@ import sun.font.TextLabel;
 public class Formulario extends BorderPane{
     
     FieldPanel fpane;
-    Formulario(String titulo, FieldPanel fpane, int distancia, boolean parteInferior){
+    // Registro de clientes
+    Formulario(String titulo, FieldPanel fpane, int distancia){
       this.fpane= fpane;  
       this.setPadding(new Insets(0,0,20,0));
       this.setTop(new MenuSuperior());
@@ -26,19 +27,31 @@ public class Formulario extends BorderPane{
       vBox.getChildren().add(fpane.gpane);
       this.setCenter(vBox);
       //Parte inferior del BorderPane
-      if(parteInferior){
       HBox hbox= new HBox();
-      Button boton; Button boton2;
-      hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
-      boton.setOnAction(e -> {fpane.crearObjeto();
+      Button botonRegistrar,botonConsultar, botonEditar, botonBorrar;
+   
+      hbox.getChildren().addAll(botonRegistrar= new Button("Registrar"), botonConsultar=new Button("Consultar"), botonEditar=new Button("Editar"),  botonBorrar=new Button("Borrar"));
+      botonRegistrar.getStyleClass().add("boton-azul"); botonConsultar.getStyleClass().add("boton-azul"); botonEditar.getStyleClass().add("boton-azul");botonBorrar.getStyleClass().add("boton-rojo");
+      //Lambda expression de los botones
+      botonRegistrar.setOnAction(e -> {fpane.crearObjeto();
                               AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 75);});
-      boton2.setOnAction(e-> fpane.borrarTodo());
+      botonConsultar.setOnAction(e-> fpane.consultarObjeto());
+      botonEditar.setOnAction(e-> {  boolean editar= ConfirmBox.ejecutar("Aviso", "¿Está seguro de que quiere editar?");
+              if(editar){
+              fpane.editarObjeto();
+              }});
+      botonBorrar.setOnAction(e-> fpane.borrarTodo());
+      
       hbox.setAlignment(Pos.BOTTOM_CENTER);
       hbox.setSpacing(distancia);
       this.setBottom(hbox);
-      }
+      
+      
+      
+      
     }
-    Formulario(TextField textField, FieldPanel fpane, int distancia, boolean parteInferior){
+    // Ganancias
+    Formulario(TextField textField, FieldPanel fpane, int distancia){
       this.fpane= fpane;  
       this.setPadding(new Insets(0,0,20,0));
       this.setTop(new MenuSuperior());
@@ -53,7 +66,7 @@ public class Formulario extends BorderPane{
       vBox.getChildren().add(fpane.gpane);
       this.setCenter(vBox);
       //Parte inferior del BorderPane
-      if(parteInferior){
+      
       HBox hbox= new HBox();
       Button boton; Button boton2;
       hbox.getChildren().addAll(boton= new Button("Aceptar"),  boton2=new Button("Borrar")); boton.getStyleClass().add("boton-azul"); boton2.getStyleClass().add("boton-rojo");
@@ -64,7 +77,7 @@ public class Formulario extends BorderPane{
       hbox.setSpacing(distancia);
       this.setBottom(hbox);
     
-      }
+      
     
     }
   

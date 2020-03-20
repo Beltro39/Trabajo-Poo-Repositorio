@@ -10,6 +10,7 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import uiMain.EmpleadoDelMes;
 import uiMain.GananciasMes;
 import uiMain.GananciasSemestre;
 import uiMain.RecolectarDatos;
@@ -36,27 +37,34 @@ public class MenuSuperior extends MenuBar{
           
          Menu procesos= new Menu("Procesos y consultas");
         //Todos los items del menu Procesos y consultas
-          MenuItem registrarCliente= new MenuItem("Registrar cliente");
-          MenuItem registrarOperario= new MenuItem("Registrar operario");
-          MenuItem registrarProducto= new MenuItem("Registrar producto");
-          //-------------------------------------------------------------- 
+         
           MenuItem recolectarDatos= new MenuItem("Recolectar datos");
           MenuItem gananciasMes= new MenuItem("Ganancias del mes");
           MenuItem gananciasSemestre= new MenuItem("Ganancias últimos seis meses");
           MenuItem empleadoDelMes= new MenuItem("Empleado del mes");
-          procesos.getItems().addAll(registrarCliente, registrarOperario, registrarProducto, new SeparatorMenuItem(),recolectarDatos, gananciasMes, gananciasSemestre, empleadoDelMes);
+          //------------------------------------------------------------------------
+          MenuItem controlCliente= new MenuItem("Control de clientes");
+          MenuItem controlOperario= new MenuItem("Control de operarios");
+          MenuItem controlProducto= new MenuItem("Control de productos");
+       
+          
+          procesos.getItems().addAll(controlCliente, controlOperario, controlProducto, new SeparatorMenuItem(),  recolectarDatos, gananciasMes, gananciasSemestre, empleadoDelMes);
         //Lambda expressions de los menuItems Procesos y consultas
-          registrarCliente.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarCliente()));
-          registrarOperario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario()));
-          registrarProducto.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto()));
-          //---------------------------------------------------------------
-         
+          controlCliente.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarCliente()));
+          controlOperario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario()));
+          controlProducto.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto()));
+          
           recolectarDatos.setOnAction(e->{
           if(Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0 && Operario.listaOperario.size()>0){
               ObservableList<Factura> facturas = RecolectarDatos.ejecutar2();
               InterfazGrafica.tablaFactura.setItems(facturas);
+              ObservableList<Operario> operarios = EmpleadoDelMes.ejecutar2();
+              InterfazGrafica.tablaOperario.setItems(operarios);
+              
               InterfazGrafica.mes.setText(GananciasMes.getMes());
               InterfazGrafica.mes2.setText(GananciasMes.getMes2());
+              InterfazGrafica.mes3.setText(GananciasSemestre.getMes2());
+              InterfazGrafica.textFieldEmpleadoDelMes.setText(EmpleadoDelMes.getPromedioMax());
               GananciasMes.ejecutar2();
               GananciasSemestre.ejecutar2();
               InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
@@ -108,6 +116,15 @@ public class MenuSuperior extends MenuBar{
                AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
              }
           });
+          empleadoDelMes.setOnAction(e->{
+            if(Operario.listaOperario.size()>1){  
+            InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneEmpleadoDelMes());
+            }else{
+              AlertBox.ejecutar("Error", "Registre un operario", 200, 75);
+            }
+          
+          });
+          
           
           
         Menu ayuda= new Menu("Ayuda");

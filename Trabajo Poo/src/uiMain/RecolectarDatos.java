@@ -15,8 +15,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class RecolectarDatos extends OpcionDeMenu{
-    MenuDeConsola menuFunciones;
-    Scanner input= new Scanner(System.in);
+    
+    
     private static int i= 0;
     int puntuacion= 0;
     private static ObservableList<Factura> facturas;

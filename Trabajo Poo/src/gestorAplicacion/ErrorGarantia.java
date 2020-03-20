@@ -19,7 +19,7 @@ public class ErrorGarantia extends ExcepcionC2 {
 				throw new ErrorGarantia("ser un numero positivo");
 			}
 		} catch (NumberFormatException e) {
-			throw new ErrorGarantia("ser un n�mero entero positivo");
+			throw new ErrorGarantia("ser un número entero positivo");
 		}
 	}
 }

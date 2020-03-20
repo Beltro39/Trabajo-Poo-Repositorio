@@ -3,6 +3,8 @@
 package uiMain;
 import gestorAplicacion.Cliente;
 import java.awt.AWTException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
@@ -61,18 +63,18 @@ public class GananciasMes extends OpcionDeMenu{
      
 }
     public static String getMes(){ 
-      meses[0]= "ENERO";
-      meses[1]= "FEBRERO";
-      meses[2]= "MARZO";
-      meses[3]= "ABRIL";
-      meses[4]= "MAYO";
-      meses[5]= "JUNIO";
-      meses[6]= "JULIO";
-      meses[7]= "AGOSTO";
-      meses[8]= "SEPTIEMBRE";
-      meses[9]= "OCTUBRE";
-      meses[10]= "NOVIEMBRE";
-      meses[11]= "DICIEMBRE"; 
+      meses[0]= "                                                                ENERO";
+      meses[1]= "                                                               FEBRERO";
+      meses[2]= "                                                                MARZO";
+      meses[3]= "                                                                ABRIL";
+      meses[4]= "                                                                MAYO";
+      meses[5]= "                                                                JUNIO";
+      meses[6]= "                                                                JULIO";
+      meses[7]= "                                                               AGOSTO";
+      meses[8]= "                                                           SEPTIEMBRE";
+      meses[9]= "                                                              OCTUBRE";
+      meses[10]= "                                                           NOVIEMBRE";
+      meses[11]= "                                                           DICIEMBRE"; 
       mes= meses[RecolectarDatos.getI()];
       return mes;
     }
@@ -94,31 +96,31 @@ public class GananciasMes extends OpcionDeMenu{
     }
     
     public static double getConsumoLuz(){
-        return consumoLuz;
+        return new BigDecimal(consumoLuz).setScale(3,RoundingMode.HALF_EVEN).doubleValue();
     }
     
     public static double getConsumoAcueducto(){
-        return consumoAcueducto;
+        return new BigDecimal(consumoAcueducto).setScale(3,RoundingMode.HALF_EVEN).doubleValue();
     }
     public static double getConsumoAlcantarillado(){
-       return consumoAlcantarillado;
+       return new BigDecimal(consumoAlcantarillado).setScale(3,RoundingMode.HALF_EVEN).doubleValue(); 
     }
     public static double getConsumoGas(){
-        return consumoGas;
+        return new BigDecimal(consumoGas).setScale(3,RoundingMode.HALF_EVEN).doubleValue();  
     }
     
     public static double getGananciasLuz(){
-        return gananciasLuz;
+        return new BigDecimal(gananciasLuz).setScale(0,RoundingMode.HALF_EVEN).doubleValue(); 
     }
     
     public static double getGananciasAcueducto(){
-        return gananciasAcueducto;
+        return new BigDecimal(gananciasAcueducto).setScale(0,RoundingMode.HALF_EVEN).doubleValue();
     }
     public static double getGananciasAlcantarillado(){
-        return gananciasAlcantarillado;
+        return new BigDecimal(gananciasAlcantarillado).setScale(0,RoundingMode.HALF_EVEN).doubleValue(); 
     }
     public static double getGananciasGas(){
-          return gananciasGas;
+          return new BigDecimal(gananciasGas).setScale(0,RoundingMode.HALF_EVEN).doubleValue();  
     }
   
 }
