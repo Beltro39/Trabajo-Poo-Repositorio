@@ -1,1 +1,2 @@
-Nevera 1200000 3
+Nevera 12 3
+Horno 1500000 3

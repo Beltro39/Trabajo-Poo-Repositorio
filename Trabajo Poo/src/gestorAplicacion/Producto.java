@@ -21,5 +21,25 @@ public class Producto {
     
     public String getNombre(){
      return nombre;
-}
+    }
+    
+    public int getCosto(){
+     return costo;
+    }
+    
+    public String getGarantia(){
+     return garantia;
+    }
+    
+    public void setCosto(int costo){
+     this.costo= costo;
+    }
+    
+    public void setNombre(String nombre){
+     this.nombre= nombre;
+    }
+    
+    public void setGarantia(String garantia){
+     this.garantia= garantia;
+    }
 }

@@ -10,23 +10,18 @@ import java.util.PriorityQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Scanner;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 public class EmpleadoDelMes extends OpcionDeMenu {
-    MenuDeConsola menu;
-    Scanner input= new Scanner(System.in);
-    EmpleadoDelMes(MenuDeConsola menu){
-    this.menu= menu;
-    this.nombreOpcion= "Empleado del mes";
-    }
+    private static double promedioMax;
     
-    public void ejecutar(){
-      try {
-             RobotPresiona.limpiarpantalla();
-         } catch (AWTException ex) {
-             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
-         }  
+     public void ejecutar(){}
+    
+    public static ObservableList<Operario> ejecutar2(){ 
+      ObservableList<Operario> operarios= FXCollections.observableArrayList();
       ArrayList<Double> listaPromedio= new ArrayList<>();
      // ArrayList<Double> listaPromedio= new ArrayList<Double>();  
-      if(Operario.listaOperario.size()>0  && Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0){
+     
       for(int i= 0; i<Operario.listaOperario.size(); i++){
         double promedio= 0; 
         for(int j= 0; j<Operario.listaOperario.get(i).getListaPuntuacion().size(); j++){
@@ -43,31 +38,14 @@ public class EmpleadoDelMes extends OpcionDeMenu {
         maximoValor= listaPromedio.get(j);
         }
       }
-      System.out.println("El empleado del mes es "+ Operario.listaOperario.get(maximoIndice).getNombre()+ " con un puntaje promedio de "+ maximoValor);
-    }else{
-          if(Operario.listaOperario.size()==0){
-          System.out.println("Ingrese antes un operario");
-          }
-          if(Cliente.listaClientes.size()==0){
-          System.out.println("Ingrese antes un cliente");
-          }
-          if(Producto.listaProducto.size()==0){
-          System.out.println("Ingrese antes un producto");
-          }
-      }
-    System.out.println("");
-      System.out.println("Presiona Enter para continuar");
-      //String enterKey= input.nextLine();
-          String enterKey2= input.nextLine();
-          if(enterKey2.isEmpty()){
-            try {
-             RobotPresiona.limpiarpantalla();
-         } catch (AWTException ex) {
-             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
-         }  
-            
+       operarios.add(Operario.listaOperario.get(maximoIndice));
+       promedioMax= maximoValor;
+       return operarios;
       
-      menu.lanzarMenu();  
-}
+    
+  }
+    
+    public static String getPromedioMax(){
+      return "Con un puntaje promedio de: "+ String.valueOf(promedioMax);
     }
-}
+    }

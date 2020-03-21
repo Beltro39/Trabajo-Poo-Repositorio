@@ -87,6 +87,7 @@ public class Cliente extends Persona {
     	this.servicioGas=servicioGas;
     }
     
+    
     public Vector<String> getListaProducto() {
 		return listaProducto;
 	}

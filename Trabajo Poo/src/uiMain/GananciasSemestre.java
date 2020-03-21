@@ -3,47 +3,36 @@
 package uiMain;
 import gestorAplicacion.Cliente;
 import java.awt.AWTException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class GananciasSemestre extends OpcionDeMenu{
-    MenuDeConsola menuFunciones;
-      Scanner input= new Scanner(System.in);
-      String mes= ""; 
-      RecolectarDatos recolectarDatos;
-      String[] meses= new String[12];
+   Scanner input= new Scanner(System.in);
+   static String mes= ""; 
+   static String[] meses= new String[12];
       
-      GananciasSemestre(MenuDeConsola menuFunciones, RecolectarDatos recolectarDatos){
-      this.menuFunciones= menuFunciones;
-      this.recolectarDatos= recolectarDatos;
-      nombreOpcion= "Ganancias ultimos seis meses";
-      meses[0]= "Enero";
-      meses[1]= "Febrero";
-      meses[2]= "Marzo";
-      meses[3]= "Abril";
-      meses[4]= "Mayo";
-      meses[5]= "Junio";
-      meses[6]= "Julio";
-      meses[7]= "Agosto";
-      meses[8]= "Septiembre";
-      meses[9]= "Octubre";
-      meses[10]= "Noviembre";
-      meses[11]= "Diciembre";
-    }
-    public void ejecutar(){
-        try {
-             RobotPresiona.limpiarpantalla();
-         } catch (AWTException ex) {
-             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
-         }
+   static double gananciasLuz;
+   static double gananciasAcueducto;
+   static double gananciasAlcantarillado;
+   static double gananciasGas;
+   
+   static double suma;
+   
+   static double consumoLuz;
+   static double consumoAcueducto;
+   static double consumoAlcantarillado;
+   static double consumoGas;
+     
+    public void ejecutar(){}
+      public static void ejecutar2(){
+          
+        
       int i= RecolectarDatos.getI();
       if(i>4){
-        System.out.println("********************************************************\n   Ganancias meses " + meses[i-5]+" "+meses[i-4]+" "+meses[i-3]+" "+meses[i-2]+" "+meses[i-1]+" "+meses[i]+" "+"\n********************************************************");
-        double gananciasLuz= 0;
-        double gananciasAcueducto= 0;
-        double gananciasAlcantarillado= 0;
-        double gananciasGas= 0;
+        
         int p= i-5;
         for(int j= 0; j<Cliente.listaClientes.size(); j++){
           for(int k= p; k<Cliente.listaClientes.get(j).getServicioLuz().getPilaPagar().size(); k++){  
@@ -54,10 +43,7 @@ public class GananciasSemestre extends OpcionDeMenu{
           gananciasGas+= Cliente.listaClientes.get(j).getServicioGas().getPilaPagar().get(k);
           }
         }
-        double consumoLuz= 0;
-        double consumoAcueducto= 0;
-        double consumoAlcantarillado= 0;
-        double consumoGas= 0;
+        
       
         for(int j= 0; j<Cliente.listaClientes.size(); j++){
           for(int k= p; k<Cliente.listaClientes.get(j).getServicioLuz().getPilaConsumo().size(); k++){  
@@ -69,14 +55,18 @@ public class GananciasSemestre extends OpcionDeMenu{
           }
         }
         consumoLuz= consumoLuz/(Cliente.listaClientes.size()*6);
-      consumoAcueducto= consumoAcueducto/(Cliente.listaClientes.size()*6);
-      consumoAlcantarillado= consumoAlcantarillado/(Cliente.listaClientes.size()*6);
-      consumoGas= consumoGas/(Cliente.listaClientes.size()*6);
+        consumoAcueducto= consumoAcueducto/(Cliente.listaClientes.size()*6);
+        consumoAlcantarillado= consumoAlcantarillado/(Cliente.listaClientes.size()*6);
+        consumoGas= consumoGas/(Cliente.listaClientes.size()*6);
+         suma= gananciasLuz+gananciasAcueducto+gananciasAlcantarillado+gananciasGas;
+     
+        
+        /*
           System.out.println("Ganancias por el cobro del servio de luz en estos 6 meses: "+ gananciasLuz);
           System.out.println("Ganancias por el cobro del servio de Acueducto en estos 6 meses: "+ gananciasAcueducto);
           System.out.println("Ganancias por el cobro del servio de Alcantarillado en estos 6 meses: "+ gananciasAlcantarillado);
           System.out.println("Ganancias por el cobro del servio de Gas en estos 6 meses: "+ gananciasGas);
-          double suma= gananciasLuz+gananciasAcueducto+gananciasAlcantarillado+gananciasGas;
+          
           System.out.println("Ganancias por el cobro total de servicios en estos 6 meses: "+ suma);
           System.out.println("");
           
@@ -89,18 +79,66 @@ public class GananciasSemestre extends OpcionDeMenu{
           System.out.println("Cantidad de clientes de la empresa: "+ Cliente.listaClientes.size());
           System.out.println("");
       }else{
-        System.out.println("Deben haber datos de 6 meses por lo menos para activar esta funcion");
+                */
+        //System.out.println("Deben haber datos de 6 meses por lo menos para activar esta funcion");
+         
+      }else{
+        gananciasLuz= 0;
+        gananciasAcueducto= 0;
+        gananciasAlcantarillado= 0;
+        gananciasGas= 0;
+        
+        consumoLuz= 0;
+        consumoAcueducto= 0;
+        consumoAlcantarillado= 0;
+        consumoGas= 0;
+        suma= 0;
         
       }
-      String enterKey2= input.nextLine();
-          if(enterKey2.isEmpty()){
-            try {
-             RobotPresiona.limpiarpantalla();
-         } catch (AWTException ex) {
-             Logger.getLogger(SiguienteMenu.class.getName()).log(Level.SEVERE, null, ex);
-         }  
-            
-          }
-    menuFunciones.lanzarMenu();  
+      
+      
+    }
+       public static String getMes2(){  
+      meses[5]= "GANANCIAS EN LOS MESES ENTRE ENERO Y JUNIO";
+      meses[6]= "GANANCIAS EN LOS MESES ENTRE FEBRERO Y JULIO";
+      meses[7]= "GANANCIAS EN LOS MESES ENTRE MARZO Y AGOSTO";
+      meses[8]= "GANANCIAS EN LOS MESES ENTRE ABRIL Y SEPTIEMBRE";
+      meses[9]= "GANANCIAS EN LOS MESES ENTRE JUNIO Y OCTUBRE";
+      meses[10]= "GANANCIAS EN LOS MESES ENTRE JUNIO Y NOVIEMBRE";
+      meses[11]= "GGANANCIAS EN LOS MESES ENTRE JULIO Y DICIEMBRE"; 
+      mes= meses[RecolectarDatos.getI()];
+      return mes;
+    }
+       
+       public static double getConsumoLuz(){
+        return new BigDecimal(consumoLuz).setScale(2,RoundingMode.HALF_EVEN).doubleValue();
+    }
+    
+    public static double getConsumoAcueducto(){
+        return new BigDecimal(consumoAcueducto).setScale(2,RoundingMode.HALF_EVEN).doubleValue();
+    }
+    public static double getConsumoAlcantarillado(){
+       return new BigDecimal(consumoAlcantarillado).setScale(2,RoundingMode.HALF_EVEN).doubleValue(); 
+    }
+    public static double getConsumoGas(){
+        return new BigDecimal(consumoGas).setScale(2,RoundingMode.HALF_EVEN).doubleValue();
+    }
+    
+    public static double getGananciasLuz(){
+        return new BigDecimal(gananciasLuz).setScale(0,RoundingMode.HALF_EVEN).doubleValue(); 
+    }
+    
+    public static double getGananciasAcueducto(){
+        return new BigDecimal(gananciasAcueducto).setScale(0,RoundingMode.HALF_EVEN).doubleValue();
+    }
+    public static double getGananciasAlcantarillado(){
+        return  new BigDecimal(gananciasAlcantarillado).setScale(0,RoundingMode.HALF_EVEN).doubleValue();
+    }
+    public static double getGananciasGas(){
+          return  new BigDecimal(gananciasGas).setScale(0,RoundingMode.HALF_EVEN).doubleValue(); 
+    }
+    
+    public static double getSuma(){
+          return new BigDecimal(suma).setScale(0,RoundingMode.HALF_EVEN).doubleValue(); 
     }
 }

@@ -6,9 +6,12 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import java.applet.AudioClip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class AlertBox {
-    public static void ejecutar(String titulo, String mensaje){
+    public static void ejecutar(String titulo, String mensaje, int h, int y){
       Stage stage= new Stage();
       stage.initModality(Modality.APPLICATION_MODAL);
       stage.setTitle(titulo);
@@ -16,14 +19,19 @@ public class AlertBox {
       Label label= new Label();
       label.setText(mensaje); label.setId("letra-blanca");
       Button closeButton= new Button("Aceptar");  closeButton.getStyleClass().add("boton-azul");
-      closeButton.setOnAction(e -> stage.close());
+      closeButton.setMinSize(75, 35);
+     
+      
+      closeButton.setOnAction(e ->stage.close());
+      
       
       VBox layout= new VBox();
+      
       layout.getChildren().addAll(label, closeButton);
       layout.setAlignment(Pos.CENTER);
       layout.setSpacing(10);
       
-      Scene scene= new Scene(layout, 250, 75);
+      Scene scene= new Scene(layout, h, y);
       stage.setScene(scene);
       scene.getStylesheets().add("GUI/Viper.css");
       stage.showAndWait();

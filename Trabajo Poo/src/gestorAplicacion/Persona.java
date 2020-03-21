@@ -32,5 +32,26 @@ public abstract class Persona {
     public String getDireccion() {
     	return this.direccion;
     }
+    
+     public void setCedula(String cedula) {
+    	this.cedula= cedula;
+    }
+     
+    public void setNombre(String nombre) {
+    	this.nombre= nombre;
+    }
+    
+    public void setEdad(String edad) {
+    	this.edad= Integer.parseInt(edad);
+    }
+    
+    public void setTelefono(String telefono) {
+    	this.telefono= telefono;
+    }
+    
+    public void setDireccion(String direccion) {
+    	this.direccion= direccion;
+    }
+   
     public abstract JSONObject promedioEdades();
 }

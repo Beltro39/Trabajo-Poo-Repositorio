@@ -1,0 +1,210 @@
+package GUI;
+
+
+import javafx.application.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.stage.*;
+import javafx.scene.*;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+
+public class InterfazBienvenida extends Application {
+
+    Scene scene1;
+    Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
+    Label label1,CVsebas, crea, bien ;
+    Button button3;
+    Alert alerta;
+    ImageView  imagen;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+	public void start(Stage myStage) throws Exception {
+
+		myStage.setTitle("Empresa de Servicios Publicos");
+		imagen = new ImageView("images/ESP.png");
+		agua = new Image("images/agua.jpg");
+		luz = new Image("images/luz.jpg");
+		gas = new Image("images/gas.jpg");
+		mundo = new Image ("images/mundo.jpg");
+		logo2= new Image ("images/yinier.jpg");
+		ESP= new Image ("images/ESP.png");
+
+
+		
+		bien = new Label("Bienvenido al Software de Empresa de servicios Publicos  \r\n "
+				+ "                         ESP-PARA TODOS");
+		bien.setContentDisplay(ContentDisplay.BOTTOM);
+        bien.setOnMouseEntered(mouseHandler);
+
+		
+        label1 = new Label("Empresa de Servicios Publicos, mas conocida como\r\n"
+				+ " ESP, es una empresa prestadora de servicios \r\n" + 
+				"colombiana creada en febrero del  2020.\r\n" + 
+				"Los servicios que presta son: Luz, acueducto,\r\n"+
+				" alcantarillado y gas. Con este software usted podra:   \r\n"+
+				"                                     \r\n"+
+				"1.Registrar datos de :                           \r\n"+
+				"Cientes, operarios y productos.          \r\n"+
+				"2. Usar funciones como :                    \r\n"+
+				"Recoleccion de datos, calcular las ganacias del mes, \r\n"+
+				"calcularlas ganancias de los ultimos seis meses y  \r\n "+
+				"obtener elempleado del mes.           \r\n"+
+				"3. Guardar datos, de los clientes, operarios y productos  \r\n "
+				+ "en un archivo TXT  \r\n ");
+        label1.setAlignment(Pos.CENTER);
+        
+         CVsebas = new Label("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+				"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+				"Email: sbeltrana@unal.edu.co\r\n"+ 
+				"Telefono: +57 300 7904147\r\n" );
+        CVsebas.setOnMouseClicked(mouseHandler);
+        Button botonsalir = new Button ("Salir");
+		botonsalir.setOnAction(e -> System.exit(0));
+		botonsalir.setContentDisplay(ContentDisplay.BOTTOM);
+        
+		fotos = new Image("images/compas.jpeg");
+		crea = new Label("Creadores del Programa", new ImageView(fotos));
+		crea.setContentDisplay(ContentDisplay.BOTTOM);
+		
+		
+	
+		VBox vertical1 = new VBox ();
+		vertical1.getChildren().addAll(bien, imagen, label1);
+		VBox vertical2 = new VBox (crea, CVsebas, botonsalir);
+		
+        imagen.setOnMouseEntered(mouseHandler);
+
+		
+		HBox horizontal = new HBox(vertical1,vertical2);
+		Scene scene = new Scene(horizontal);
+        myStage.setScene(scene);
+		myStage.show();
+    }
+    EventHandler<MouseEvent> mouseHandler = new EventHandler<MouseEvent>(){
+    	public void handle(MouseEvent mouseEvent) {
+    		String tipo=  mouseEvent.getEventType().toString();
+    		if (tipo.contentEquals("MOUSE_CLICKED")) {
+    		String s = CVsebas.getText().toString();
+			if(s.equals("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+					"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+					"Email: sbeltrana@unal.edu.co\r\n"+ 
+					"Telefono: +57 300 7904147\r\n" )) {
+				CVsebas.setText("Juan Jose Correa CC. 1152469256\r\n"+
+						"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+						"Telefono: +57 317 7501170\r\n" );
+			}else if(s.equals("Juan Jose Correa CC. 1152469256\r\n"+
+					"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+					"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+					"Telefono: +57 317 7501170\r\n" )){
+				CVsebas.setText("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+						"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: yiaramirezba@unal.edu.co\r\n"+ 
+						"Telefono: +57 302 2834094\r\n");
+			}
+			else if(s.equals("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+					"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+					"Email: yiaramirezba@unal.edu.co\r\n"+ 
+					"Telefono: +57 302 2834094\r\n")){
+				CVsebas.setText("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+						"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: sbeltrana@unal.edu.co\r\n"+ 
+						"Telefono: +57 300 7904147\r\n");
+			}
+			
+		}
+    		if (tipo.contentEquals("MOUSE_ENTERED")) {
+    		imagen.setImage(agua);
+
+
+
+    		//Sigue mostrar la foto de luz, gas y mundo.
+    		}
+    		
+    		
+
+    };
+    	
+    };
+}
