@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package ErroresAplicacion;
 
 public class ExcepcionC2 extends ErrorAplicacion {
 	ExcepcionC2(String subTipo) {

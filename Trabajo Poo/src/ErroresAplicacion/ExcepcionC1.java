@@ -1,4 +1,4 @@
-package gestorAplicacion;
+package ErroresAplicacion;
 
 public class ExcepcionC1 extends ErrorAplicacion {
 

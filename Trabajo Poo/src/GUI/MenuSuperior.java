@@ -64,5 +64,5 @@ public class MenuSuperior extends MenuBar{
         
           this.getMenus().addAll(archivo, procesos, ayuda);
     
-    }
+   }
 }

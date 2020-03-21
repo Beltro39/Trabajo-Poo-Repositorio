@@ -1,7 +1,7 @@
-package gestorAplicacion;
+package ErroresAplicacion;
 
 public class ErrorAplicacion extends Exception {
 	public ErrorAplicacion(String tipoError) {
-		super("Manejo de errores delaAplicación: " + tipoError);
+		super("Manejo de errores delaAplicaciï¿½n: " + tipoError);
 	}
 }

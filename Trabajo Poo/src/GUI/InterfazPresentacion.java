@@ -224,7 +224,6 @@ Label CVjuan = new Label("Juan José Correa CC. 1152469256\r\n"+
 			botonesYinier.add(botonY, 1, 0);
 			botonesYinier.add(botonsigY, 0, 0 );
 			layout4.setBottom(botonesYinier);
-
 }
 public static void main(String [] args) {
 launch(args);
