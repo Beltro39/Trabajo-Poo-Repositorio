@@ -1,234 +1,303 @@
 package GUI;
-import javafx.application.Application;
-import javafx.geometry.Insets;
-import javafx.stage.Stage;
-import javafx.scene.Scene;
+
+import javafx.application.*;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import javafx.stage.*;
+import javafx.scene.*;
 import javafx.scene.layout.*;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.paint.Color;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-
-//Bienvenida y hojas de vida de los creadores del programa
-
-public class InterfazPresentacion extends Application{
-
-@Override
-public void start(Stage myStage) throws Exception {
-// TODO Auto-generated method stub
-myStage.setTitle("Empresa de Servicios Públicos");
-
-
-BorderPane root = new BorderPane();
-Label lab2 = new Label("Bienvenido");
-root.setTop(lab2);
-Scene myScene = new Scene (root,620,400);
-BorderPane layout2= new BorderPane();
-BorderPane layout3= new BorderPane();
-BorderPane layout4= new BorderPane();
-
-
-Scene scene2   = new Scene(layout2, 550, 360) ;
-Scene scene3   = new Scene(layout3, 550, 360) ;
-Scene scene4   = new Scene(layout4, 550, 360) ;
-
-
-myStage.setScene(myScene);
-myStage.show();
-
-GridPane root1 = new GridPane();
-root1.setPadding(new Insets(10, 10, 10, 10));
-Button boton = new Button ("Siguiente");
-Button botonsalir = new Button ("Salir");
-botonsalir.setOnAction(e -> System.exit(0));
-boton.setOnAction(e -> myStage.setScene(scene2));
-
-root1.add(boton, 0, 0);
-root1.add(botonsalir, 1, 0 );
-root.setBottom(root1);
-
-
-GridPane root2 = new GridPane();
-root1.setPadding(new Insets(10, 10, 10, 10));
-
-Label descrip = new Label("Empresa de Servicios Públicos, más conocida como ESP,\r\n"
-		+ "es una empresa prestadora de servicios colombiana\r\n" + 
-		"creada en febrero del  2020.\r\n" + 
-		"                                     \r\n"+
-		"Es una empresa multilatina prestadora de servicios \r\n" +
-		"públicos siendo en total cuatro que son luz, acueducto,\r\n"+
-		" alcantarillado y gas. Con este software usted podrá:\r\n"+
-		"                                     \r\n"+
-		"1.Registrar datos de :                           \r\n"+
-		"Cientes, operarios y productos.          \r\n"+
-		"2. Usar funciones como :                    \r\n"+
-		"Recoleccion de datos, calcular las ganacias del mes, calcular\r\n"+
-		"las ganancias de los ultimos seis meses y obtener el\r\n "
-		+ "empleado del més.           \r\n"+
-		"3. Guardar datos, de los clientes, operarios y productos\r\n "
-		+ "en un archivo TXT\r\n "+
-		 "                                     \r\n"+
-		"En la siguiente pagina encontrará informacion de los creadores\r\n");
-
-
-root2.add(descrip, 0, 0);
-root.setCenter(root2);
-
-GridPane roota = new GridPane();
-roota.setPadding(new Insets(10, 10, 10, 10));
-Label bien = new Label("Bienvenido al Software de Empresa de servicios Públicos ESP-PARA TODOS");
-bien.setFont(Font.font("Verdana", FontWeight.BOLD, 14));
-roota.add(bien, 0, 0);
-root.setTop(roota);
-
-
-GridPane gridpane = new GridPane();
-Image image = new Image("images/ESP.png");
-gridpane.getChildren().add(new ImageView(image));
-root.setLeft(gridpane);
-
-//Scene2*********++
-//BorderPane layout2= new BorderPane();
-GridPane gridpane2 = new GridPane();
-gridpane2.setPadding(new Insets(10, 10, 10, 10));
-
-Image imagen2 = new Image("images/esppp.png");
-gridpane2.getChildren().add(new ImageView(imagen2));
-layout2.setTop(gridpane2);
+import javafx.scene.input.MouseEvent;
+import java.util.*;
 
 
 
+public class InterfazPresentacion extends Application {
 
-GridPane botonnes = new GridPane();
-botonnes.setPadding(new Insets(10, 10, 10, 10));
+    Scene scene1;
+    Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
+    Label label1,CVsebas, crea, bien ;
+    Button siguiente, descripcion;
+    Alert alerta;
+    ImageView  imagen;
+    static int contador=0;
+    
 
-Button boton2 = new Button ("Atras");
-Button botonsig = new Button ("Siguiente");
-boton2.setOnAction(e -> myStage.setScene(myScene));
-botonsig.setOnAction(e -> myStage.setScene(scene3));
+    int velocidad =2; //segundos
 
+    Timer timer;
+    TimerTask tarea;
+    int velmil= velocidad*1000;
 
-botonnes.add(boton2, 1, 0);
-botonnes.add(botonsig, 0, 0 );
-layout2.setBottom(botonnes);
-//Presentacion de sebastian
-Label CVsebas = new Label("Sebastián Beltrán Arenas CC. 1001366260\r\n"+
-		"\r\n" + 
-
-		"Estudiante de Ingeniería de Sistemas e Informática\r\n" + 
-		"de la Universidad Nacional de Colombia sede Medellín \r\n" + 
-		"Actualmente derarolla este Software como práctica del \r\n" + 
-		"curso de Programación Orientado a Objetos (POO)\r\n" + 
-		"\r\n" + 
-
-		"Información de contacto: \r\n" + 
-		"\r\n" + 
-
-		"Email: sbeltrana@unal.edu.co\r\n"+ 
-		"Telefono: +57 300 7904147\r\n" );
+    
+    public static void main(String[] args) {
+        launch(args);
+        
 
 
-		layout2.setCenter(CVsebas); 
+    }
+    
+    
 
+    @Override
+	public void start(Stage myStage) throws Exception {
 
-GridPane fotoo = new GridPane();
-Image foto = new Image("images/sebas.jpg");
-fotoo.getChildren().add(new ImageView(foto));
-layout2.setLeft(fotoo);
-
-//Presentacion de Juan Jose
-GridPane gridpanelogo = new GridPane();
-gridpanelogo.setPadding(new Insets(10, 10, 10, 10));
-
-Image imagenlogo = new Image("images/esppp.png");
-gridpanelogo.getChildren().add(new ImageView(imagenlogo));
-layout3.setTop(gridpanelogo);
-
-GridPane fotojuan = new GridPane();
-Image fotoj = new Image("images/juan.jpg");
-fotojuan.getChildren().add(new ImageView(fotoj));
-layout3.setLeft(fotojuan);
-
-Label CVjuan = new Label("Juan José Correa CC. 1152469256\r\n"+
-		"\r\n" + 
-
-		"Estudiante de Ingeniería de Sistemas e Informática\r\n" + 
-		"de la Universidad Nacional de Colombia sede Medellín \r\n" + 
-		"Actualmente derarolla este Software como práctica del \r\n" + 
-		"curso de Programación Orientado a Objetos (POO)\r\n" + 
-		"\r\n" + 
-
-		"Información de contacto: \r\n" + 
-		"\r\n" + 
-
-		"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
-		"Telefono: +57 317 7501170\r\n" );
-
-
-		layout3.setCenter(CVjuan); 
+		myStage.setTitle("Empresa de Servicios Publicos");
+		imagen = new ImageView("images/ESP.png");
+		agua = new Image("images/agua.jpg");
+		luz = new Image("images/luz.jpg");
+		gas = new Image("images/gas.jpg");
+		mundo = new Image ("images/mundo.jpg");
+		logo2= new Image ("images/yinier.jpg");
+		ESP= new Image ("images/ESP.png");
 		
-		GridPane botonesJuan = new GridPane();
-		botonesJuan.setPadding(new Insets(10, 10, 10, 10));
 
-		Button botonj = new Button ("Atras");
-		Button botonsigj = new Button ("Siguiente");
-		botonj.setOnAction(e -> myStage.setScene(scene2));
-		botonsigj.setOnAction(e -> myStage.setScene(scene4));
-
-
-		botonesJuan.add(botonj, 1, 0);
-		botonesJuan.add(botonsigj, 0, 0 );
-		layout3.setBottom(botonesJuan);
 		
-//Presentacion Yinier		
-		GridPane gridpanelogoy = new GridPane();
-		gridpanelogoy.setPadding(new Insets(10, 10, 10, 10));
+		
+		bien = new Label("Bienvenido al Software de Empresa de servicios Publicos  \r\n "
+				+ "                         ESP-PARA TODOS");
+		bien.setContentDisplay(ContentDisplay.BOTTOM);
+        bien.setOnMouseEntered(mouseHandler);
 
-		Image imagenlogoy = new Image("images/esppp.png");
-		gridpanelogoy.getChildren().add(new ImageView(imagenlogoy));
-		layout4.setTop(gridpanelogoy);
-
-		GridPane fotoyinier = new GridPane();
-		Image fotoy = new Image("images/yinier.jpg");
-		fotoyinier.getChildren().add(new ImageView(fotoy));
-		layout4.setLeft(fotoyinier);
-
-		Label CVyinier = new Label("Yinier Ramírez Barahona CC. 1152713100\r\n"+
+		
+        label1 = new Label("Empresa de Servicios Publicos, mas conocida como\r\n"
+				+ " ESP, es una empresa prestadora de servicios \r\n" + 
+				"colombiana creada en febrero del  2020.\r\n" + 
+				"Los servicios que presta son: Luz, acueducto,\r\n"+
+				" alcantarillado y gas.\r\n"+
+				"\r\n" );
+        label1.setAlignment(Pos.CENTER);
+        
+         CVsebas = new Label("Sebastian Beltran Arenas CC. 1001366260\r\n"+
 				"\r\n" + 
 
-				"Estudiante de Ingeniería de Sistemas e Informática\r\n" + 
-				"de la Universidad Nacional de Colombia sede Medellín \r\n" + 
-				"Actualmente derarolla este Software como práctica del \r\n" + 
-				"curso de Programación Orientado a Objetos (POO)\r\n" + 
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
 				"\r\n" + 
 
-				"Información de contacto: \r\n" + 
+				"Informacion de contacto: \r\n" + 
 				"\r\n" + 
 
-				"Email: yiaramirezba@unal.edu.co\r\n"+ 
-				"Telefono: +57 302 2834094\r\n" );
+				"Email: sbeltrana@unal.edu.co\r\n"+ 
+				"Telefono: +57 300 7904147\r\n" );
+        CVsebas.setOnMouseClicked(mouseHandler);
+        Button botonsalir = new Button ("Salir");
+		botonsalir.setOnAction(e -> System.exit(0));
+		botonsalir.setContentDisplay(ContentDisplay.BOTTOM);
+		siguiente = new Button("Siguiente");
+		descripcion = new Button("Descripcion");
+		Label desc = new Label (" Descripcion : Con este software usted podra:   \r\n" + 
+				"\r\n"+
+				"1.Registrar datos de :        \r\n" + 
+				"Cientes, operarios y productos.  \r\n" + 
+				"2. Usar funciones como :          \r\n" + 
+				"Recoleccion de datos, calcular las ganacias del mes,\r\n" + 
+				"calcularlas ganancias de los ultimos seis meses y  \r\n" + 
+				"obtener elempleado del mes.    \r\n" + 
+				"3. Guardar datos, de los clientes, operarios y productos \r\n" + 
+				"en un archivo TXT");
+
+        
+		fotos = new Image("images/compas.jpeg");
+		crea = new Label("Creadores del Programa", new ImageView(fotos));
+		crea.setContentDisplay(ContentDisplay.BOTTOM);
+		
+		
+		//menu de inicio:
+		MenuBar	 BarraMenu = new MenuBar();
+		Menu MenuInicio = new Menu ("Menu");
+		BarraMenu.getMenus().add(MenuInicio);
+		MenuItem opcion1 = new MenuItem("Salir");
+		MenuItem opcion2 = new MenuItem("Descripcion");
+		SeparatorMenuItem separator = new SeparatorMenuItem();
+		MenuInicio.getItems().add(opcion1);
+		MenuInicio.getItems().add(opcion2);
+		opcion1.setOnAction(e -> System.exit(0));
+
+		Label lbl = new Label ("Presione un menu"); 
+		
+		HBox menu = new HBox(BarraMenu);
+		menu.getChildren().addAll(lbl);
+
+		
+		VBox vertical1 = new VBox ();
+		vertical1.getChildren().addAll( menu, bien, imagen, label1);
+		VBox vertical2 = new VBox (crea, CVsebas, botonsalir, siguiente, descripcion);
+		descripcion.setOnAction(e -> vertical1.getChildren().add(desc));
+
+        imagen.setOnMouseEntered(mouseHandler);
 
 
-				layout4.setCenter(CVyinier); 
-				
-			GridPane botonesYinier = new GridPane();
-			botonesJuan.setPadding(new Insets(10, 10, 10, 10));
+		opcion2.setOnAction(e ->vertical1.getChildren().add(desc));
 
-			Button botonY = new Button ("Atras");
-			Button botonsigY = new Button ("Siguiente");
-			botonY.setOnAction(e -> myStage.setScene(scene3));
-			//botonsig.setOnAction(e -> myStage.setScene(scene3));
+		
+		HBox horizontal = new HBox( vertical1,vertical2);
+		Scene scene = new Scene(horizontal, 600, 550);
+		
+		
+        myStage.setScene(scene);
+		myStage.show();
+		
+		
+		
+    }
 
+    
+    EventHandler<MouseEvent> mouseHandler = new EventHandler<MouseEvent>(){
+    	public void handle(MouseEvent mouseEvent) {
+    		String tipo=  mouseEvent.getEventType().toString();
+    		if (tipo.contentEquals("MOUSE_CLICKED")) {
+    		String s = CVsebas.getText().toString();
+			if(s.equals("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+					"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+					"Email: sbeltrana@unal.edu.co\r\n"+ 
+					"Telefono: +57 300 7904147\r\n" )) {
+				CVsebas.setText("Juan Jose Correa CC. 1152469256\r\n"+
+						"\r\n" + 
+
+				"Estudiante de sexto Semestre de  de Ingenieria de Sistemas\r\n" + 
+				" e Informatica de la Universidad Nacional de Colombia \r\n" + 
+				" sede Medellin Actualmente derarolla este Software como \r\n" + 
+				" practica del curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"Idiomas :Espanol e Ingles\"\r\n\""+
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+						"Telefono: +57 317 7501170\r\n");
+			}else if(s.equals("Juan Jose Correa CC. 1152469256\r\n"+
+					"\r\n" + 
+
+				"Estudiante de sexto Semestre de  de Ingenieria de Sistemas\r\n" + 
+				" e Informatica de la Universidad Nacional de Colombia \r\n" + 
+				" sede Medellin Actualmente derarolla este Software como \r\n" + 
+				" practica del curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"Idiomas :Espanol e Ingles\"\r\n\""+
+				"\r\n" +   
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+						"Telefono: +57 317 7501170\r\n")){
+				CVsebas.setText("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+						"\r\n" + 
+
+				"Estudia Ingenieria de Sistemas e Informatica en la\r\n" + 
+				"Universidad Nacional de Colombia sede Medellin. \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: yiaramirezba@unal.edu.co\r\n"+ 
+						"Telefono: +57 302 2834094\r\n");
+			}
+			else if(s.equals("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+					"\r\n" + 
+
+				"Estudia Ingenieria de Sistemas e Informatica en la\r\n" + 
+				"Universidad Nacional de Colombia sede Medellin. \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+					"Email: yiaramirezba@unal.edu.co\r\n"+ 
+					"Telefono: +57 302 2834094\r\n")){
+				CVsebas.setText("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+						"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: sbeltrana@unal.edu.co\r\n"+ 
+						"Telefono: +57 300 7904147\r\n");
+			}
 			
-			botonesYinier.add(botonY, 1, 0);
-			botonesYinier.add(botonsigY, 0, 0 );
-			layout4.setBottom(botonesYinier);
-}
-public static void main(String [] args) {
-launch(args);
+		}
+    		if (tipo.contentEquals("MOUSE_ENTERED")) {
+    			/*List<Image> img = new ArrayList<Image>();
+    			img.add(agua);
+    			img.add(luz);
+    			img.add(gas);
+    			img.add(mundo);
+    			img.add(logo2);
+    			img.add(ESP);
+    			for(int i =0; i<6; i++) {
+					imagen.setImage(img.get(i));
+					imagen.sc*/
+    				tarea = new TimerTask() {
 
+						@Override
+						public void run() {
+		    				switch(contador) {
+		        			case 0:
+		        				contador=1;
+		        				imagen.setImage(agua);
+		        				break;
+		        			
+		        			case 1:
+		        				contador=2;
+		        				imagen.setImage(gas);
+		        				break;
+		        			case 2:
+		        				contador=3;
+		        				imagen.setImage(luz);
+		        				break;
+		        			case 3:
+		        				contador=4;
+		        				imagen.setImage(mundo);
+		        				break;
+		        			case 4:
+		        				contador=0;
+		        				imagen.setImage(ESP);
+		        				break;
+		    				
+		    			}							
+						}
+    					
+    				};
+    				timer = new Timer();
+    				timer.schedule(tarea, velmil, velmil);
 
-}
+    			
+ 
+    			}
+    		
+   
+    		
 
+    };
+    	
+    };
+    
 }
