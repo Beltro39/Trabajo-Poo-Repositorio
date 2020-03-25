@@ -162,6 +162,7 @@ public class FieldPanel extends Pane{
     		 metodos.telefonoCorrecto(respuestas[3]);
     		 metodos.estratoCorrecto(respuestas[4]);
     		 new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>() ), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new Vector<String>());
+                 AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 100);
     	 }catch(InputVacia e){
     		 alerta = new Alert(AlertType.WARNING);
     		 alerta.setTitle("No fue posible registrar el cliente");

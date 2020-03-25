@@ -1,4 +1,6 @@
 package GUI;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,15 +28,17 @@ public class ConfirmBox {
       yesButton.setMaxSize(100, 10);
       noButton.setMaxSize(100, 10);
        
-      yesButton.setOnAction(e->{
+      yesButton.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
         answer= true;
         stage.close();
-      });
-      
-      noButton.setOnAction(e->{
-         answer= false;
+        }});
+  
+      noButton.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+        answer= false;
         stage.close();
-      });
+        }});
       
       VBox layout= new VBox();
       HBox hbox= new HBox();

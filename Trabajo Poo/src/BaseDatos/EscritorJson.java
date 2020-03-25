@@ -57,7 +57,25 @@ public class EscritorJson {
              
            }
        } 
-	
+	 public static void  borrarDatos(){
+      try{
+            BufferedWriter bw= new BufferedWriter(new FileWriter("documentos/listaClientes.txt"));
+            bw.write("");
+            bw.flush();
+            bw= new BufferedWriter(new FileWriter("documentos/listaOperarios.txt"));
+            bw.write("");
+            bw.flush();
+            bw= new BufferedWriter(new FileWriter("documentos/listaProductos.txt"));
+            bw.write("");
+            bw.flush();
+            bw= new BufferedWriter(new FileWriter("documentos/Mes.txt"));
+            bw.write("-1");
+           bw.flush();
+            
+           }catch(IOException e){
+             
+           }
+       } 
 	
 	
 }
