@@ -142,31 +142,7 @@ public class FieldPanel extends Pane{
      
      }
      
-     /*
-     }
-   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, double[] valores, int vgap, int hgap, boolean cosa){
-     this.nombreCriterio= nombreCriterio;
-     this.criterios= criterios;
-     this.nombreValor= nombreValor;
-     
-     
-     Label label;
-     
-     this.gpane= new GridPane();
-     gpane.setVgap(vgap);
-     gpane.setHgap(hgap);
-     gpane.add(label= new Label(nombreCriterio), 0, 0); label.setId("letra-blanca"); 
-     gpane.add(label= new Label(nombreValor), 1, 0);  label.setId("letra-blanca"); 
-     gpane.setAlignment(Pos.CENTER);
-         
-     
-     
-    
-     }
-     
-   */
-  
-   }
+ }
      public void crearObjeto(){
      this.respuestas= new String[criterios.length];
      for(int i= 0; i<criterios.length; i++){

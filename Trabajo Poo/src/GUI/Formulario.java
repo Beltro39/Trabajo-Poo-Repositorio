@@ -33,8 +33,7 @@ public class Formulario extends BorderPane{
       hbox.getChildren().addAll(botonRegistrar= new Button("Registrar"), botonConsultar=new Button("Consultar"), botonEditar=new Button("Editar"),  botonBorrar=new Button("Borrar"));
       botonRegistrar.getStyleClass().add("boton-azul"); botonConsultar.getStyleClass().add("boton-azul"); botonEditar.getStyleClass().add("boton-azul");botonBorrar.getStyleClass().add("boton-rojo");
       //Lambda expression de los botones
-      botonRegistrar.setOnAction(e -> {fpane.crearObjeto();
-                              AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 75);});
+      botonRegistrar.setOnAction(e -> fpane.crearObjeto());
       botonConsultar.setOnAction(e-> fpane.consultarObjeto());
       botonEditar.setOnAction(e-> {  boolean editar= ConfirmBox.ejecutar("Aviso", "¿Está seguro de que quiere editar?");
               if(editar){

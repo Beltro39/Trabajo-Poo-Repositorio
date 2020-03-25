@@ -14,12 +14,13 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import java.util.*;
+import javafx.geometry.Insets;
 
 
 
 public class InterfazPresentacion extends Application {
 
-    Scene scene1;
+    
     Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
     Label label1,CVsebas, crea, bien ;
     Button siguiente, descripcion;
@@ -48,30 +49,32 @@ public class InterfazPresentacion extends Application {
 	public void start(Stage myStage) throws Exception {
 
 		myStage.setTitle("Empresa de Servicios Publicos");
-		imagen = new ImageView("images/ESP.png");
+		imagen = new ImageView("images/ESP.jpg");
 		agua = new Image("images/agua.jpg");
 		luz = new Image("images/luz.jpg");
 		gas = new Image("images/gas.jpg");
 		mundo = new Image ("images/mundo.jpg");
 		logo2= new Image ("images/yinier.jpg");
-		ESP= new Image ("images/ESP.png");
+		ESP= new Image ("images/ESP.jpg");
 		
 
 		
 		
-		bien = new Label("Bienvenido al Software de Empresa de servicios Publicos  \r\n "
-				+ "                         ESP-PARA TODOS");
+		bien = new Label("                 Bienvenido al Software de \r\n "
+				+ " Empresa de servicios Publicos ESP-PARA TODOS");
 		bien.setContentDisplay(ContentDisplay.BOTTOM);
+                bien.setId("negrilla");
         bien.setOnMouseEntered(mouseHandler);
 
 		
         label1 = new Label("Empresa de Servicios Publicos, mas conocida como\r\n"
-				+ " ESP, es una empresa prestadora de servicios \r\n" + 
-				"colombiana creada en febrero del  2020.\r\n" + 
-				"Los servicios que presta son: Luz, acueducto,\r\n"+
-				" alcantarillado y gas.\r\n"+
+				+ "ESP, es una empresa prestadora de servicios \r\n" + 
+				"colombiana creada en febrero del  2020.\r\n \r\n" + 
+				"Los servicios que presta son: luz, acueducto,\r\n"+
+				"alcantarillado y gas.\r\n"+
 				"\r\n" );
         label1.setAlignment(Pos.CENTER);
+        label1.setId("letra-blanca");
         
          CVsebas = new Label("Sebastian Beltran Arenas CC. 1001366260\r\n"+
 				"\r\n" + 
@@ -88,11 +91,12 @@ public class InterfazPresentacion extends Application {
 				"Email: sbeltrana@unal.edu.co\r\n"+ 
 				"Telefono: +57 300 7904147\r\n" );
         CVsebas.setOnMouseClicked(mouseHandler);
-        Button botonsalir = new Button ("Salir");
+        CVsebas.setId("letra-blanca");
+        Button botonsalir = new Button ("Salir"); botonsalir.getStyleClass().add("boton-rojo");
 		botonsalir.setOnAction(e -> System.exit(0));
 		botonsalir.setContentDisplay(ContentDisplay.BOTTOM);
-		siguiente = new Button("Siguiente");
-		descripcion = new Button("Descripcion");
+		siguiente = new Button("Siguiente");  siguiente.getStyleClass().add("boton-azul"); siguiente.setMinSize(75, 30);
+		descripcion = new Button("Descripcion"); descripcion.getStyleClass().add("boton-azul");
 		Label desc = new Label (" Descripcion : Con este software usted podra:   \r\n" + 
 				"\r\n"+
 				"1.Registrar datos de :        \r\n" + 
@@ -108,11 +112,16 @@ public class InterfazPresentacion extends Application {
 		fotos = new Image("images/compas.jpeg");
 		crea = new Label("Creadores del Programa", new ImageView(fotos));
 		crea.setContentDisplay(ContentDisplay.BOTTOM);
+                crea.setId("negrilla");
 		
 		
 		//menu de inicio:
 		MenuBar	 BarraMenu = new MenuBar();
-		Menu MenuInicio = new Menu ("Menu");
+ 
+		Menu MenuInicio = new Menu ("Inicio");
+              
+               
+                
 		BarraMenu.getMenus().add(MenuInicio);
 		MenuItem opcion1 = new MenuItem("Salir");
 		MenuItem opcion2 = new MenuItem("Descripcion");
@@ -121,26 +130,41 @@ public class InterfazPresentacion extends Application {
 		MenuInicio.getItems().add(opcion2);
 		opcion1.setOnAction(e -> System.exit(0));
 
-		Label lbl = new Label ("Presione un menu"); 
 		
-		HBox menu = new HBox(BarraMenu);
-		menu.getChildren().addAll(lbl);
+		
+		
+		
 
-		
+		HBox hbox= new HBox();
+                hbox.getChildren().addAll(siguiente);
+                hbox.setSpacing(15);
+                hbox.setAlignment(Pos.BOTTOM_CENTER);
 		VBox vertical1 = new VBox ();
-		vertical1.getChildren().addAll( menu, bien, imagen, label1);
-		VBox vertical2 = new VBox (crea, CVsebas, botonsalir, siguiente, descripcion);
+                vertical1.setMinWidth(380);
+		vertical1.getChildren().addAll( bien, imagen, label1);
+                vertical1.setSpacing(5);
+                vertical1.setAlignment(Pos.CENTER);
+		VBox vertical2 = new VBox ( crea, CVsebas);
+                
+                vertical2.setSpacing(10);
+                vertical2.setAlignment(Pos.CENTER);
 		descripcion.setOnAction(e -> vertical1.getChildren().add(desc));
 
         imagen.setOnMouseEntered(mouseHandler);
+        
 
 
 		opcion2.setOnAction(e ->vertical1.getChildren().add(desc));
 
 		
 		HBox horizontal = new HBox( vertical1,vertical2);
-		Scene scene = new Scene(horizontal, 600, 550);
-		
+                horizontal.setPadding(new Insets(0,10,10,0));
+                horizontal.setSpacing(0);
+                VBox vertical3= new VBox(BarraMenu, horizontal, hbox );
+                vertical3.setSpacing(5);
+                vertical3.setPadding(new Insets(0,0,20,0));
+		Scene scene = new Scene(vertical3, 710, 500);
+		scene.getStylesheets().add("GUI/Viper.css");
 		
         myStage.setScene(scene);
 		myStage.show();
