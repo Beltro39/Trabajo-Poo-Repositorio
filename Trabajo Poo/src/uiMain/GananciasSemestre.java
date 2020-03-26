@@ -105,7 +105,7 @@ public class GananciasSemestre extends OpcionDeMenu{
       meses[8]= "GANANCIAS EN LOS MESES ENTRE ABRIL Y SEPTIEMBRE";
       meses[9]= "GANANCIAS EN LOS MESES ENTRE JUNIO Y OCTUBRE";
       meses[10]= "GANANCIAS EN LOS MESES ENTRE JUNIO Y NOVIEMBRE";
-      meses[11]= "GGANANCIAS EN LOS MESES ENTRE JULIO Y DICIEMBRE"; 
+      meses[11]= "GANANCIAS EN LOS MESES ENTRE JULIO Y DICIEMBRE"; 
       mes= meses[RecolectarDatos.getI()];
       return mes;
     }

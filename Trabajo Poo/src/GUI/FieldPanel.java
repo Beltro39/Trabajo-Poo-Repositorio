@@ -203,7 +203,8 @@ public class FieldPanel extends Pane{
     		 metodos.espacioVacio(respuestas[4], "Direccion");
     		 metodos.cedulaCorrecta(respuestas[0]);
     		 metodos.telefonoCorrecto(respuestas[3]);
-    		 new Operario(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4], new Vector<Double>());   	     
+    		new Operario(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], respuestas[4], new Vector<Double>());
+                 AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 100);                
     	 }catch(InputVacia e){
     		 alerta = new Alert(AlertType.WARNING);
     		 alerta.setTitle("No fue posible registrar el operario");
@@ -232,6 +233,7 @@ public class FieldPanel extends Pane{
     		 metodos.espacioVacio(respuestas[2], "Años garantia");
     		 metodos.revisarGarantia(respuestas[2]);
     		 new Producto(respuestas[0], Integer.parseInt(respuestas[1]), respuestas[2]);
+                 AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 100);
     	 }catch(ErrorGarantia g) {
     		 alerta = new Alert(AlertType.INFORMATION);
     		 alerta.setHeaderText("Error al ingresar el producto");
