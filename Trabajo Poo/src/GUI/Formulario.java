@@ -1,4 +1,6 @@
 package GUI;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -9,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import sun.font.TextLabel;
 
-
+//Clase para hacer las distribuciones de los formularios de Clientes, operarios y productos
 public class Formulario extends BorderPane{
     
     FieldPanel fpane;
@@ -33,14 +35,29 @@ public class Formulario extends BorderPane{
       hbox.getChildren().addAll(botonRegistrar= new Button("Registrar"), botonConsultar=new Button("Consultar"), botonEditar=new Button("Editar"),  botonBorrar=new Button("Borrar"));
       botonRegistrar.getStyleClass().add("boton-azul"); botonConsultar.getStyleClass().add("boton-azul"); botonEditar.getStyleClass().add("boton-azul");botonBorrar.getStyleClass().add("boton-rojo");
       //Lambda expression de los botones
-      botonRegistrar.setOnAction(e -> {fpane.crearObjeto();
-                              AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 75);});
-      botonConsultar.setOnAction(e-> fpane.consultarObjeto());
-      botonEditar.setOnAction(e-> {  boolean editar= ConfirmBox.ejecutar("Aviso", "¿Está seguro de que quiere editar?");
+    
+      botonRegistrar.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+        fpane.crearObjeto();
+        }});
+      botonConsultar.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+        fpane.consultarObjeto();
+        }});
+      botonEditar.setOnAction( new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+          boolean editar= ConfirmBox.ejecutar("Aviso", "¿Está seguro de que quiere editar?");
               if(editar){
               fpane.editarObjeto();
-              }});
-      botonBorrar.setOnAction(e-> fpane.borrarTodo());
+              }
+        }});
+              
+              
+      botonBorrar.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+        fpane.borrarTodo();
+        }});
+            
       
       hbox.setAlignment(Pos.BOTTOM_CENTER);
       hbox.setSpacing(distancia);

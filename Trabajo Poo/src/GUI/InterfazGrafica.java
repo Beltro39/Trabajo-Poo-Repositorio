@@ -4,14 +4,20 @@ import BaseDatos.LectorJson;
 import gestorAplicacion.Cliente;
 import gestorAplicacion.Factura;
 import gestorAplicacion.Operario;
+import java.util.Timer;
+import java.util.TimerTask;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -23,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -35,37 +42,54 @@ import uiMain.RecolectarDatos;
 
 
 public class InterfazGrafica extends Application{
+    //Escenas que usa el programa
+    private static Scene sceneInicio;
     private static Scene sceneUsuario;
     private static Scene sceneRegistrarClientes;
     private static Scene sceneRegistrarOperarios;
     private static Scene sceneRegistrarProductos;
-    
-    private static Scene scene;
     private static Scene sceneEmpleadoDelMes;
     private static Scene sceneRecolectarDatos;
     private static Scene sceneGananciasMes;
     private static Scene sceneGananciasSemestre;
     private static Stage stage;
-    
+    //Text Fields que se actualizan mientras se usa el programa
     public static TextField mes;
     public static TextField mes2;
     public static TextField mes3;
     public static TextField textFieldEmpleadoDelMes;
     public static TextField[] textFieldGananciasMes;
-    
+    //Tablas para la funcion RecolectarDatos y Empleado del mes
    public static TableView<Factura> tablaFactura;
    public static TableView<Operario> tablaOperario;
     
+   static VBox vertical1;
+    Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
+     Label CVsebas, crea, bien ;
+     static Label label1;
+    Button siguiente, descripcion;
+    Alert alerta;
+    static ImageView  imagen;
+    static int contador=0;
+    
 
+    int velocidad =2; //segundos
+
+    Timer timer;
+    TimerTask tarea;
+    int velmil= velocidad*1000;
     @Override
+    
+    
     public void start(Stage stage){
-        
-       LectorJson.leerClientes();
+        //Lectura de datos en los archivos
+        LectorJson.leerClientes();
         LectorJson.leerOperarios();
         LectorJson.leerProductos();
         LectorJson.leerMes();
         
         this.stage= stage;
+        //Confimar si se quiere guardar datos mientras se cierra el programa
         stage.setOnCloseRequest(e->{
           e.consume();
           closeProgram();
@@ -225,15 +249,142 @@ public class InterfazGrafica extends Application{
         //----------------------------------------------------------------------------------------------------------------------------
        
         
-        //Layout menu principalrClientes= new Scene(consultarClientes, 350, 525);
        
+       //Escena usuario
         BorderPane layoutPrincipal= new BorderPane();
         layoutPrincipal.setTop(new MenuSuperior());
+        Image foto= new Image("images/ESP2.jpg");
+        layoutPrincipal.setCenter(new ImageView(foto));
         stage.setTitle("Empresa de servicios públicos");
-        this.scene= new Scene(layoutPrincipal, 350, 400);
-        scene.getStylesheets().add("GUI/Viper.css");
-        stage.setScene(scene);
-        bSalir.setOnAction(e -> stage.setScene(scene));
+        this.sceneUsuario= new Scene(layoutPrincipal, 350, 400);
+        sceneUsuario.getStylesheets().add("GUI/Viper.css");
+        
+        //Escena incio
+       
+        
+        imagen = new ImageView("images/ESP.jpg");
+		agua = new Image("images/agua.jpg");
+		luz = new Image("images/luz.jpg");
+		gas = new Image("images/gas.jpg");
+		mundo = new Image ("images/mundo.jpg");
+		logo2= new Image ("images/yinier.jpg");
+		ESP= new Image ("images/ESP.jpg");
+		
+
+		
+		
+		bien = new Label("                 Bienvenido al Software de \r\n "
+				+ " Empresa de servicios Publicos ESP-PARA TODOS");
+		bien.setContentDisplay(ContentDisplay.BOTTOM);
+                bien.setId("negrilla");
+        bien.setOnMouseEntered(mouseHandler);
+
+		
+        label1 = new Label("Empresa de Servicios Publicos, mas conocida como\r\n"
+				+ "ESP, es una empresa prestadora de servicios \r\n" + 
+				"colombiana creada en febrero del  2020.\r\n \r\n" + 
+				"Los servicios que presta son: luz, acueducto,\r\n"+
+				"alcantarillado y gas.\r\n"+
+				"\r\n" );
+        label1.setAlignment(Pos.CENTER);
+        label1.setId("letra-blanca");
+        
+         CVsebas = new Label("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+				"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+				"Email: sbeltrana@unal.edu.co\r\n"+ 
+				"Telefono: +57 300 7904147\r\n" );
+        CVsebas.setOnMouseClicked(mouseHandler);
+        CVsebas.setId("letra-blanca");
+        Button botonsalir = new Button ("Salir"); botonsalir.getStyleClass().add("boton-rojo");
+		botonsalir.setOnAction(e -> System.exit(0));
+		botonsalir.setContentDisplay(ContentDisplay.BOTTOM);
+		siguiente = new Button("Siguiente");  siguiente.getStyleClass().add("boton-azul"); siguiente.setMinSize(75, 30);
+                siguiente.setOnAction(new EventHandler<ActionEvent>(){
+                  public void handle(ActionEvent e){
+                   InterfazGrafica.getStage().setScene(getSceneUsuario());
+                }});
+		descripcion = new Button("Descripcion"); descripcion.getStyleClass().add("boton-azul");
+		Label desc = new Label (" Descripcion : Con este software usted podra:   \r\n" + 
+				"1.Registrar datos de :        \r\n" + 
+				"Cientes, operarios y productos.  \r\n" + 
+				"2. Usar funciones como :          \r\n" + 
+				"Recoleccion de datos, calcular las ganacias del mes,\r\n" + 
+				"calcularlas ganancias de los ultimos seis meses y  \r\n" + 
+				"obtener elempleado del mes.    \r\n" + 
+				"3. Guardar datos, de los clientes, operarios y productos \r\n" + 
+				"en un archivo TXT");
+                
+                desc.setId("letra-blanca");
+        
+		fotos = new Image("images/compas.jpeg");
+		crea = new Label("Creadores del Programa", new ImageView(fotos));
+		crea.setContentDisplay(ContentDisplay.BOTTOM);
+                crea.setId("negrilla");
+		
+		
+		//menu de inicio:
+		MenuBar	 BarraMenu = new MenuBar();
+ 
+		Menu MenuInicio = new Menu ("Inicio");
+              
+               
+                
+		BarraMenu.getMenus().add(MenuInicio);
+		MenuItem opcion1 = new MenuItem("Salir");
+		MenuItem opcion2 = new MenuItem("Descripcion");
+		SeparatorMenuItem separator = new SeparatorMenuItem();
+		MenuInicio.getItems().add(opcion1);
+		MenuInicio.getItems().add(opcion2);
+		opcion1.setOnAction(e -> System.exit(0));
+
+		
+		
+		
+		
+
+		HBox hbox= new HBox();
+                hbox.getChildren().addAll(siguiente);
+                hbox.setSpacing(15);
+                hbox.setAlignment(Pos.BOTTOM_CENTER);
+	        vertical1 = new VBox ();
+                vertical1.setMinWidth(380);
+		vertical1.getChildren().addAll( bien, imagen, label1);
+                vertical1.setSpacing(5);
+                vertical1.setAlignment(Pos.CENTER);
+		VBox vertical2 = new VBox ( crea, CVsebas);
+                
+                vertical2.setSpacing(10);
+                vertical2.setAlignment(Pos.CENTER);
+
+        imagen.setOnMouseEntered(mouseHandler);
+        
+
+
+		opcion2.setOnAction(e ->{vertical1.getChildren().remove(label1);
+                    
+                    vertical1.getChildren().add(desc);});
+
+		
+		HBox horizontal = new HBox( vertical1,vertical2);
+                horizontal.setPadding(new Insets(0,10,10,0));
+                horizontal.setSpacing(0);
+                VBox vertical3= new VBox(BarraMenu, horizontal, hbox );
+                vertical3.setSpacing(5);
+                vertical3.setPadding(new Insets(0,0,20,0));
+	        sceneInicio = new Scene(vertical3, 710, 500);
+		sceneInicio.getStylesheets().add("GUI/Viper.css");
+                
+        stage.setScene(getSceneInicio());      
         stage.show();
         
         //Interfaz de ayuda
@@ -256,7 +407,9 @@ public class InterfazGrafica extends Application{
     public static Scene getSceneUsuario(){
       return sceneUsuario;
     }
-    
+    public static Scene getSceneInicio(){
+      return sceneInicio;
+    }
     public static Scene getSceneRegistrarCliente(){
       return sceneRegistrarClientes;
     }
@@ -284,7 +437,8 @@ public class InterfazGrafica extends Application{
     public static Scene getSceneEmpleadoDelMes(){
       return sceneEmpleadoDelMes;
     }
-    public void closeProgram(){
+    
+    public static void closeProgram(){
       boolean answer= ConfirmBox.ejecutar("Aviso", "¿Desea guardar datos?");
       if(answer== true){
         BaseDatos.EscritorJson.escribirClientes();
@@ -295,6 +449,159 @@ public class InterfazGrafica extends Application{
       stage.close();
     }
     
-  
+  EventHandler<MouseEvent> mouseHandler = new EventHandler<MouseEvent>(){
+    	public void handle(MouseEvent mouseEvent) {
+    		String tipo=  mouseEvent.getEventType().toString();
+    		if (tipo.contentEquals("MOUSE_CLICKED")) {
+    		String s = CVsebas.getText().toString();
+			if(s.equals("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+					"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+					"Email: sbeltrana@unal.edu.co\r\n"+ 
+					"Telefono: +57 300 7904147\r\n" )) {
+				CVsebas.setText("Juan José Correa Hurtado CC. 1152459256\r\n"+
+					"\r\n" + 
+                                "Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: jjcorreahu@unal.edu.co\r\n"+ 
+						"Telefono: +57 317 7501170\r\n");
+			}else if(s.equals("Juan José Correa Hurtado CC. 1152459256\r\n"+
+					"\r\n" + 
+                                "Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: jjcorreahu@unal.edu.co\r\n"+ 
+						"Telefono: +57 317 7501170\r\n")){
+				CVsebas.setText("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+						"\r\n" + 
+
+				"Estudia Ingenieria de Sistemas e Informatica en la\r\n" + 
+				"Universidad Nacional de Colombia sede Medellin. \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: yiaramirezba@unal.edu.co\r\n"+ 
+						"Telefono: +57 302 2834094\r\n");
+			}
+			else if(s.equals("Yinier Ramirez Barahona CC. 1152713100\r\n"+
+					"\r\n" + 
+
+				"Estudia Ingenieria de Sistemas e Informatica en la\r\n" + 
+				"Universidad Nacional de Colombia sede Medellin. \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+					"Email: yiaramirezba@unal.edu.co\r\n"+ 
+					"Telefono: +57 302 2834094\r\n")){
+				CVsebas.setText("Sebastian Beltran Arenas CC. 1001366260\r\n"+
+						"\r\n" + 
+
+				"Estudiante de Ingenieria de Sistemas e Informatica\r\n" + 
+				"de la Universidad Nacional de Colombia sede Medellin \r\n" + 
+				"Actualmente derarolla este Software como practica del \r\n" + 
+				"curso de Programacion Orientado a Objetos (POO)\r\n" + 
+				"\r\n" + 
+
+				"Informacion de contacto: \r\n" + 
+				"\r\n" + 
+
+						"Email: sbeltrana@unal.edu.co\r\n"+ 
+						"Telefono: +57 300 7904147\r\n");
+			}
+			
+		}
+    		if (tipo.contentEquals("MOUSE_ENTERED")) {
+    			
+
+						
+		    				switch(contador) {
+		        			case 0:
+                                                        contador= 1;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(agua);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+                                                        
+		        				break;
+		        			
+		        			case 1:
+		        				contador=2;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(gas);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+		        				break;
+		        			case 2:
+		        				contador=3;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(luz);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+		        				break;
+		        			case 3:
+		        				contador=4;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(mundo);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+		        				break;
+		        			case 4:
+		        				contador=0;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(ESP);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+		        				break;
+		    				
+		    			        }							
+						
+    					
+    				};
+    				
+
+    			
+ 
+    			}
+    		
+   
+    		
+
+    };
+    	
+    };
     
-}
+

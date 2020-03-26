@@ -17,6 +17,9 @@ import uiMain.GananciasMes;
 import uiMain.GananciasSemestre;
 import ErroresAplicacion.*;
 
+//Esta es la clase que es hija de Pane y permite el diseño pedido en la ventana principal del programa
+//De aqui salen como estan organizados funciones como "Control clientes", "Control operarioss" 
+//"Control productos", "Ganancias Semestre" y Ganancias Mes"
 public class FieldPanel extends Pane{
    private String nombreCriterio;
    private String nombreValor;
@@ -142,31 +145,7 @@ public class FieldPanel extends Pane{
      
      }
      
-     /*
-     }
-   FieldPanel(String nombreCriterio, String[] criterios, String nombreValor, double[] valores, int vgap, int hgap, boolean cosa){
-     this.nombreCriterio= nombreCriterio;
-     this.criterios= criterios;
-     this.nombreValor= nombreValor;
-     
-     
-     Label label;
-     
-     this.gpane= new GridPane();
-     gpane.setVgap(vgap);
-     gpane.setHgap(hgap);
-     gpane.add(label= new Label(nombreCriterio), 0, 0); label.setId("letra-blanca"); 
-     gpane.add(label= new Label(nombreValor), 1, 0);  label.setId("letra-blanca"); 
-     gpane.setAlignment(Pos.CENTER);
-         
-     
-     
-    
-     }
-     
-   */
-  
-   }
+ }
      public void crearObjeto(){
      this.respuestas= new String[criterios.length];
      for(int i= 0; i<criterios.length; i++){
@@ -186,6 +165,7 @@ public class FieldPanel extends Pane{
     		 metodos.telefonoCorrecto(respuestas[3]);
     		 metodos.estratoCorrecto(respuestas[4]);
     		 new Cliente(respuestas[0], respuestas[1], Integer.parseInt(respuestas[2]), respuestas[3], Integer.parseInt(respuestas[4]),  respuestas[5], new ServiciosPublicos(new Vector<>(), new Vector<>() ), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new ServiciosPublicos(new Vector<>(), new Vector<>()), new Vector<String>());
+                 AlertBox.ejecutar("Aviso", "Se ha registrado satisfactoriamente", 250, 100);
     	 }catch(InputVacia e){
     		 alerta = new Alert(AlertType.WARNING);
     		 alerta.setTitle("No fue posible registrar el cliente");

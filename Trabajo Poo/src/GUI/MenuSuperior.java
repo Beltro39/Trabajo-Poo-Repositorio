@@ -1,4 +1,5 @@
 package GUI;
+import static GUI.InterfazGrafica.getSceneInicio;
 import gestorAplicacion.Cliente;
 import gestorAplicacion.Factura;
 import gestorAplicacion.Operario;
@@ -33,14 +34,22 @@ public class MenuSuperior extends MenuBar{
           MenuItem salir= new MenuItem("Salir");
           archivo.getItems().addAll(usuario,guardar, salir);
         //Lambda expressions de los menuItems Archivo
-          usuario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneUsuario()));
-          guardar.setOnAction(e ->{  
-           BaseDatos.EscritorJson.escribirClientes();
-           BaseDatos.EscritorJson.escribirOperarios();
-           BaseDatos.EscritorJson.escribirProductos();
-           BaseDatos.EscritorJson.escribirMes();
-          });
-          
+          usuario.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneUsuario());
+          }});
+                  
+          guardar.setOnAction( new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              BaseDatos.EscritorJson.escribirClientes();
+              BaseDatos.EscritorJson.escribirOperarios();
+              BaseDatos.EscritorJson.escribirProductos();
+              BaseDatos.EscritorJson.escribirMes();
+          }});
+           salir.setOnAction( new EventHandler<ActionEvent>(){
+           public void handle(ActionEvent e){
+             InterfazGrafica.getStage().setScene(getSceneInicio());
+             }});
           
          Menu procesos= new Menu("Procesos y consultas");
         //Todos los items del menu Procesos y consultas
@@ -53,84 +62,98 @@ public class MenuSuperior extends MenuBar{
           MenuItem controlCliente= new MenuItem("Control de clientes");
           MenuItem controlOperario= new MenuItem("Control de operarios");
           MenuItem controlProducto= new MenuItem("Control de productos");
-       
+          //------------------------------------------------------------------------
+         MenuItem borrarDatos= new MenuItem("Borrar datos");
           
-          procesos.getItems().addAll(controlCliente, controlOperario, controlProducto, new SeparatorMenuItem(),  recolectarDatos, gananciasMes, gananciasSemestre, empleadoDelMes);
+          procesos.getItems().addAll(controlCliente, controlOperario, controlProducto, new SeparatorMenuItem(),  recolectarDatos, gananciasMes, gananciasSemestre, empleadoDelMes,new SeparatorMenuItem(), borrarDatos);
         //Lambda expressions de los menuItems Procesos y consultas
-          controlCliente.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarCliente()));
-          controlOperario.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario()));
-          controlProducto.setOnAction(e -> InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto()));
-          
-          recolectarDatos.setOnAction(e->{
-          if(Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0 && Operario.listaOperario.size()>0){
-              ObservableList<Factura> facturas = RecolectarDatos.ejecutar2();
-              InterfazGrafica.tablaFactura.setItems(facturas);
-              ObservableList<Operario> operarios = EmpleadoDelMes.ejecutar2();
-              InterfazGrafica.tablaOperario.setItems(operarios);
+          controlCliente.setOnAction( new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarCliente());
+           }});
+          controlOperario.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarOperario());
+           }});
+          controlProducto.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRegistrarProducto());
+           }});
+                  
+          recolectarDatos.setOnAction(new EventHandler<ActionEvent>(){
+            public void handle(ActionEvent e){
+              if(Cliente.listaClientes.size()>0 && Producto.listaProducto.size()>0 && Operario.listaOperario.size()>0){
+                ObservableList<Factura> facturas = RecolectarDatos.ejecutar2();
+                InterfazGrafica.tablaFactura.setItems(facturas);
+                ObservableList<Operario> operarios = EmpleadoDelMes.ejecutar2();
+                InterfazGrafica.tablaOperario.setItems(operarios);
               
-              InterfazGrafica.mes.setText(GananciasMes.getMes());
-              InterfazGrafica.mes2.setText(GananciasMes.getMes2());
-              InterfazGrafica.mes3.setText(GananciasSemestre.getMes2());
-              InterfazGrafica.textFieldEmpleadoDelMes.setText(EmpleadoDelMes.getPromedioMax());
-              GananciasMes.ejecutar2();
-              GananciasSemestre.ejecutar2();
-              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
-          }else{
-             String texto= "";
-             if(Cliente.listaClientes.size()==0){
-               texto= "Registre un cliente para activar esta función";
-             }
-             if(Producto.listaProducto.size()==0){
-               texto= "Registre un producto";
-             }
-             if(Operario.listaOperario.size()==0){
-               texto= "Registre un operario";
-             }
-             
-             if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 ){
+                InterfazGrafica.mes.setText(GananciasMes.getMes());
+                InterfazGrafica.mes2.setText(GananciasMes.getMes2());
+                InterfazGrafica.mes3.setText(GananciasSemestre.getMes2());
+                InterfazGrafica.textFieldEmpleadoDelMes.setText(EmpleadoDelMes.getPromedioMax());
+                GananciasMes.ejecutar2();
+                GananciasSemestre.ejecutar2();
+                InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneRecolectarDatos());
+             }else{
+               String texto= "";
+               if(Cliente.listaClientes.size()==0){
+                 texto= "Registre un cliente para activar esta función";
+               }
+               if(Producto.listaProducto.size()==0){
+                 texto= "Registre un producto";
+               }
+               if(Operario.listaOperario.size()==0){
+                texto= "Registre un operario";
+               }
+               
+               if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 ){
                texto= "Registre un cliente y un producto";
-             }
-             
-             if(Cliente.listaClientes.size()==0 && Operario.listaOperario.size()==0 ){
+               }
+               if(Cliente.listaClientes.size()==0 && Operario.listaOperario.size()==0 ){
                texto= "Registre un cliente y un operario";
-             }
-             if(Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0 ){
-               texto= "Registre un operario y un producto";
-             }
+               }
+               if(Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0 ){
+                 texto= "Registre un operario y un producto";
+               }
              
-             if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0){
-               texto= "Registre un cliente, un operario y un producto ";
-             }
+               if(Cliente.listaClientes.size()==0 && Producto.listaProducto.size()==0 && Operario.listaOperario.size()==0){
+                 texto= "Registre un cliente, un operario y un producto ";
+               }
              
              AlertBox.ejecutar("Error", texto, 300, 75);
           }
-                                          
-          });
-          gananciasMes.setOnAction(e -> { 
-              if(RecolectarDatos.getI()!= -1){
+          }});
+          
+          gananciasMes.setOnAction(new EventHandler<ActionEvent>(){
+          public void handle(ActionEvent e){
+            if(RecolectarDatos.getI()!= -1){
               FieldPanel.actualizar();
               InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneGananciasMes());
-              }else{
-                AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
-              }
-                                         
-          });
-          gananciasSemestre.setOnAction(e->{
-             if(RecolectarDatos.getI()> 4){
+            }else{
+              AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
+            }
+          }});
+                  
+          gananciasSemestre.setOnAction( new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+          if(RecolectarDatos.getI()> 4){
              FieldPanel.actualizar2();
              InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneGananciasSemestre());  
              }else{
                AlertBox.ejecutar("Error", "Recolecte datos", 200, 75);
              }
-          });
-          empleadoDelMes.setOnAction(e->{
-            if(Operario.listaOperario.size()!=0){  
+        }});
+                  
+          empleadoDelMes.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+         if(Operario.listaOperario.size()!=0){  
             InterfazGrafica.getStage().setScene(InterfazGrafica.getSceneEmpleadoDelMes());
             }else{
               AlertBox.ejecutar("Error", "Registre un operario", 200, 75);
             }
+        }});
           
-          });
           
           
           
@@ -140,6 +163,13 @@ public class MenuSuperior extends MenuBar{
         ayuda.getItems().add(informacionContacto);
           this.getMenus().addAll(archivo, procesos, ayuda);
              
+        borrarDatos.setOnAction(new EventHandler<ActionEvent>(){
+        public void handle(ActionEvent e){
+            boolean answer= ConfirmBox.ejecutar("Aviso", "¿Desea borrar los datos?");
+      if(answer== true){
+        BaseDatos.EscritorJson.borrarDatos();
+      }}});
+                  
     }
    EventHandler<ActionEvent> accionAyuda = new EventHandler<ActionEvent>() {
  	  public void handle(ActionEvent e) {
