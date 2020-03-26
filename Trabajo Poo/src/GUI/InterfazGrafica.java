@@ -64,7 +64,7 @@ public class InterfazGrafica extends Application{
    static VBox vertical1;
     Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
      Label CVsebas, crea, bien ;
-     static Label label1;
+     static Label label1, desc ;
     Button siguiente, descripcion;
     Alert alerta;
     static ImageView  imagen;
@@ -312,7 +312,7 @@ public class InterfazGrafica extends Application{
                    InterfazGrafica.getStage().setScene(getSceneUsuario());
                 }});
 		descripcion = new Button("Descripcion"); descripcion.getStyleClass().add("boton-azul");
-		Label desc = new Label (" Descripcion : Con este software usted podra:   \r\n" + 
+		desc = new Label ("Descripcion : Con este software usted podra:   \r\n" + 
 				"1.Registrar datos de :        \r\n" + 
 				"Cientes, operarios y productos.  \r\n" + 
 				"2. Usar funciones como :          \r\n" + 
@@ -533,51 +533,57 @@ public class InterfazGrafica extends Application{
 			
 		}
     		if (tipo.contentEquals("MOUSE_ENTERED")) {
-    			
+    			boolean v;
 
 						
 		    				switch(contador) {
 		        			case 0:
                                                         contador= 1;
-		        				vertical1.getChildren().remove(label1);
-                                                        vertical1.getChildren().remove(imagen);
+                                                        
+                                                 //       vertical1.getChildren().remove(imagen);
                                                         imagen.setImage(agua);
-                                                        vertical1.getChildren().add(imagen);
-                                                        vertical1.getChildren().add(label1);
+                                                   //     vertical1.getChildren().add(imagen);
+                                                        
                                                         
 		        				break;
 		        			
 		        			case 1:
 		        				contador=2;
-		        				vertical1.getChildren().remove(label1);
-                                                        vertical1.getChildren().remove(imagen);
+                                                        
+		        				
+                                                //        vertical1.getChildren().remove(imagen);
                                                         imagen.setImage(gas);
-                                                        vertical1.getChildren().add(imagen);
-                                                        vertical1.getChildren().add(label1);
+                                                //        vertical1.getChildren().add(imagen);
+                                                        
+                                                      
+                                                       
 		        				break;
 		        			case 2:
 		        				contador=3;
-		        				vertical1.getChildren().remove(label1);
-                                                        vertical1.getChildren().remove(imagen);
+                                                        
+		        				
+                                                      //  vertical1.getChildren().remove(imagen);
                                                         imagen.setImage(luz);
-                                                        vertical1.getChildren().add(imagen);
-                                                        vertical1.getChildren().add(label1);
+                                                      //   vertical1.getChildren().add(imagen);
+                                                       
 		        				break;
 		        			case 3:
 		        				contador=4;
-		        				vertical1.getChildren().remove(label1);
-                                                        vertical1.getChildren().remove(imagen);
+		        				
+                                                        
+                                                       // vertical1.getChildren().remove(imagen);
                                                         imagen.setImage(mundo);
-                                                        vertical1.getChildren().add(imagen);
-                                                        vertical1.getChildren().add(label1);
+                                                       // vertical1.getChildren().add(imagen);
+                                                        
 		        				break;
 		        			case 4:
 		        				contador=0;
-		        				vertical1.getChildren().remove(label1);
-                                                        vertical1.getChildren().remove(imagen);
+		        				
+                                                     //   vertical1.getChildren().remove(imagen);
                                                         imagen.setImage(ESP);
-                                                        vertical1.getChildren().add(imagen);
-                                                        vertical1.getChildren().add(label1);
+                                                     //   vertical1.getChildren().add(imagen);
+                                                        
+                                                        
 		        				break;
 		    				
 		    			        }							
