@@ -10,6 +10,7 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
@@ -27,6 +28,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.control.Alert;
 import uiMain.GananciasMes;
 import uiMain.GananciasSemestre;
 import uiMain.RecolectarDatos;
@@ -234,6 +236,11 @@ public class InterfazGrafica extends Application{
         bSalir.setOnAction(e -> stage.setScene(scene));
         stage.show();
         
+        //Interfaz de ayuda
+        Alert ventanaAyuda = new Alert(AlertType.INFORMATION);
+        ventanaAyuda.setTitle("Acerca de");
+        ventanaAyuda.setHeaderText("Sebastian Beltran: sbeltrana@unal.edu.co, Yinier Ramirez: yiaramirezba@unal.edu.co, Juan Jose Correa: jjcorreahu@unal.edu.co");
+        ventanaAyuda.setContentText("Para soporte comuniquese a la linea: 555-018000-65459874\n" + "Para soporte en linea envie un email a: info@esp.com.co");
         //InterfazGrafica.class.getResource("Viper.css");
              
     }
@@ -277,7 +284,6 @@ public class InterfazGrafica extends Application{
     public static Scene getSceneEmpleadoDelMes(){
       return sceneEmpleadoDelMes;
     }
-    
     public void closeProgram(){
       boolean answer= ConfirmBox.ejecutar("Aviso", "¿Desea guardar datos?");
       if(answer== true){

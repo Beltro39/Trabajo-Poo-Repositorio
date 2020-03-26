@@ -181,7 +181,7 @@ public class InterfazPresentacion extends Application {
 				"Informacion de contacto: \r\n" + 
 				"\r\n" + 
 
-						"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+						"Email: jjcorreahu@unal.edu.co\r\n"+ 
 						"Telefono: +57 317 7501170\r\n");
 			}else if(s.equals("Juan Jose Correa CC. 1152469256\r\n"+
 					"\r\n" + 
@@ -196,7 +196,7 @@ public class InterfazPresentacion extends Application {
 				"Informacion de contacto: \r\n" + 
 				"\r\n" + 
 
-						"Email: XXXXXXXXXXXXXX@unal.edu.co\r\n"+ 
+						"Email: jjcorreahu@unal.edu.co\r\n"+ 
 						"Telefono: +57 317 7501170\r\n")){
 				CVsebas.setText("Yinier Ramirez Barahona CC. 1152713100\r\n"+
 						"\r\n" + 

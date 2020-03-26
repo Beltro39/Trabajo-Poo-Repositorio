@@ -5,11 +5,17 @@ import gestorAplicacion.Operario;
 import gestorAplicacion.Producto;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
 import uiMain.EmpleadoDelMes;
 import uiMain.GananciasMes;
 import uiMain.GananciasSemestre;
@@ -17,9 +23,10 @@ import uiMain.RecolectarDatos;
 
 public class MenuSuperior extends MenuBar{
    public MenuSuperior() {
-       
+       MouseEvent mouseEventType;
      //Menu Principal   
         Menu archivo= new Menu("Archivo");
+        
         //Todos los items del menu Archivo
           MenuItem usuario= new MenuItem("Usuario");
           MenuItem guardar= new MenuItem("Guardar");
@@ -128,8 +135,19 @@ public class MenuSuperior extends MenuBar{
           
           
         Menu ayuda= new Menu("Ayuda");
-        
+        MenuItem informacionContacto = new MenuItem("Info Contacto");
+        informacionContacto.setOnAction(accionAyuda);
+        ayuda.getItems().add(informacionContacto);
           this.getMenus().addAll(archivo, procesos, ayuda);
-    
+             
     }
+   EventHandler<ActionEvent> accionAyuda = new EventHandler<ActionEvent>() {
+ 	  public void handle(ActionEvent e) {
+ 		 Alert ventanaAyuda = new Alert(AlertType.INFORMATION);
+         ventanaAyuda.setTitle("Acerca de:");
+         ventanaAyuda.setHeaderText("Sebastian Beltran: sbeltrana@unal.edu.co,\n Yinier Ramirez: yiaramirezba@unal.edu.co,\n Juan Jose Correa: jjcorreahu@unal.edu.co");
+         ventanaAyuda.setContentText("Para soporte comuniquese a la linea: 555-018000-65459874\n" + "Para soporte en linea envie un email a: info@esp.com.co");
+         ventanaAyuda.show();
+ 	  }
+   };
 }
