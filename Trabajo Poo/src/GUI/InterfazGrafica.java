@@ -61,11 +61,13 @@ public class InterfazGrafica extends Application{
    public static TableView<Factura> tablaFactura;
    public static TableView<Operario> tablaOperario;
     
+   static VBox vertical1;
     Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
-    Label label1,CVsebas, crea, bien ;
+     Label CVsebas, crea, bien ;
+     static Label label1;
     Button siguiente, descripcion;
     Alert alerta;
-    ImageView  imagen;
+    static ImageView  imagen;
     static int contador=0;
     
 
@@ -311,7 +313,6 @@ public class InterfazGrafica extends Application{
                 }});
 		descripcion = new Button("Descripcion"); descripcion.getStyleClass().add("boton-azul");
 		Label desc = new Label (" Descripcion : Con este software usted podra:   \r\n" + 
-				"\r\n"+
 				"1.Registrar datos de :        \r\n" + 
 				"Cientes, operarios y productos.  \r\n" + 
 				"2. Usar funciones como :          \r\n" + 
@@ -320,7 +321,8 @@ public class InterfazGrafica extends Application{
 				"obtener elempleado del mes.    \r\n" + 
 				"3. Guardar datos, de los clientes, operarios y productos \r\n" + 
 				"en un archivo TXT");
-
+                
+                desc.setId("letra-blanca");
         
 		fotos = new Image("images/compas.jpeg");
 		crea = new Label("Creadores del Programa", new ImageView(fotos));
@@ -352,7 +354,7 @@ public class InterfazGrafica extends Application{
                 hbox.getChildren().addAll(siguiente);
                 hbox.setSpacing(15);
                 hbox.setAlignment(Pos.BOTTOM_CENTER);
-		VBox vertical1 = new VBox ();
+	        vertical1 = new VBox ();
                 vertical1.setMinWidth(380);
 		vertical1.getChildren().addAll( bien, imagen, label1);
                 vertical1.setSpacing(5);
@@ -361,13 +363,14 @@ public class InterfazGrafica extends Application{
                 
                 vertical2.setSpacing(10);
                 vertical2.setAlignment(Pos.CENTER);
-		descripcion.setOnAction(e -> vertical1.getChildren().add(desc));
 
         imagen.setOnMouseEntered(mouseHandler);
         
 
 
-		opcion2.setOnAction(e ->vertical1.getChildren().add(desc));
+		opcion2.setOnAction(e ->{vertical1.getChildren().remove(label1);
+                    
+                    vertical1.getChildren().add(desc);});
 
 		
 		HBox horizontal = new HBox( vertical1,vertical2);
@@ -530,49 +533,58 @@ public class InterfazGrafica extends Application{
 			
 		}
     		if (tipo.contentEquals("MOUSE_ENTERED")) {
-    			/*List<Image> img = new ArrayList<Image>();
-    			img.add(agua);
-    			img.add(luz);
-    			img.add(gas);
-    			img.add(mundo);
-    			img.add(logo2);
-    			img.add(ESP);
-    			for(int i =0; i<6; i++) {
-					imagen.setImage(img.get(i));
-					imagen.sc*/
-    				tarea = new TimerTask() {
+    			
 
-						@Override
-						public void run() {
+						
 		    				switch(contador) {
 		        			case 0:
-		        				contador=1;
-		        				imagen.setImage(agua);
+                                                        contador= 1;
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(agua);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
+                                                        
 		        				break;
 		        			
 		        			case 1:
 		        				contador=2;
-		        				imagen.setImage(gas);
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(gas);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
 		        				break;
 		        			case 2:
 		        				contador=3;
-		        				imagen.setImage(luz);
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(luz);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
 		        				break;
 		        			case 3:
 		        				contador=4;
-		        				imagen.setImage(mundo);
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(mundo);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
 		        				break;
 		        			case 4:
 		        				contador=0;
-		        				imagen.setImage(ESP);
+		        				vertical1.getChildren().remove(label1);
+                                                        vertical1.getChildren().remove(imagen);
+                                                        imagen.setImage(ESP);
+                                                        vertical1.getChildren().add(imagen);
+                                                        vertical1.getChildren().add(label1);
 		        				break;
 		    				
-		    			}							
-						}
+		    			        }							
+						
     					
     				};
-    				timer = new Timer();
-    				timer.schedule(tarea, velmil, velmil);
+    				
 
     			
  
@@ -585,4 +597,4 @@ public class InterfazGrafica extends Application{
     	
     };
     
-}
+
