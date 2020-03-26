@@ -11,7 +11,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import sun.font.TextLabel;
 
-
+//Clase para hacer las distribuciones de los formularios de Clientes, operarios y productos
 public class Formulario extends BorderPane{
     
     FieldPanel fpane;

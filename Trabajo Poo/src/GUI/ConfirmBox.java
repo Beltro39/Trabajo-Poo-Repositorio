@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+//Clase para crear ventanas que le piden confirmar una accion
 public class ConfirmBox {
     
     static boolean answer;

@@ -40,33 +40,33 @@ import uiMain.RecolectarDatos;
 
 
 public class InterfazGrafica extends Application{
+    //Escenas que usa el programa
+    private static Scene sceneInicio;
     private static Scene sceneUsuario;
     private static Scene sceneRegistrarClientes;
     private static Scene sceneRegistrarOperarios;
     private static Scene sceneRegistrarProductos;
-    
     private static Scene sceneEmpleadoDelMes;
     private static Scene sceneRecolectarDatos;
     private static Scene sceneGananciasMes;
     private static Scene sceneGananciasSemestre;
     private static Stage stage;
-    
+    //Text Fields que se actualizan mientras se usa el programa
     public static TextField mes;
     public static TextField mes2;
     public static TextField mes3;
     public static TextField textFieldEmpleadoDelMes;
     public static TextField[] textFieldGananciasMes;
-    
+    //Tablas para la funcion RecolectarDatos y Empleado del mes
    public static TableView<Factura> tablaFactura;
    public static TableView<Operario> tablaOperario;
     
-     Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
+    Image fotos,  logo2, mundo, agua, luz, gas, ESP ;
     Label label1,CVsebas, crea, bien ;
     Button siguiente, descripcion;
     Alert alerta;
     ImageView  imagen;
     static int contador=0;
-    static Scene sceneInicio;
     
 
     int velocidad =2; //segundos
@@ -75,14 +75,17 @@ public class InterfazGrafica extends Application{
     TimerTask tarea;
     int velmil= velocidad*1000;
     @Override
+    
+    
     public void start(Stage stage){
-        
-       LectorJson.leerClientes();
+        //Lectura de datos en los archivos
+        LectorJson.leerClientes();
         LectorJson.leerOperarios();
         LectorJson.leerProductos();
         LectorJson.leerMes();
         
         this.stage= stage;
+        //Confimar si se quiere guardar datos mientras se cierra el programa
         stage.setOnCloseRequest(e->{
           e.consume();
           closeProgram();
@@ -242,8 +245,8 @@ public class InterfazGrafica extends Application{
         //----------------------------------------------------------------------------------------------------------------------------
        
         
-        //Layout menu principalrClientes= new Scene(consultarClientes, 350, 525);
        
+       //Escena usuario
         BorderPane layoutPrincipal= new BorderPane();
         layoutPrincipal.setTop(new MenuSuperior());
         Image foto= new Image("images/ESP2.jpg");
@@ -252,7 +255,7 @@ public class InterfazGrafica extends Application{
         this.sceneUsuario= new Scene(layoutPrincipal, 350, 400);
         sceneUsuario.getStylesheets().add("GUI/Viper.css");
         
-        
+        //Escena incio
        
         
         imagen = new ImageView("images/ESP.jpg");

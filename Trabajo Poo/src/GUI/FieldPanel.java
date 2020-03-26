@@ -17,6 +17,9 @@ import uiMain.GananciasMes;
 import uiMain.GananciasSemestre;
 import ErroresAplicacion.*;
 
+//Esta es la clase que es hija de Pane y permite el diseño pedido en la ventana principal del programa
+//De aqui salen como estan organizados funciones como "Control clientes", "Control operarioss" 
+//"Control productos", "Ganancias Semestre" y Ganancias Mes"
 public class FieldPanel extends Pane{
    private String nombreCriterio;
    private String nombreValor;

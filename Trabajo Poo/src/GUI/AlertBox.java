@@ -12,6 +12,8 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+//Clase para hacer ventanas de alerta
+
 public class AlertBox {
     public static void ejecutar(String titulo, String mensaje, int h, int y){
       Stage stage= new Stage();
